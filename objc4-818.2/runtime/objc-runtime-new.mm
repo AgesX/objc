@@ -7973,7 +7973,10 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     bool hasCxxDtor = cls->hasCxxDtor();
     bool fast = cls->canAllocNonpointer();
     size_t size;
-
+    
+    // 要开辟多少内存
+    
+    
     size = cls->instanceSize(extraBytes);
     if (outAllocatedSize) *outAllocatedSize = size;
 
@@ -7981,8 +7984,14 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     if (zone) {
         obj = (id)malloc_zone_calloc((malloc_zone_t *)zone, 1, size);
     } else {
+        
+        // 怎么去申请内存
+        
         obj = (id)calloc(1, size);
     }
+    
+    
+    
     if (slowpath(!obj)) {
         if (construct_flags & OBJECT_CONSTRUCT_CALL_BADALLOC) {
             return _objc_callBadAllocHandler(cls);
