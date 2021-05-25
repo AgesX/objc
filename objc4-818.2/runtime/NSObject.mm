@@ -2471,9 +2471,25 @@ __attribute__((objc_nonlazy_class))
 }
 
 
+
+// 初始化方法:
+
+
+// alloc
+// init
+// 和 new
+
+
 + (id)new {
     return [callAlloc(self, false/*checkNil*/) init];
 }
+
+
+
+
+
+
+
 
 + (id)retain {
     return (id)self;

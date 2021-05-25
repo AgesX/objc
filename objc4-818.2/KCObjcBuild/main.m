@@ -38,6 +38,22 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
         NSLog(@"Hello, World!\n\n");
+        
+        
+        // alloc , 开辟内存，有了一个指针地址
+        
+        
+        
+        // init，构造方法，
+        // 设计模式中的，工厂模式
+        
+        // 这样开发，可以继承 init 方法，做一些自定义的操作 / 重写
+        
+        // 例子: array 和 objc ，初始化出来，带的东西相同
+        
+        
+        
+        
         Soilder *objc = [[Soilder alloc] init];
         NSLog(@"111:  %@\n\n", objc);
         
@@ -46,3 +62,7 @@ int main(int argc, const char * argv[]) {
     }
     return 0;
 }
+
+
+
+

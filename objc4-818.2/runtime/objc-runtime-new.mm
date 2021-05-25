@@ -8017,8 +8017,8 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     }
 
     if (!zone && fast) {
-        
-        // 创建 isa
+        // alloc 方法，
+        // 并且，创建 isa
         
         
         // 把当前的类，和指针地址，绑定在一起
