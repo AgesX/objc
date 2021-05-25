@@ -7988,6 +7988,10 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     
     
     size = cls->instanceSize(extraBytes);
+    
+    // br
+    
+    
     if (outAllocatedSize) *outAllocatedSize = size;
 
     id obj;
@@ -8007,7 +8011,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     // obj 只是一个指针
     // obj 还没有关联到对象 / 类
     
-    
+    // br
     
     if (slowpath(!obj)) {
         if (construct_flags & OBJECT_CONSTRUCT_CALL_BADALLOC) {
@@ -8030,6 +8034,9 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
         obj->initIsa(cls);
     }
 
+    
+    
+    // br
 /*
  
  
