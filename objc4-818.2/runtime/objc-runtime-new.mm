@@ -7960,6 +7960,16 @@ objc_constructInstance(Class cls, void *bytes)
 * Note: this function has been carefully written so that the fastpath
 * takes no branch.
 **********************************************************************/
+
+
+
+
+// 这里关注的重点是，
+
+// obj ， 对象
+
+
+
 static ALWAYS_INLINE id
 _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
                               int construct_flags = OBJECT_CONSTRUCT_NONE,
@@ -7987,8 +7997,15 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
         
         // 怎么去申请内存
         
+        // 开辟的这片地址空间的指针，就是 obj
+        
+        // alloc 方法，是开辟内存的地方
+        
         obj = (id)calloc(1, size);
     }
+    
+    // obj 只是一个指针
+    // obj 还没有关联到对象 / 类
     
     
     
@@ -8000,6 +8017,12 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     }
 
     if (!zone && fast) {
+        
+        // 创建 isa
+        
+        
+        // 把当前的类，和指针地址，绑定在一起
+        
         obj->initInstanceIsa(cls, hasCxxDtor);
     } else {
         // Use raw pointer isa on the assumption that they might be
