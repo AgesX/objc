@@ -54,14 +54,43 @@ int main(int argc, const char * argv[]) {
         
         
         
+        
+        // 通常 custom class,
+        // 都会 init 重写一些，
+        // 带一些自定制的东西
         Soilder *objc = [[Soilder alloc] init];
         NSLog(@"111:  %@\n\n", objc);
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // new 方法，一般情况下，等同于 alloc, init
+        // 但是失去了，我们自定制的 init 的部分
+        
+        
+        // new 方法，不一定合适
+        Soilder *win = [Soilder new];
     }
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

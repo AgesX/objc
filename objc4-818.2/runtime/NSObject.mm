@@ -1918,11 +1918,27 @@ _objc_rootRelease(id obj)
     obj->rootRelease();
 }
 
+
+
+
+
+
+
+
+
+
 // Call [cls alloc] or [cls allocWithZone:nil], with appropriate
 // shortcutting optimizations.
 
 // cooci 2021.01.05
 // KC 重磅提示 这里是核心方法
+
+
+
+
+
+
+
 static ALWAYS_INLINE id
 callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 {
@@ -1939,6 +1955,12 @@ callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
     }
     return ((id(*)(id, SEL))objc_msgSend)(cls, @selector(alloc));
 }
+
+
+
+
+
+
 
 
 // Base class implementation of +alloc. cls is not nil.
