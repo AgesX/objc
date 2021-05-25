@@ -8000,7 +8000,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
         // 开辟的这片地址空间的指针，就是 obj
         
         // alloc 方法，是开辟内存的地方
-        
+        // 指针出来了
         obj = (id)calloc(1, size);
     }
     
@@ -8022,7 +8022,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
         
         
         // 把当前的类，和指针地址，绑定在一起
-        
+        // 对象出来了
         obj->initInstanceIsa(cls, hasCxxDtor);
     } else {
         // Use raw pointer isa on the assumption that they might be
