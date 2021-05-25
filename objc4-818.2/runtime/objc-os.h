@@ -50,9 +50,39 @@ static inline uint32_t word_align(uint32_t x) {
 static inline size_t word_align(size_t x) {
     return (x + WORD_MASK) & ~WORD_MASK;
 }
+
+
+
+
+
+// 内存对齐算法，
+
+
+// 字节对齐
+// 16 字节对齐
 static inline size_t align16(size_t x) {
     return (x + size_t(15)) & ~size_t(15);
 }
+
+// 与， 取反
+// 有一个抹零的操作
+
+
+// 都会被抹掉
+// 只留下 4 位以上
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Mix-in for classes that must not be copied.
 class nocopy_t {
