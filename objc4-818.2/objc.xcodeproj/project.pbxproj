@@ -266,7 +266,6 @@
 		8379996D13CBAF6F007C2B5F /* objc-blocktramps-arm64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "objc-blocktramps-arm64.s"; path = "runtime/objc-blocktramps-arm64.s"; sourceTree = "<group>"; };
 		8383A3A1122600E9009290B8 /* objc-blocktramps-arm.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "objc-blocktramps-arm.s"; path = "runtime/objc-blocktramps-arm.s"; sourceTree = "<group>"; };
 		838485B30D6D682B00CEA253 /* libobjc.order */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libobjc.order; sourceTree = "<group>"; };
-		838485B40D6D683300CEA253 /* APPLE_LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = APPLE_LICENSE; sourceTree = "<group>"; };
 		838485B50D6D683300CEA253 /* ReleaseNotes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReleaseNotes.rtf; sourceTree = "<group>"; };
 		838485B70D6D687300CEA253 /* hashtable2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hashtable2.h; path = runtime/hashtable2.h; sourceTree = "<group>"; };
 		838485B80D6D687300CEA253 /* hashtable2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = hashtable2.mm; path = runtime/hashtable2.mm; sourceTree = "<group>"; };
@@ -486,7 +485,6 @@
 			isa = PBXGroup;
 			children = (
 				830F2AA50D7394C200392440 /* markgc.cpp */,
-				838485B40D6D683300CEA253 /* APPLE_LICENSE */,
 				838485B50D6D683300CEA253 /* ReleaseNotes.rtf */,
 				83CE671D1E6E76B60095A33E /* interposable.txt */,
 				E934A9EF23E9967D0088F26F /* objc4.plist */,
