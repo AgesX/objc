@@ -21,6 +21,12 @@
 
 @interface Soilder : NSObject
 
+
+
+@property (nonatomic, strong) NSString * weapon;
+
+
+
 @end
 
 
@@ -44,12 +50,23 @@ int main(int argc, const char * argv[]) {
         
         
         
+
+        
+        
+        
+        
+        // 调用 alloc 方法，产生一个 16 字节的内存
+        // 对象指针
+        Soilder *killer = [Soilder alloc];
+        
+        
         // init，构造方法，
         // 设计模式中的，工厂模式
         
         // 这样开发，可以继承 init 方法，做一些自定义的操作 / 重写
         
         // 例子: array 和 objc ，初始化出来，带的东西相同
+        
         
         
         

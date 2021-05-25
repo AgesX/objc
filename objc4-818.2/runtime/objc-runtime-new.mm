@@ -8039,7 +8039,13 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
  objc[24081]: -[NSString initWithBytes:length:encoding:]: unrecognized selector sent to instance 0x100706290 (no message forward handler is installed)
  0x0000000101a058f0
  
+ // 需要配合断点技巧，
  
+ // disable here,
+ 
+ // reach there
+ 
+ // enable here
  
  
  */
