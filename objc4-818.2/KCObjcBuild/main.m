@@ -39,7 +39,7 @@
 
 
 // 加 2 个属性 , 32
-@property (nonatomic, strong) NSString * weapon;
+@property (nonatomic, strong) NSString * shield;
 
 
 

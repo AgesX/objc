@@ -7990,7 +7990,10 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     size = cls->instanceSize(extraBytes);
     
     // br
-    // val: 16
+    
+    
+    // val: 16,  加一个属性
+    // val: 32,  加第 2 个属性
     
     if (outAllocatedSize) *outAllocatedSize = size;
 
