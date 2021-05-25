@@ -8030,6 +8030,19 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
         obj->initIsa(cls);
     }
 
+/*
+ 
+ 
+ 
+ 
+ (lldb) po obj
+ objc[24081]: -[NSString initWithBytes:length:encoding:]: unrecognized selector sent to instance 0x100706290 (no message forward handler is installed)
+ 0x0000000101a058f0
+ 
+ 
+ 
+ 
+ */
     if (fastpath(!hasCxxCtor)) {
         return obj;
     }

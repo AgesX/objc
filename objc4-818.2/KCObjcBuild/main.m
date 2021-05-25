@@ -17,11 +17,31 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+@interface Soilder : NSObject
+
+@end
+
+
+
+@implementation Soilder
+
+
+
+@end
+
+
+
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        NSLog(@"Hello, World!");
-        NSObject *objc = [NSObject alloc];
+        NSLog(@"Hello, World!\n\n");
+        Soilder *objc = [[Soilder alloc] init];
+        NSLog(@"111:  %@\n\n", objc);
+        
+        
         
     }
     return 0;
