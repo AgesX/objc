@@ -22,7 +22,23 @@
 @interface Soilder : NSObject
 
 
+// 因为内存对齐
+// 字节对齐
 
+
+
+
+// 对于对象
+// 影响内存对齐的因素，
+// 是属性
+
+
+
+// 加一个属性 , 16
+@property (nonatomic, strong) NSString * weapon;
+
+
+// 加 2 个属性 , 32
 @property (nonatomic, strong) NSString * weapon;
 
 
