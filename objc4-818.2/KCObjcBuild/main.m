@@ -35,11 +35,39 @@ int main(int argc, const char * argv[]) {
         // 的断点
         NSObject * me = [NSObject alloc];
         
+        // 走的是
+        
+        
+        // id     objc_alloc(Class cls)
         
         
         
         
-
+        
+        
+        
+        
+        
+        
+        
+        
+        //  NSObject , 和 Soilder 的区别是
+        //  Soilder 有一个重写
+        
+        
+        // NSObject 是根类，
+        // 所以 NSObject , 和 Soilder 走的 alloc 方法
+        // 不一致
+        
+        
+        // alloc 探讨，汇编点一下
+        
+        
+        //  alloc -> objc_alloc
+        //  Soilder 会走了两次 alloc
+        //  - objc_alloc
+        
+        
         Soilder *k = [Soilder alloc];
         
         
@@ -52,6 +80,10 @@ int main(int argc, const char * argv[]) {
     }
     return 0;
 }
+
+
+
+
 
 
 
