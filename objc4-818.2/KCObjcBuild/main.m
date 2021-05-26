@@ -6,11 +6,16 @@
 @interface Soilder : NSObject
 
 
+@property (nonatomic, assign) double kind;
+
+
+@property (nonatomic, assign) double ally;
 
 @property (nonatomic, strong) NSString * weapon;
 
 
 @property (nonatomic, strong) NSString * shield;
+
 
 
 
@@ -68,3 +73,4 @@ int main(int argc, const char * argv[]) {
 
 
 
+// x/4gx
