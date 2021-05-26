@@ -1955,9 +1955,14 @@ callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
     
     
     
+    
+    
     // 自定义类 Soilder 走两次
     // 先走，1
-    // 走第二次， 3
+    
+    
+    // 走第二次， 3,
+    // 走父类 NSObject 的 alloc 方法
     
 #endif
 
