@@ -2581,7 +2581,13 @@ __attribute__((objc_nonlazy_class))
     return _objc_rootRetainCount(self);
 }
 
+
+// NSObject 为什么不走 _objc_rootAlloc， 走的是 objc_alloc
+
 + (id)alloc {
+    
+    // br
+    
     return _objc_rootAlloc(self);
 }
 
