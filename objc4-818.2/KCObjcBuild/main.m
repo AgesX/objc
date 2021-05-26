@@ -65,7 +65,9 @@ int main(int argc, const char * argv[]) {
         
         //  alloc -> objc_alloc
         //  Soilder 会走了两次 alloc
-        //  - objc_alloc
+        
+        
+        //  先走 objc_alloc， 再走 alloc
         
         
         Soilder *k = [Soilder alloc];

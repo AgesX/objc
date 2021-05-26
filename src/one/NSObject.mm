@@ -1927,15 +1927,15 @@ _objc_rootRelease(id obj)
 
 
 
+// Call [cls alloc] or [cls allocWithZone:nil], with appropriate
+// shortcutting optimizations.
 
+// cooci 2021.01.05
 // KC 重磅提示 这里是核心方法
 
 
 
-// NSObject 走一次
 
-
-// 自定义类 Soilder 走两次
 
 
 
@@ -1947,36 +1947,14 @@ callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
     if (fastpath(!cls->ISA()->hasCustomAWZ())) {
         return _objc_rootAllocWithZone(cls, nil);
     }
-    
-    
-    // NSObject 走一次
-    
-    
-    
-    
-    
-    // 自定义类 Soilder 走两次
-    // 先走，1
-    // 走第二次， 3
-    
 #endif
 
-    
-    // 自定义类 Soilder 走两次
-    // 再走， 2
-    
-    
-    
     // No shortcuts available.
     if (allocWithZone) {
         return ((id(*)(id, SEL, struct _NSZone *))objc_msgSend)(cls, @selector(allocWithZone:), nil);
     }
     return ((id(*)(id, SEL))objc_msgSend)(cls, @selector(alloc));
 }
-
-
-
-
 
 
 
