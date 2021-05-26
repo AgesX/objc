@@ -82,6 +82,12 @@ int main(int argc, const char * argv[]) {
         Soilder *k = [Soilder alloc];
         
         
+        k.weapon = @"  fire ";
+        k.shield = @"  poison ";
+        
+        
+        
+        
         // init，构造方法，
         // 设计模式中的，工厂模式
         
@@ -134,3 +140,4 @@ int main(int argc, const char * argv[]) {
 
 
 
+// 内存对齐，来源于结构体
