@@ -7916,6 +7916,16 @@ void objc_disposeClassPair(Class cls)
 }
 
 
+/***********************************************************************
+* objc_constructInstance
+* Creates an instance of `cls` at the location pointed to by `bytes`. 
+* `bytes` must point to at least class_getInstanceSize(cls) bytes of 
+*   well-aligned zero-filled memory.
+* The new object's isa is set. Any C++ constructors are called.
+* Returns `bytes` if successful. Returns nil if `cls` or `bytes` is 
+*   nil, or if C++ constructors fail.
+* Note: class_createInstance() and class_createInstances() preflight this.
+**********************************************************************/
 id 
 objc_constructInstance(Class cls, void *bytes)
 {
@@ -7940,6 +7950,19 @@ objc_constructInstance(Class cls, void *bytes)
         return obj;
     }
 }
+
+
+/***********************************************************************
+* class_createInstance
+* fixme
+* Locking: none
+*
+* Note: this function has been carefully written so that the fastpath
+* takes no branch.
+**********************************************************************/
+
+
+
 
 // 这里关注的重点是，
 
@@ -7967,7 +7990,10 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     size = cls->instanceSize(extraBytes);
     
     // br
-
+    
+    
+    // val: 16,  加一个属性
+    // val: 32,  加第 2 个属性
     
     if (outAllocatedSize) *outAllocatedSize = size;
 
@@ -8014,7 +8040,25 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     
     
     // br
-
+/*
+ 
+ 
+ 
+ 
+ (lldb) po obj
+ objc[24081]: -[NSString initWithBytes:length:encoding:]: unrecognized selector sent to instance 0x100706290 (no message forward handler is installed)
+ 0x0000000101a058f0
+ 
+ // 需要配合断点技巧，
+ 
+ // disable here,
+ 
+ // reach there
+ 
+ // enable here
+ 
+ 
+ */
     if (fastpath(!hasCxxCtor)) {
         return obj;
     }

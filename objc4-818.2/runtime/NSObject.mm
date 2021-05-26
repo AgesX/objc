@@ -1971,6 +1971,14 @@ _objc_rootAlloc(Class cls)
     return callAlloc(cls, false/*checkNil*/, true/*allocWithZone*/);
 }
 
+
+
+
+// br
+
+//  NSObject 为什么不走 _objc_rootAlloc， 走的是 objc_alloc
+
+
 // Calls [cls alloc].
 id
 objc_alloc(Class cls)
