@@ -39,9 +39,15 @@
 
 
 // 加 2 个属性 , 32
+// 32 = ( 8 + 8 + 8 ) , 来一个 16 字节对齐
+
+
 @property (nonatomic, strong) NSString * shield;
 
 
+
+
+// 内存的布局: 属性
 
 @end
 
@@ -73,7 +79,7 @@ int main(int argc, const char * argv[]) {
         
         // 调用 alloc 方法，产生一个 16 字节的内存
         // 对象指针
-        Soilder *killer = [Soilder alloc];
+        Soilder *k = [Soilder alloc];
         
         
         // init，构造方法，
