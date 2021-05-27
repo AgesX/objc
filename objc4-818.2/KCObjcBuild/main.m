@@ -4,10 +4,10 @@
 
 
 struct Soilder{
-    double one;
-    char two;
-    int three;
-    short four;
+    double one;  // 8
+    char two;   // 1
+    int three;  // 4
+    short four;   // 2
 }Soilder;
 
 
@@ -23,15 +23,15 @@ struct Soilder{
 
 
 
-
+// 15 -> 对齐为，  16 字节. hehe
 
 
 
 struct Warrior{
-    double a;
-    int b;
-    char c;
-    short d;
+    double a;   // 8
+    int b;    // 4
+    char c;   // 1
+    short d;   // 2
 }Warrior;
 
 // 结构体指针
@@ -40,6 +40,26 @@ struct Warrior{
 
 
 // 结构体的内存大小，根据他的属性来
+
+// 15 -> 对齐为，  16 字节. 呵呵， 不是
+
+
+
+
+
+// 对齐的原则:
+
+// 1， 找出最大的属性
+
+// 当前 8
+
+// 2， 如果结构体中，还含有结构体
+
+
+// 如果结构体，嵌套结构体
+// 结构体的大小，基于结构体内部的所有属性之和
+
+
 
 
 
