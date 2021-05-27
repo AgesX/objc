@@ -26,6 +26,37 @@
 	Created by Bertrand Serlet, Feb 89
  */
 
+
+#define _OBJC_NSOBJCRUNTIME_H_  111
+#define _OBJC_OBJC_API_H_  1111
+#define _OBJC_AUTO_H_  90
+
+
+
+#define _OBJC_ABI_H   999
+#define LLVM_ADT_DENSEMAP_H  888
+#define LLVM_ADT_DENSESET_H   777
+
+
+
+#define _OBJC_CONFIG_H_  666
+#define _OBJC_LITTLE_HASHTABLE_H_  11
+
+
+#define _OBJC_OS_H  66
+
+
+
+
+
+
+
+#define _OBJC_RUNTIME_H   88
+
+
+
+
+
 #include "objc-private.h"
 #include "hashtable2.h"
 
