@@ -3,35 +3,44 @@
 
 
 
-@interface Soilder : NSObject
+struct Soilder{
+    double one;
+    char two;
+    int three;
+    short four;
+}Soilder;
 
 
-@property (nonatomic, assign) int kind;
-
-
-@property (nonatomic, assign) long ally;
-
-@property (nonatomic, strong) NSString * weapon;
-
-
-@property (nonatomic, strong) NSString * shield;
-
-
-@property (nonatomic, assign) char come;
-
-
-@property (nonatomic, assign) char go;
-
-
-@end
+// 结构体指针的，内存大小
+// size 8
 
 
 
-@implementation Soilder
+
+// 结构体的内存大小，
+
+// 根据其内部的大小，进行开辟
 
 
 
-@end
+
+
+
+
+struct Warrior{
+    double a;
+    int b;
+    char c;
+    short d;
+}Warrior;
+
+// 结构体指针
+// size 8 个字节
+
+
+
+// 结构体的内存大小，根据他的属性来
+
 
 
 
@@ -39,35 +48,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        // 内存对齐
-        
-        
-        // 对象的内存对齐，
-        // 源自于
-        // 结构体的内存对齐
-        
-        
-        
-        
-        Soilder *k = [Soilder alloc];
-        
-        
-        k.weapon = @"  fire ";
-        
-        
-        k.shield = @"  poison ";  // 64 位下， 占用内存， 8 个字节
-        
-        
-        
-        k.kind = 5;    // 64 位下， 占用内存， 4 个字节
-        k.come = 'A';  // 占用内存， 1 个字节
-        k.go = 'E';    // 占用内存， 1 个字节
-        
-        
-        
-        NSLog(@"  %@  ", k);
-        
-        
+
         
         
 
