@@ -44,9 +44,16 @@
 #   define WORD_BITS 32
 #endif
 
+
+
+
+//  8 字节对齐
 static inline uint32_t word_align(uint32_t x) {
     return (x + WORD_MASK) & ~WORD_MASK;
 }
+
+
+
 static inline size_t word_align(size_t x) {
     return (x + WORD_MASK) & ~WORD_MASK;
 }
