@@ -66,6 +66,14 @@ struct Warrior{
 
 
 
+// 内存对齐，方便读取,
+
+
+// 建立规则，读取不容易出错
+// 这样不会，读到部分，其他的属性
+
+
+
 
 // 对齐的原则:
 
@@ -89,7 +97,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
 
-        
+        NSLog(@"Soilder: %lu  ->   \n\n Warrior:   %lu", sizeof(Soilder), sizeof(Warrior));
         
 
     }
