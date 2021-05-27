@@ -4,15 +4,28 @@
 
 
 struct Soilder{
-    double one;  // 8
-    char two;   // 1
-    int three;  // 4
-    short four;   // 2
+    double one;  // 8 ( 0 - 7 )
+    char two;   // 1  ( 8  1 ) 8
+    int three;  // 4  ( 9  4 ) 9   10    11   12
+    // 需要调整
+    // 初始位置，必须是其大小的整数倍
+    // 调整后
+    // 12    13     14       15
+    
+    
+    
+    short four;   // 2       ( 16  2 ） 16    17
 }Soilder;
+
+
+
 
 
 // 结构体指针的，内存大小
 // size 8
+
+
+
 
 
 
@@ -25,13 +38,13 @@ struct Soilder{
 
 // 15 -> 对齐为，  16 字节. hehe
 
-
+// 调整后， 为 24 个字节
 
 struct Warrior{
-    double a;   // 8
-    int b;    // 4
-    char c;   // 1
-    short d;   // 2
+    double a;   // 8   ( 0 - 7 )
+    int b;    // 4   （ 8   4） 8 - 11
+    char c;   // 1   （12 1 )
+    short d;   // 2   (13  2 )  13 14 -> 调整后 14  15
 }Warrior;
 
 // 结构体指针
@@ -42,6 +55,13 @@ struct Warrior{
 // 结构体的内存大小，根据他的属性来
 
 // 15 -> 对齐为，  16 字节. 呵呵， 不是
+
+// 调整后， 为 16 个字节
+
+
+
+
+
 
 
 
