@@ -126,9 +126,15 @@ private:
 public:
 #if defined(ISA_BITFIELD)
     struct {
+        // 结构体里面，有这么一个宏
+        
+        
         ISA_BITFIELD;  // defined in isa.h
     };
 
+    
+    
+    
     bool isDeallocating() {
         return extra_rc == 0 && has_sidetable_rc == 0;
     }
