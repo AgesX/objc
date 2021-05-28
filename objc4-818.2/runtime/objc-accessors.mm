@@ -83,22 +83,31 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
         newValue = [newValue mutableCopyWithZone:nil];
     } else {
         if (*slot == newValue) return;
+        
+        // retain 新
         newValue = objc_retain(newValue);
     }
 
     if (!atomic) {
+        
+        // 修饰符， 对应 non atomic
         oldValue = *slot;
         *slot = newValue;
     } else {
+        
+        // 修饰符， 对应 atomic
+        
         spinlock_t& slotlock = PropertyLocks[slot];
         slotlock.lock();
         oldValue = *slot;
         *slot = newValue;        
         slotlock.unlock();
     }
-
+    // release 旧
     objc_release(oldValue);
 }
+
+
 
 
 
@@ -127,6 +136,15 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
 
 
 
+
+
+
+
+
+
+
+
+//   LLVM 没有生成很多的中间代码，SEL 、 IMP
 
 
 
