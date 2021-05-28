@@ -16,20 +16,80 @@
 // ISA 8字节 64 信息 性能
 // 2^64
 
+
+
+
+
+
+
+
+
+
+
+
 @interface LGCar(){
     // 联合体
     union {
         char bits;
         // 位域
-        struct { // 0000 1111
-            char front  : 1;
+        struct {
+            // 0000 1111
+            
+            
+            
+            // 结构体，是从前，排到后的
+            
+            
+            
+            char front  : 1;        //  1，    代表他们，占用的大小
             char back   : 1;
             char left   : 1;
             char right  : 1;
         };
     } _direction;
+    
+    
+    //  联合体   _direction，  有一个属性 bits ，
+    //  bits 的每个位置，代表里面的匿名结构体 ( 4 个 char 成员变量  )
 }
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @implementation LGCar

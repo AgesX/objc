@@ -14,13 +14,20 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
         LGCar *car = [[LGCar alloc] init];
-//        car.front  = 1;
-//        car.back   = 0;
+        
+        NSLog(@"isBack:             %@", [car isBack]  ? @"TRUE": @"FALSE");
+        
+        
+        
+        car.front  = 1;
+        car.back   = 0;
 //        car.left   = 0;
 //        car.right  = 1;
         
         car.front = YES;
         car.back  = YES;
+        
+        NSLog(@"isBack   now :             %@", [car isBack]  ? @"TRUE": @"FALSE");
     }
     return 0;
 }
