@@ -57,7 +57,18 @@
     return _direction.front;
 }
 
+
+
+
+
 - (void)setBack:(BOOL)isBack {
+    
+    
+    // 化 4 个字节，为 1 个字节
+    NSLog(@"%@ - %lu - \n\n\n", self, sizeof(_direction));
+    
+    
+    
     _direction.back = isBack;
 
     NSLog(@"%s",__func__);

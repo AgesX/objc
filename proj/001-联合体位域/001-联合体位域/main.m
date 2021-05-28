@@ -21,7 +21,6 @@ int main(int argc, const char * argv[]) {
         
         car.front = YES;
         car.back  = YES;
-        NSLog(@"Hello, World!");
     }
     return 0;
 }

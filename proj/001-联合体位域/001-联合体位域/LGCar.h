@@ -12,11 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGCar : NSObject
 
+
+
+/*
 @property (nonatomic, assign) BOOL front;
 @property (nonatomic, assign) BOOL back;
 @property (nonatomic, assign) BOOL left;
 @property (nonatomic, assign) BOOL right;
 
+ 
+ 
+ 
+ */
+ 
+ 
 // 对象 - 属性
 // 4*4 = 16字节*8位 = 128位 浪费
 
