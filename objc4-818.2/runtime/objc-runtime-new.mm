@@ -8179,7 +8179,7 @@ void *objc_destructInstance(id obj)
 
         // This order is important.
         if (cxx) object_cxxDestruct(obj);       // 移除 C++ 相关
-        
+        // 析构
         
         
         

@@ -1779,7 +1779,11 @@ objc_object::sidetable_release(bool locked, bool performDealloc)
 }
 
 
-void 
+void
+
+// 散列表释放
+// weak 弱引用表的一些释放
+
 objc_object::sidetable_clearDeallocating()
 {
     SideTable& table = SideTables()[this];
