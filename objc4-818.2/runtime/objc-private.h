@@ -77,6 +77,20 @@ namespace {
 
 #include "isa.h"
 
+
+
+
+
+
+
+
+// isaK
+
+
+
+
+
+
 union isa_t {
     isa_t() { }
     isa_t(uintptr_t value) : bits(value) { }
@@ -108,6 +122,23 @@ public:
     Class getClass(bool authenticated);
     Class getDecodedClass(bool authenticated);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 struct objc_object {

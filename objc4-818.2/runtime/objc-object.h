@@ -319,20 +319,49 @@ objc_object::initProtocolIsa(Class cls)
     return initClassIsa(cls);
 }
 
+
+
+
+
+
+
+
+
 inline void 
 objc_object::initInstanceIsa(Class cls, bool hasCxxDtor)
 {
+    
+    // 来两个  断言
+    
     ASSERT(!cls->instancesRequireRawIsa());
     ASSERT(hasCxxDtor == cls->hasCxxDtor());
 
     initIsa(cls, true, hasCxxDtor);
 }
 
+
+
+
+
 #if !SUPPORT_INDEXED_ISA && !ISA_HAS_CXX_DTOR_BIT
 #define UNUSED_WITHOUT_INDEXED_ISA_AND_DTOR_BIT __attribute__((unused))
 #else
 #define UNUSED_WITHOUT_INDEXED_ISA_AND_DTOR_BIT
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 inline void 
 objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_DTOR_BIT bool hasCxxDtor)
@@ -342,7 +371,14 @@ objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_
     isa_t newisa(0);
 
     if (!nonpointer) {
+        
+        // set 方法，就是赋值
+        
         newisa.setClass(cls, this);
+        
+        
+        
+        
     } else {
         ASSERT(!DisableNonpointerIsa);
         ASSERT(!cls->instancesRequireRawIsa());
@@ -375,6 +411,20 @@ objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_
     // ...but not too atomic because we don't want to hurt instantiation
     isa = newisa;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 inline Class 
@@ -459,6 +509,24 @@ objc_object::changeIsa(Class newCls)
 
     return oldisa.getDecodedClass(false);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 inline bool
 objc_object::hasAssociatedObjects()
