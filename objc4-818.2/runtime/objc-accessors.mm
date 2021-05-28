@@ -100,6 +100,40 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
     objc_release(oldValue);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// set 方法的实质： 对新值的 retain, 对旧值的 release
+
+// 每个属性调用的 getter setter 方法名不一样，
+
+// 底层的逻辑一样 , retain 新， release 旧
+
+// 中间加一层，      objc_setProperty         中间层的包装处理
+
+// 设计模式中的适配器 adapter
+
+
+
+
+
+
+
+
+
+
 void objc_setProperty(id self, SEL _cmd, ptrdiff_t offset, id newValue, BOOL atomic, signed char shouldCopy) 
 {
     bool copy = (shouldCopy && shouldCopy != MUTABLE_COPY);
