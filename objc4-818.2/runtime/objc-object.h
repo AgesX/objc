@@ -664,6 +664,8 @@ objc_object::rootDealloc()
         free(this);
     } 
     else {
+        
+        // 移除各种
         object_dispose((id)this);
     }
 }

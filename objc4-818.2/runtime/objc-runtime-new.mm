@@ -8178,8 +8178,12 @@ void *objc_destructInstance(id obj)
         bool assoc = obj->hasAssociatedObjects();
 
         // This order is important.
-        if (cxx) object_cxxDestruct(obj);
-        if (assoc) _object_remove_assocations(obj, /*deallocating*/true);
+        if (cxx) object_cxxDestruct(obj);       // 移除 C++ 相关
+        
+        
+        
+        
+        if (assoc) _object_remove_assocations(obj, /*deallocating*/true);           // 移除， 关联对象
         obj->clearDeallocating();
     }
 
@@ -8197,7 +8201,9 @@ object_dispose(id obj)
 {
     if (!obj) return nil;
 
-    objc_destructInstance(obj);    
+    // 先移除，各种指针
+    objc_destructInstance(obj);
+    // 再释放对象
     free(obj);
 
     return nil;
