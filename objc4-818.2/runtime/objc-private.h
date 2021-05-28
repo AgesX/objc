@@ -91,17 +91,37 @@ namespace {
 
 
 
+// 联合体
 union isa_t {
+    // 两个初始化的方法
     isa_t() { }
     isa_t(uintptr_t value) : bits(value) { }
 
+    
+    
+/// bits ， 与 cls 互斥
+    
+    
     uintptr_t bits;
 
 private:
+    
+    //  ptrauth
+    //  ptr + auth
+    //  pointer + auth
+    
+    
+    
+    
     // Accessing the class requires custom ptrauth operations, so
     // force clients to go through setClass/getClass by making this
     // private.
     Class cls;
+    
+    
+///
+    
+    
 
 public:
 #if defined(ISA_BITFIELD)
@@ -122,6 +142,8 @@ public:
     Class getClass(bool authenticated);
     Class getDecodedClass(bool authenticated);
 };
+
+
 
 
 
