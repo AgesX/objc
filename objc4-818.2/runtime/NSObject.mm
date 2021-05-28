@@ -2662,6 +2662,12 @@ __attribute__((objc_nonlazy_class))
 }
 
 
+
+
+
+// 析构函数
+
+
 // Replaced by NSZombies
 - (void)dealloc {
     _objc_rootDealloc(self);

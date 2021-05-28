@@ -629,22 +629,38 @@ objc_object::clearDeallocating()
 }
 
 
+
+
+
+
+
+// 析构器
+
+
 inline void
 objc_object::rootDealloc()
 {
     if (isTaggedPointer()) return;  // fixme necessary?
 
     if (fastpath(isa.nonpointer                     &&
-                 !isa.weakly_referenced             &&
-                 !isa.has_assoc                     &&
+                 !isa.weakly_referenced             &&     // 弱引用
+                 !isa.has_assoc                     &&     // 关联对象
 #if ISA_HAS_CXX_DTOR_BIT
-                 !isa.has_cxx_dtor                  &&
+                 !isa.has_cxx_dtor                  &&     // C++ 相关                 // 构造器
 #else
                  !isa.getClass(false)->hasCxxDtor() &&
 #endif
-                 !isa.has_sidetable_rc))
+                 !isa.has_sidetable_rc))                   // 散列表，引用计数
     {
         assert(!sidetable_present());
+        
+        // 判断所有的变量，决定怎么处理
+        
+        
+        // 如果上面的那些变量存在，先要处理掉
+        
+        
+        
         free(this);
     } 
     else {
