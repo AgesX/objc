@@ -91,6 +91,10 @@ namespace {
 
 
 
+
+
+
+
 // 联合体
 union isa_t {
     // 两个初始化的方法
@@ -101,10 +105,22 @@ union isa_t {
     
 /// bits ， 与 cls 互斥
     
+
+    // 定义了 cls
+    // bits 里面，就不会有值
+    
+
+    
+// 如果是 non pointer isa , bits 里面，就不会有值
+    
+    
+    
     
     uintptr_t bits;
 
 private:
+    
+    
     
     //  ptrauth
     //  ptr + auth
