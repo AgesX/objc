@@ -170,3 +170,8 @@ int main(int argc, const char * argv[]) {
 
 
 // 怎样把指针，和类关联?
+// isa , 是怎么指向的？
+
+
+
+
