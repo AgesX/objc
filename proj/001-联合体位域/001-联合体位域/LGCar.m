@@ -13,8 +13,13 @@
 #define LGDirectionLeftMask     (1 << 2)
 #define LGDirectionRightMask    (1 << 3)
 
-// ISA 8字节 64 信息 性能
+// ISA 8字节 64 位
+
+// 当前对象的地址
+
+// 信息 性能
 // 2^64
+
 
 
 

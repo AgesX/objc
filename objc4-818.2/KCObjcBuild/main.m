@@ -109,6 +109,9 @@ struct Warrior{
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        
+        
+        Soilder * k = [[Soilder alloc] init];
 
         NSLog(@"Soilder: %lu  ->   \n\n Warrior:   %lu", sizeof(Soilder), sizeof(Warrior));
         

@@ -7947,6 +7947,25 @@ objc_constructInstance(Class cls, void *bytes)
 
 
 
+
+
+
+// isaK, isa 走到这里
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static ALWAYS_INLINE id
 _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
                               int construct_flags = OBJECT_CONSTRUCT_NONE,
@@ -8022,6 +8041,24 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     construct_flags |= OBJECT_CONSTRUCT_FREE_ONFAILURE;
     return object_cxxConstructFromClass(obj, cls, construct_flags);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 id
 class_createInstance(Class cls, size_t extraBytes)
