@@ -76,11 +76,24 @@
 #     define ISA_MAGIC_MASK  0x000003f000000001ULL
 #     define ISA_MAGIC_VALUE 0x000001a000000001ULL
 #     define ISA_HAS_CXX_DTOR_BIT 1
+
+
+
+
+
+
+
+
+
+
+
+
+
 #     define ISA_BITFIELD                                                      \
         uintptr_t nonpointer        : 1;                                       \
         uintptr_t has_assoc         : 1;                                       \
         uintptr_t has_cxx_dtor      : 1;                                       \
-        uintptr_t shiftcls          : 33; /*MACH_VM_MAX_ADDRESS 0x1000000000*/ \
+        uintptr_t shiftcls          : 33; /*MACH_VM_MAX_ADDRESS 0x1000000000*/              /*  结构体内部，顺序排列。    大小 : 33； 起始位置:  第 4 位  */     \
         uintptr_t magic             : 6;                                       \
         uintptr_t weakly_referenced : 1;                                       \
         uintptr_t unused            : 1;                                       \
@@ -89,6 +102,18 @@
 #     define RC_ONE   (1ULL<<45)
 #     define RC_HALF  (1ULL<<18)
 #   endif
+
+
+
+
+
+
+
+
+
+
+
+
 
 # elif __x86_64__
 #   define ISA_MASK        0x00007ffffffffff8ULL
