@@ -1947,13 +1947,14 @@ _objc_rootRelease(id obj)
 // 自定义类 Soilder 走两次
 
 
-
+// 来吧
 static ALWAYS_INLINE id
 callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 {
 #if __OBJC2__
     if (slowpath(checkNil && !cls)) return nil;
     if (fastpath(!cls->ISA()->hasCustomAWZ())) {
+        // 来吧
         return _objc_rootAllocWithZone(cls, nil);
     }
     
@@ -2001,6 +2002,10 @@ callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 
 // Base class implementation of +alloc. cls is not nil.
 // Calls [cls allocWithZone:nil].
+
+
+// 来吧
+
 id
 _objc_rootAlloc(Class cls)
 {
@@ -2645,12 +2650,20 @@ __attribute__((objc_nonlazy_class))
 
 // NSObject 为什么不走 _objc_rootAlloc， 走的是 objc_alloc
 
+
+// 来吧
 + (id)alloc {
     
     // br
     
     return _objc_rootAlloc(self);
 }
+
+
+
+
+
+
 
 // Replaced by ObjectAlloc
 + (id)allocWithZone:(struct _NSZone *)zone {

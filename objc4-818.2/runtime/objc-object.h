@@ -361,7 +361,7 @@ objc_object::initInstanceIsa(Class cls, bool hasCxxDtor)
 
 
 
-
+// 就是这里
 
 inline void 
 objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_DTOR_BIT bool hasCxxDtor)
@@ -383,7 +383,7 @@ objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_
         ASSERT(!DisableNonpointerIsa);
         ASSERT(!cls->instancesRequireRawIsa());
 
-
+// 宏定义
 #if SUPPORT_INDEXED_ISA
         ASSERT(cls->classArrayIndex() > 0);
         newisa.bits = ISA_INDEX_MAGIC_VALUE;

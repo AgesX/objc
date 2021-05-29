@@ -8027,6 +8027,8 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     } else {
         // Use raw pointer isa on the assumption that they might be
         // doing something weird with the zone or RR.
+        
+        // 来吧
         obj->initIsa(cls);
     }
 
@@ -8067,6 +8069,13 @@ class_createInstance(Class cls, size_t extraBytes)
     return _class_createInstanceFromZone(cls, extraBytes, nil);
 }
 
+
+
+
+
+
+
+// 来吧
 NEVER_INLINE
 id
 _objc_rootAllocWithZone(Class cls, malloc_zone_t *zone __unused)
