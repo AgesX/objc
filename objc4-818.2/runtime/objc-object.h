@@ -348,7 +348,7 @@ objc_object::hasNonpointerIsa()
     return isa.nonpointer;
 }
 
-
+//  请继续
 inline void 
 objc_object::initIsa(Class cls)
 {

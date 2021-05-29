@@ -116,6 +116,10 @@
 
 
 # elif __x86_64__
+
+
+// 通过 ISA_MASK ，把类信息，取出来
+
 #   define ISA_MASK        0x00007ffffffffff8ULL
 #   define ISA_MAGIC_MASK  0x001f800000000001ULL
 #   define ISA_MAGIC_VALUE 0x001d800000000001ULL
