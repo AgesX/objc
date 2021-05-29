@@ -210,9 +210,61 @@ isa_t::setClass(Class newCls, UNUSED_WITHOUT_PTRAUTH objc_object *obj)
     cls = newCls;
 
 #else // Nonpointer isa, no ptrauth
-    shiftcls = (uintptr_t)newCls >> 3;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    shiftcls = (uintptr_t)newCls >> 3;    //         这样处理，            因为机器码不能识别字符串
+    
+    //  shiftcls 在 isa 的内存中，从 第 4 位开始，所以要右移 3 位
+    
+    
+    
 #endif
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Get the class pointer out of an isa. When ptrauth is supported,
 // this operation is optionally authenticated. Many code paths don't
