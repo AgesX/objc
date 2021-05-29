@@ -77,7 +77,16 @@ int main(int argc, const char * argv[]) {
  
  
  
+ 
+ 
+ 
+ // 这个 &, 与
+ // 就是做了一些，左右移的位运算
+ 
  */
+
+
+
 
 
 

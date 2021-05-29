@@ -73,10 +73,24 @@ objc_object::isClass()
 
 #if SUPPORT_TAGGED_POINTERS
 
+
+
+
+
+
+
+// object_getClass
+// 走， 下面这个方法
+
+
+
 inline Class
 objc_object::getIsa() 
 {
-    if (fastpath(!isTaggedPointer())) return ISA();
+    
+    
+    
+    if (fastpath(!isTaggedPointer())) return ISA();   // 走这里
 
     extern objc_class OBJC_CLASS_$___NSUnrecognizedTaggedPointer;
     uintptr_t slot, ptr = (uintptr_t)this;
@@ -89,7 +103,29 @@ objc_object::getIsa()
         cls = objc_tag_ext_classes[slot];
     }
     return cls;
+    
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 inline uintptr_t
 objc_object::isaBits() const
@@ -280,6 +316,12 @@ isa_t::setClass(Class newCls, UNUSED_WITHOUT_PTRAUTH objc_object *obj)
 #define MAYBE_UNUSED_AUTHENTICATED_PARAM UNUSED_WITHOUT_PTRAUTH
 #endif
 
+
+
+
+
+
+// 走这里
 inline Class
 isa_t::getClass(MAYBE_UNUSED_AUTHENTICATED_PARAM bool authenticated) {
 #if SUPPORT_INDEXED_ISA
@@ -309,6 +351,7 @@ isa_t::getClass(MAYBE_UNUSED_AUTHENTICATED_PARAM bool authenticated) {
 #       endif
 
 #   else
+    // 最终， 走这里
     clsbits &= ISA_MASK;
 #   endif
 
@@ -328,12 +371,21 @@ isa_t::getDecodedClass(bool authenticated) {
 #endif
 }
 
+
+
+// 走这里
+
+
 inline Class
 objc_object::ISA(bool authenticated)
 {
     ASSERT(!isTaggedPointer());
     return isa.getDecodedClass(authenticated);
 }
+
+
+
+
 
 inline Class
 objc_object::rawISA()
