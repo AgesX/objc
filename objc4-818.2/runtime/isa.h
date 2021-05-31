@@ -120,6 +120,42 @@
 
 // 通过 ISA_MASK ，把类信息，取出来
 
+
+
+
+
+
+
+
+
+
+// mask ， 遮罩
+// 面具， 把不重要的东西挡住，
+// 把需要的东西，露出来
+
+
+
+
+
+
+
+// ISA_MASK
+// 等价于
+// 右移 3 位，  >> 3
+// 左移 20 位，  << 20
+// 右移 17 位，  >> 17
+
+
+
+
+
+// 类信息，就储存在 isa 指针里面
+// shiftcls
+
+
+
+
+
 #   define ISA_MASK        0x00007ffffffffff8ULL
 #   define ISA_MAGIC_MASK  0x001f800000000001ULL
 #   define ISA_MAGIC_VALUE 0x001d800000000001ULL

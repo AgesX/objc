@@ -176,5 +176,11 @@ int main(int argc, const char * argv[]) {
 // isa , 是怎么指向的？
 
 
+// 通过 shiftcls, isa 把指针和类，相关联
+
+
+
+
+
 
 
