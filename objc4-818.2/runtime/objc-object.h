@@ -89,7 +89,7 @@ objc_object::getIsa()
 {
     
     
-    
+    // 入口
     if (fastpath(!isTaggedPointer())) return ISA();   // 走这里
 
     extern objc_class OBJC_CLASS_$___NSUnrecognizedTaggedPointer;
@@ -367,6 +367,7 @@ isa_t::getDecodedClass(bool authenticated) {
     }
     return (Class)cls;
 #else
+    // 走这里
     return getClass(authenticated);
 #endif
 }

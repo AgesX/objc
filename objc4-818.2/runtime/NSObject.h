@@ -47,12 +47,41 @@
 @end
 
 
+
+
+
+
+
+
 OBJC_AVAILABLE(10.0, 2.0, 9.0, 1.0, 2.0)
 OBJC_ROOT_CLASS
 OBJC_EXPORT
 @interface NSObject <NSObject> {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-interface-ivars"
+    
+    // isa , 我们记录的是 isa_t,
+    // 记录了好多信息
+    
+    
+    
+    // 这里的 class ,
+    // 我们获取的时候，经过了一层强转
+    
+    
+/*
+ 
+ 
+ 
+ - (Class)class {
+     return object_getClass(self);
+ }
+ 
+ 
+ 
+ */
+    
+    
     Class isa  OBJC_ISA_AVAILABILITY;
 #pragma clang diagnostic pop
 }
