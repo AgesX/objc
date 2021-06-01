@@ -78,12 +78,16 @@ based on     LGCooci/objc4_debug
 
 
 
-元类 meta class 的  isa , 指向 NSObject ( 类 )
+元类 meta class 的  isa , 指向 NSObject ( 元类 )
 
 
 
 
 <hr>
+
+NSObject ( 元类 )
+
+与 NSObject ( 类 ) 不同的 
 
 
 <hr>
@@ -98,6 +102,11 @@ NSObject  的类，有两个
 
 
 <hr>
+
+
+NSObject， 根类，
+
+root
 
 
 <hr>
@@ -158,6 +167,12 @@ NSObject  的类，有两个
 
 <hr>
 
+类的信息，在内存里面，只存在一份
+
+（  好像是个结构体  ）
+
+<hr>
+
 
 
 可以定义多个，类对象
@@ -165,7 +180,7 @@ NSObject  的类，有两个
 
 
 
-可存在多个 NSObject
+可同时存在多个 NSObject
 
 
 
