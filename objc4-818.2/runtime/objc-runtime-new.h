@@ -336,11 +336,41 @@ struct preopt_cache_t {
 extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss = nil);
 
 struct cache_t {
+    
+    
+    
+    
+    
+    
 private:
+    
+    
+    
     explicit_atomic<uintptr_t> _bucketsAndMaybeMask;
+    // explicit_atomic 是结构体，占 8 字节
+    // 呵呵
+    
+    
+    
+    // explicit_atomic ， 只是一个泛型
+    
+    
     union {
         struct {
             explicit_atomic<mask_t>    _maybeMask;
+            
+            // explicit_atomic 是结构体，占 8 字节
+            // 呵呵
+            
+            
+            
+            // explicit_atomic ， 只是一个泛型
+            // _maybeMask 真正的类型是 mask_t
+            // mask_t 是 uint32_t， 占 4 个字节
+            
+            
+            
+            
 #if __LP64__
             uint16_t                   _flags;
 #endif
@@ -349,6 +379,13 @@ private:
         explicit_atomic<preopt_cache_t *> _originalPreoptCache;
     };
 
+    
+    
+    
+    
+    
+    
+    
 #if CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_OUTLINED
     // _bucketsAndMaybeMask is a buckets_t pointer
     // _maybeMask is the buckets mask
