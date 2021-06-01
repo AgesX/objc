@@ -95,3 +95,35 @@ NSObject , ( Objective - C )
 实例之间， 没有关系，
 
 he he he 
+
+
+
+<hr>
+
+<hr>
+
+<hr>
+
+
+
+
+
+//  定义一个 Class 类型
+
+typedef struct objc_class *Class;
+
+
+<hr>
+
+<hr>
+
+所有的 class,
+
+都是通过这个模版  objc_class  ，
+
+创建出来的
+
+
+<hr>
+
+<hr>

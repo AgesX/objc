@@ -51,7 +51,30 @@
 // 很多的类，都来源于，这个结构体
 
 
+
+//  定义一个 Class 类型
+
 typedef struct objc_class *Class;
+
+/*
+所有的 class,
+
+都是通过这个模版  objc_class  ，
+
+创建出来的
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //  Class， 类型
