@@ -82,9 +82,21 @@ OBJC_EXPORT
  */
     
     
+    
+    // Class， isa , 代表类的类信息
+    
     Class isa  OBJC_ISA_AVAILABILITY;
 #pragma clang diagnostic pop
+    
+    
+    
+    
 }
+
+
+
+
+
 
 + (void)load;
 

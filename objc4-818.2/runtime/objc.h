@@ -34,11 +34,30 @@
 #include <stdbool.h>
 
 #if !OBJC_TYPES_DEFINED
+
+
+
+
+
+
 /// An opaque type that represents an Objective-C class.
+
+
+
+
+// 这一行有意思
+
+
+// 很多的类，都来源于，这个结构体
+
+
 typedef struct objc_class *Class;
 
 
+//  Class， 类型
 
+
+// Class， isa , 代表类的类信息
 
 
 
