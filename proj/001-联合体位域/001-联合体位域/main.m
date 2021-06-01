@@ -29,6 +29,23 @@ int main(int argc, const char * argv[]) {
         //  也即是数组 arr 中，第一个元素的地址
         
         
+        NSLog(@"%p  -  %p  -  %p", &arr, &arr[0], &arr[1]);
+        NSLog(@"%p  -  %p  -  %p\n - \n -", addr, addr + 1, addr + 2);
+        // addr + 1, arr 中第二个元素的地址
+        // addr + 1, addr 对应的地址，移动 4 个字节
+        
+        
+        // addr + 2, arr 中第 3 个元素的地址
+        
+        
+        // p *(addr + 2),
+        // 反向取值， 取数组 arr 中第 3 个元素的值
+        
+        
+        
+        
+        
+        
         
         
         
