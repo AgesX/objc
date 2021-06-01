@@ -17,6 +17,23 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
         
+        // 指针学习
+        
+        // 数组指针
+        
+        int arr[4] = { 11, 12, 13, 14 };
+        for (int i = 0; i < 4; i ++){
+            int val = arr[i];
+            NSLog(@" %d ", val);
+        }
+        
+        
+        NSLog(@" 指针  -  内存偏移  ");
+        
+        
+        
+        
+        
         //  值拷贝
         
         // 普通指针
@@ -54,7 +71,16 @@ int main(int argc, const char * argv[]) {
         
         
         
-        // car 是指针
+        
+        
+        // car 是指针, 他指向一个地址
+        // 他自己有一个地址
+        
+        
+        
+        
+        
+        
         
         Bicycle *car = [[Bicycle alloc] init];
         
@@ -87,4 +113,11 @@ int main(int argc, const char * argv[]) {
     }
     return 0;
 }
+
+
+
+
+
+
+
 
