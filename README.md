@@ -63,7 +63,7 @@ based on     LGCooci/objc4_debug
 <hr>
 
 
-
+![isa 指向图](https://github.com/AgesX/objc/blob/main/isa.png?raw=true)
 
 对象的 isa , 指向类，
 
