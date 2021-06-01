@@ -72,6 +72,17 @@ typedef struct objc_class *Class;
 
 //  类似 objc_class
 
+
+
+
+
+// 这个是根对象
+
+
+// ？
+
+
+// 为什么，所有的对象，都有 isa 
 struct objc_object {
     Class _Nonnull isa  OBJC_ISA_AVAILABILITY;
 };
