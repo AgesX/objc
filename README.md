@@ -57,7 +57,24 @@ based on     LGCooci/objc4_debug
 <hr>
 
 
+
+
 <hr>
+
+
+isa 与类继承，没有关系
+
+
+元类， meta class, 也存在继承
+
+
+
+> 实例之间，没有关系
+> 继承关系，来自于类
+
+
+
+NSObject  ,  根类 ,  继承自  nil
 
 
 <hr>
