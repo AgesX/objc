@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		046DF18D2503BFEA0014B167 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DF18C2503BFEA0014B167 /* main.m */; };
-		046DF1952503BFF70014B167 /* LGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DF1942503BFF70014B167 /* LGPerson.m */; };
+		046DF1952503BFF70014B167 /* Gladiator.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DF1942503BFF70014B167 /* Gladiator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +26,8 @@
 /* Begin PBXFileReference section */
 		046DF1892503BFEA0014B167 /* 002-系统内存开辟分析 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "002-系统内存开辟分析"; sourceTree = BUILT_PRODUCTS_DIR; };
 		046DF18C2503BFEA0014B167 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		046DF1932503BFF70014B167 /* LGPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGPerson.h; sourceTree = "<group>"; };
-		046DF1942503BFF70014B167 /* LGPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPerson.m; sourceTree = "<group>"; };
+		046DF1932503BFF70014B167 /* Gladiator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gladiator.h; sourceTree = "<group>"; };
+		046DF1942503BFF70014B167 /* Gladiator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gladiator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				046DF18C2503BFEA0014B167 /* main.m */,
-				046DF1932503BFF70014B167 /* LGPerson.h */,
-				046DF1942503BFF70014B167 /* LGPerson.m */,
+				046DF1932503BFF70014B167 /* Gladiator.h */,
+				046DF1942503BFF70014B167 /* Gladiator.m */,
 			);
 			path = "002-系统内存开辟分析";
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046DF18D2503BFEA0014B167 /* main.m in Sources */,
-				046DF1952503BFF70014B167 /* LGPerson.m in Sources */,
+				046DF1952503BFF70014B167 /* Gladiator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

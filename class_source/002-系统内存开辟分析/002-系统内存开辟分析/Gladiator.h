@@ -1,5 +1,5 @@
 //
-//  LGPerson.h
+//  Gladiator.h
 //  002-系统内存开辟分析
 //
 //  Created by cooci on 2020/9/5.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LGPerson : NSObject
+@interface Gladiator : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *nickName;

@@ -78,7 +78,8 @@ based on     LGCooci/objc4_debug
 
 
 
-元类 meta class 的  isa , 指向 NSObject ( 元类 )
+元类 meta class 的  isa , 指向 NSObject ( 根元类 ， root meta )
+
 
 
 
