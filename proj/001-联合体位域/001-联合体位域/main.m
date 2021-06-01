@@ -68,7 +68,11 @@ int main(int argc, const char * argv[]) {
         
         // 反应到， OC 的类的结构上
         // Bicycle.class
-        // 通过对地址的平移，分析所有的值
+        // 通过对地址的平移，分析 Bicycle.class 中所有的信息
+        
+        
+        
+        
         
         
 //////
@@ -79,7 +83,7 @@ int main(int argc, const char * argv[]) {
         // 普通指针
         
         
-        // a 是变量
+        // a 是变量， 是一级指针
         int a = 10;
         int b = 10;
         
