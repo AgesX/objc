@@ -1708,6 +1708,12 @@ public:
 
 // 这个是新的
 
+
+// objc_class 继承自 objc_object，
+
+// 也就获得了成员变量 isa 
+
+
 struct objc_class : objc_object {
   objc_class(const objc_class&) = delete;
   objc_class(objc_class&&) = delete;

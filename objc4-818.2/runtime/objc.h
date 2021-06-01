@@ -82,7 +82,7 @@ typedef struct objc_class *Class;
 // ？
 
 
-// 为什么，所有的对象，都有 isa 
+// 为什么，所有的对象，都有 isa
 struct objc_object {
     Class _Nonnull isa  OBJC_ISA_AVAILABILITY;
 };
