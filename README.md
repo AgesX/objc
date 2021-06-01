@@ -81,6 +81,13 @@ based on     LGCooci/objc4_debug
 元类 meta class 的  isa , 指向 NSObject ( 根元类 ， root meta )
 
 
+>  NSObject ( 根元类 ， root meta ) 的  isa , 指向 NSObject ( 根元类 ， root meta )
+
+
+
+>  NSObject ( 根元类 ， root meta ) 的  isa , 指向他自己
+
+
 
 
 
@@ -181,7 +188,14 @@ root
 
 
 
-可同时存在多个 NSObject
+*可同时存在多个 NSObject*
+
+呵呵
+
+也就两个
 
 
 
+* NSObject 类
+
+* NSObject 根元类
