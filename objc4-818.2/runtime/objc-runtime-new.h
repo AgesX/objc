@@ -353,8 +353,8 @@ private:
     
     
     // explicit_atomic ， 只是一个泛型
-    
-    
+    //  typedef unsigned long           uintptr_t;
+    //   unsigned long   , 8 个字节
     union {
         struct {
             explicit_atomic<mask_t>    _maybeMask;
