@@ -22,6 +22,24 @@ int main(int argc, const char * argv[]) {
         // 数组指针
         
         int arr[4] = { 11, 12, 13, 14 };
+        
+        
+        // 用地址指针，来还原
+        int *addr = arr;            // addr 也就是，数组 arr 的首地址
+        //  也即是数组 arr 中，第一个元素的地址
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         for (int i = 0; i < 4; i ++){
             int val = arr[i];
             NSLog(@" %d ", val);
@@ -30,8 +48,10 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@" 指针  -  内存偏移  ");
         
+
         
         
+//////
         
         
         //  值拷贝
@@ -62,7 +82,7 @@ int main(int argc, const char * argv[]) {
         
         
         
-        //////
+//////
         
         
         
