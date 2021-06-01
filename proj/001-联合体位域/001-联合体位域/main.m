@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
         
         // 指针学习
         
-        // 数组指针
+        // 数组指针, 可通过地址平移，来获取信息
         
         int arr[4] = { 11, 12, 13, 14 };
         
