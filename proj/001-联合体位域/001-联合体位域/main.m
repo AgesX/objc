@@ -59,13 +59,16 @@ int main(int argc, const char * argv[]) {
         
         for (int i = 0; i < 4; i ++){
             int val = arr[i];
-            NSLog(@" %d ", val);
+            int valByAddr = *(addr + i);
+            NSLog(@" %d - 换一种， - %d - \n --  ", val, valByAddr);
         }
         
         
-        NSLog(@" 指针  -  内存偏移  ");
+        NSLog(@" 数组指针  -  内存偏移 - \n - - 内存平移 - - \n  ");
         
-
+        // 反应到， OC 的类的结构上
+        // Bicycle.class
+        // 通过对地址的平移，分析所有的值
         
         
 //////
