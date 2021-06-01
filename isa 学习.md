@@ -66,15 +66,25 @@ objc_object ( 根对象 )   vs   objc_class ( Class ) ( NSObject ) ( isa )
 
 
 
+<hr>
+
+一般对象，都继承自 NSObject ,
 
 
-
-
+NSObject 底层是， `objc_object` 
 
 
 
 
 <hr>
+
+
+NSObject , ( Objective - C )
+
+
+的实现是
+
+`objc_object` ， （ C / CPP ）
 
 
 <hr>
