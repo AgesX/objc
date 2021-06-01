@@ -56,6 +56,12 @@ objc_object ( 根对象 )   vs   objc_class ( Class ) ( NSObject ) ( isa )
 
 `objc_object` 和普通的对象，之间的关系：
 
+
+
+(  这里有一个，上层和下层的对接  )
+
+
+
 继承关系
 
 
@@ -63,6 +69,9 @@ objc_object ( 根对象 )   vs   objc_class ( Class ) ( NSObject ) ( isa )
 
 所有的对象，都是以 `objc_object` 为模版，继承过来的
 
+
+
+> 换个问题，就是，Objective - C 、 C 和 CPP 之间的关系
 
 
 
