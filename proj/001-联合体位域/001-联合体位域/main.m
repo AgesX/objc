@@ -57,6 +57,9 @@ int main(int argc, const char * argv[]) {
         // 栈上，地址是连续的
         
         
+        // int 整型，占 4 个字节
+        // 栈上， &a 和 &b, 相差 4 个字节
+        
         
         
         //////
@@ -73,7 +76,8 @@ int main(int argc, const char * argv[]) {
         
         
         
-        // car 是指针, 他指向一个地址
+        // car 是二级指针, 也是对象指针
+        // 他指向一个地址
         // 他自己有一个地址
         
         
@@ -90,6 +94,16 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%@ -- %p", car, &car);
         
         NSLog(@"%@ -- %p", rocket, &rocket);
+        
+        // &car， 和 &rocket 代表的对象，的 isa, 指向同一片内存空间
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
