@@ -120,7 +120,22 @@ struct objc_object {
 
 
 /// A pointer to an instance of a class.
+
+
+
+
+// 所谓 id 类型
+
+
+// 这个也很有意思
+
+
+
 typedef struct objc_object *id;
+
+
+
+
 #endif
 
 /// An opaque type that represents a method selector.
