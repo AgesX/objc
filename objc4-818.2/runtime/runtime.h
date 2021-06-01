@@ -86,6 +86,9 @@ struct objc_class {
 #endif
 
 } OBJC2_UNAVAILABLE;
+
+// 老的，废除的 objc
+
 /* Use `Class` instead of `struct objc_class *` */
 
 

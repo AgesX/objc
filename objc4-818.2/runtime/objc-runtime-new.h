@@ -1685,6 +1685,29 @@ public:
 };
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 这个是新的
+
 struct objc_class : objc_object {
   objc_class(const objc_class&) = delete;
   objc_class(objc_class&&) = delete;
@@ -2171,6 +2194,27 @@ struct objc_class : objc_object {
         return bits.classArrayIndex();
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 struct swift_class_t : objc_class {
