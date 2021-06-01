@@ -65,7 +65,7 @@ based on     LGCooci/objc4_debug
 
 
 
-对象的 isa 指向类，
+对象的 isa , 指向类，
 
 
 
@@ -74,7 +74,14 @@ based on     LGCooci/objc4_debug
 
 
 
-类的 isa 指向元类 meta class
+类的 isa , 指向元类 meta class
+
+
+
+元类 meta class 的  isa , 指向 NSObject ( 类 )
+
+
+
 
 <hr>
 
@@ -82,7 +89,11 @@ based on     LGCooci/objc4_debug
 <hr>
 
 
+NSObject  的类，有两个
 
+
+
+第二个  NSObject  的类
 
 
 
@@ -101,6 +112,23 @@ based on     LGCooci/objc4_debug
 类就会有方法、协议和属性
 
 
+
+
+
+
+
+
+
+<hr>
+
+
+<hr>
+
+
+
+元类的定义，和创建，
+
+都是由编译器自动完成
 
 
 

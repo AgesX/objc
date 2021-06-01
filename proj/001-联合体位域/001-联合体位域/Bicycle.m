@@ -1,12 +1,12 @@
 //
-//  LGCar.m
+//  Bicycle.m
 //  003-联合体位域
 //
 //  Created by cooci on 2020/9/7.
 //  Copyright © 2020 cooci. All rights reserved.
 //
 
-#import "LGCar.h"
+#import "Bicycle.h"
 
 #define LGDirectionFrontMask    (1 << 0)
 #define LGDirectionBackMask     (1 << 1)
@@ -32,7 +32,7 @@
 
 
 
-@interface LGCar(){
+@interface Bicycle(){
     // 联合体
     union {
         char bits;
@@ -120,7 +120,7 @@
 
 
 
-@implementation LGCar
+@implementation Bicycle
 
 - (instancetype)init
 {

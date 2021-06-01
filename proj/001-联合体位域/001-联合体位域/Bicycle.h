@@ -1,5 +1,5 @@
 //
-//  LGCar.h
+//  Bicycle.h
 //  003-联合体位域
 //
 //  Created by cooci on 2020/9/7.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LGCar : NSObject
+@interface Bicycle : NSObject
 
 
 

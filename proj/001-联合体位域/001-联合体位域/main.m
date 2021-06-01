@@ -11,12 +11,12 @@
 #import <objc/runtime.h>
 
 
-#import "LGCar.h"
+#import "Bicycle.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
-        LGCar *car = [[LGCar alloc] init];
+        Bicycle *car = [[Bicycle alloc] init];
         
         NSLog(@"isBack:             %@", [car isBack]  ? @"TRUE": @"FALSE");
         
@@ -64,7 +64,7 @@ int main(int argc, const char * argv[]) {
  
  
  (lldb) po car
- <LGCar: 0x10055dae0>
+ <Bicycle: 0x10055dae0>
 
  (lldb) x/8gx car
  0x10055dae0: 0x011d8001000081a1 0x0000000000000000
@@ -75,7 +75,7 @@ int main(int argc, const char * argv[]) {
  80361110145892769
 
  (lldb) po 0x011d8001000081a1 & 0x00007ffffffffff8ULL
- LGCar
+ Bicycle
  
  
  

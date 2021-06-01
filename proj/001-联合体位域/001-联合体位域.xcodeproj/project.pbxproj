@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		042EA85B2507BB2800344D96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA85A2507BB2800344D96 /* main.m */; };
-		042EA8632507BB3000344D96 /* LGCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA8622507BB3000344D96 /* LGCar.m */; };
+		042EA8632507BB3000344D96 /* Bicycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA8622507BB3000344D96 /* Bicycle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +26,8 @@
 /* Begin PBXFileReference section */
 		042EA8572507BB2800344D96 /* 001-联合体位域 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "001-联合体位域"; sourceTree = BUILT_PRODUCTS_DIR; };
 		042EA85A2507BB2800344D96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		042EA8612507BB3000344D96 /* LGCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCar.h; sourceTree = "<group>"; };
-		042EA8622507BB3000344D96 /* LGCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCar.m; sourceTree = "<group>"; };
+		042EA8612507BB3000344D96 /* Bicycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bicycle.h; sourceTree = "<group>"; };
+		042EA8622507BB3000344D96 /* Bicycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bicycle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				042EA85A2507BB2800344D96 /* main.m */,
-				042EA8612507BB3000344D96 /* LGCar.h */,
-				042EA8622507BB3000344D96 /* LGCar.m */,
+				042EA8612507BB3000344D96 /* Bicycle.h */,
+				042EA8622507BB3000344D96 /* Bicycle.m */,
 			);
 			path = "001-联合体位域";
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042EA85B2507BB2800344D96 /* main.m in Sources */,
-				042EA8632507BB3000344D96 /* LGCar.m in Sources */,
+				042EA8632507BB3000344D96 /* Bicycle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
