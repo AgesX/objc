@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <malloc/malloc.h>
+#import <objc/runtime.h>
+
+
 #import "LGCar.h"
 
 int main(int argc, const char * argv[]) {
