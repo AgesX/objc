@@ -214,6 +214,12 @@ objc_object::isExtTaggedPointer()
 // Note: this method does not support setting an indexed isa. When
 // indexed isas are in use, it can only be used to set the class of a
 // raw isa.
+
+
+// 类信息
+// 看这里
+
+
 inline void
 isa_t::setClass(Class newCls, UNUSED_WITHOUT_PTRAUTH objc_object *obj)
 {
@@ -265,7 +271,8 @@ isa_t::setClass(Class newCls, UNUSED_WITHOUT_PTRAUTH objc_object *obj)
     
     
     
-    
+    // 类信息
+    // 看这里
     shiftcls = (uintptr_t)newCls >> 3;    //         这样处理，            因为机器码不能识别字符串
     
     //  shiftcls 在 isa 的内存中，从 第 4 位开始，所以要右移 3 位
@@ -503,6 +510,8 @@ objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_
 #   if ISA_HAS_CXX_DTOR_BIT
         newisa.has_cxx_dtor = hasCxxDtor;
 #   endif
+        // 类信息
+        // 看这里
         newisa.setClass(cls, this);
 #endif
         newisa.extra_rc = 1;

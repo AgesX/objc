@@ -133,7 +133,7 @@
 // 面具， 把不重要的东西挡住，
 // 把需要的东西，露出来
 
-
+// 有置空效果
 
 
 
@@ -160,6 +160,17 @@
 #   define ISA_MAGIC_MASK  0x001f800000000001ULL
 #   define ISA_MAGIC_VALUE 0x001d800000000001ULL
 #   define ISA_HAS_CXX_DTOR_BIT 1
+
+
+
+
+
+// 这就是位域，
+
+// 位域： 位的信息布局
+
+
+
 #   define ISA_BITFIELD                                                        \
       uintptr_t nonpointer        : 1;                                         \
       uintptr_t has_assoc         : 1;                                         \
