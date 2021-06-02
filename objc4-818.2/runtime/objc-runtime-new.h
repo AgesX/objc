@@ -1527,6 +1527,12 @@ struct class_rw_ext_t {
     uint32_t version;
 };
 
+
+
+
+// here it is
+
+// 位信息，丰富
 struct class_rw_t {
     // Be warned that Symbolication knows the layout of this structure.
     uint32_t flags;
@@ -1617,6 +1623,10 @@ public:
         }
     }
 
+    
+    
+    
+    // 方法列表
     const method_array_t methods() const {
         auto v = get_ro_or_rwe();
         if (v.is<class_rw_ext_t *>()) {
@@ -1626,6 +1636,8 @@ public:
         }
     }
 
+    
+    // 属性列表
     const property_array_t properties() const {
         auto v = get_ro_or_rwe();
         if (v.is<class_rw_ext_t *>()) {
@@ -1635,6 +1647,9 @@ public:
         }
     }
 
+    
+    
+    // 协议列表
     const protocol_array_t protocols() const {
         auto v = get_ro_or_rwe();
         if (v.is<class_rw_ext_t *>()) {
@@ -1644,6 +1659,12 @@ public:
         }
     }
 };
+
+
+
+
+
+// 位信息，丰富， 走这里
 
 
 struct class_data_bits_t {
@@ -1677,10 +1698,27 @@ private:
     }
 
 public:
-
+    
+    
+    
+    
+    
+    // here it is
     class_rw_t* data() const {
         return (class_rw_t *)(bits & FAST_DATA_MASK);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     void setData(class_rw_t *newData)
     {
         ASSERT(!data()  ||  (newData->flags & (RW_REALIZING | RW_FUTURE)));
@@ -1812,7 +1850,7 @@ struct objc_class : objc_object {
     // 4 ， bits,  首地址 32
     
     
-    
+    // 位信息，丰富
     class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags
 
     
