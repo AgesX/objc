@@ -335,6 +335,11 @@ struct preopt_cache_t {
 // - `value_on_constant_cache_miss` if there's no cached value and the cache is preoptimized
 extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss = nil);
 
+
+
+
+
+
 struct cache_t {
     
     
@@ -343,7 +348,10 @@ struct cache_t {
     
     
 private:
+    // 结构体内存，不是 8 字节，根据属性和字节对齐
     
+    
+    // 结构体指针，占内存 8 字节
     
     
     explicit_atomic<uintptr_t> _bucketsAndMaybeMask;
@@ -369,6 +377,8 @@ private:
             // mask_t 是 uint32_t， 占 4 个字节
             
             
+            // uint32_t , 32 位， 1 个字节 8 位
+            
             
             
 #if __LP64__
@@ -390,6 +400,13 @@ private:
     // _bucketsAndMaybeMask is a buckets_t pointer
     // _maybeMask is the buckets mask
 
+    // static 修饰的，静态的成员变量
+    // 不算入结构体的内存
+    
+    
+    // 静态的成员变量，不存在于当前的结构体内存里面
+    
+    
     static constexpr uintptr_t bucketsMask = ~0ul;
     static_assert(!CONFIG_USE_PREOPT_CACHES, "preoptimized caches not supported");
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS
