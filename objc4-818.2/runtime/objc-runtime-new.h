@@ -1786,16 +1786,38 @@ public:
 // 也就获得了成员变量 isa 
 
 
+
+
+// 类的结构信息
+
 struct objc_class : objc_object {
   objc_class(const objc_class&) = delete;
   objc_class(objc_class&&) = delete;
   void operator=(const objc_class&) = delete;
   void operator=(objc_class&&) = delete;
+    
+    
+    // 首先， 有一个继承下来的 isa 指针，长度  8 字节
+    
+    
     // Class ISA;
     Class superclass;
+    // 2， 父类的 isa 指针， 长度  8 字节
+    
+    
     cache_t cache;             // formerly cache pointer and vtable
+    // 3 ， cache_t ，长度 16 字节
+    
+    
+    // 4 ， bits,  首地址 32
+    
+    
+    
     class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags
 
+    
+    
+    
     Class getSuperclass() const {
 #if __has_feature(ptrauth_calls)
 #   if ISA_SIGNING_AUTH_MODE == ISA_SIGNING_AUTH
