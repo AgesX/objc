@@ -339,7 +339,8 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 
 
 
-
+// 该结构体内存 16 个字节，
+// 该结构体的指针，的内存 8 个字节
 struct cache_t {
     
     
@@ -361,6 +362,9 @@ private:
     
     
     // explicit_atomic ， 只是一个泛型
+    // _bucketsAndMaybeMask 真正的类型是 uintptr_t, 一个指针
+    
+    
     //  typedef unsigned long           uintptr_t;
     //   unsigned long   , 8 个字节
     union {
@@ -382,13 +386,27 @@ private:
             
             
 #if __LP64__
+            
+            // 第 3 个，成员变量
+            
+            //  uint16_t， 16 位， 2 个字节
+            //  uint16_t，就是 short
+            
+            
             uint16_t                   _flags;
 #endif
+            
+            
+            // 第 4 个，成员变量
+            // 2 个字节
             uint16_t                   _occupied;
         };
         explicit_atomic<preopt_cache_t *> _originalPreoptCache;
     };
 
+    
+    
+    
     
     
     
