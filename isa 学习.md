@@ -74,6 +74,12 @@ objc_object ( 根对象 )   vs   objc_class ( Class ) ( NSObject ) ( isa )
 > 换个问题，就是，Objective - C 、 C 和 CPP 之间的关系
 
 
+<hr>
+
+
+所有的类，都是以 `objc_class` 为模版，继承过来的
+
+
 
 <hr>
 
