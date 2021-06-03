@@ -68,6 +68,8 @@ void instanceMethod_classToMetaclassXx(Class pClass){
 
 
 
+
+
 void lgClassMethod_classToMetaclass(Class pClass){
     
     const char *className = class_getName(pClass);
@@ -91,7 +93,13 @@ void lgClassMethod_classToMetaclass(Class pClass){
 
 
 
-void lgIMP_classToMetaclass(Class pClass){
+//  换一种角度
+
+
+//  查询类与  meta 元类的， 方法信息
+
+
+void sixIMP_classToMetaclass(Class pClass){
     
     const char *className = class_getName(pClass);
     Class metaClass = objc_getMetaClass(className);
@@ -104,8 +112,11 @@ void lgIMP_classToMetaclass(Class pClass){
     IMP imp3 = class_getMethodImplementation(pClass, @selector(sayHappy));
     IMP imp4 = class_getMethodImplementation(metaClass, @selector(sayHappy));
 
-    NSLog(@"%p-%p-%p-%p",imp1,imp2,imp3,imp4);
-    NSLog(@"%s",__func__);
+    LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__, imp1, imp2, imp3, imp4);
+    //  sixIMP_classToMetaclass  -  0x100003d10  -  0x7fff2033c5c0  -  0x7fff2033c5c0  -  0x100003d40  -
+    
+ 
+    // 0x7fff2033c5c0, 这个好像是， 转发指针
 }
 
 
@@ -133,9 +144,19 @@ int main(int argc, const char * argv[]) {
         
         instanceMethod_classToMetaclassXx(pClass);
         
+        NSLog(@" - - \n\n - -");
+        
         ////      br
+        sixIMP_classToMetaclass(pClass);
+        
+        
+        NSLog(@" - - \n\n - -");
+        
+        ////      br
+        
+        
         lgClassMethod_classToMetaclass(pClass);
-        NSLog(@"Hello, World!");
+        
     }
     return 0;
 }

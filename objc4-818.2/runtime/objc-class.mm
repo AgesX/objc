@@ -674,6 +674,20 @@ IMP class_lookupMethod(Class cls, SEL sel)
     return class_getMethodImplementation(cls, sel);
 }
 
+
+
+
+
+
+
+
+
+
+
+// 拿到，方法实现
+
+
+
 __attribute__((flatten))
 IMP class_getMethodImplementation(Class cls, SEL sel)
 {
@@ -683,10 +697,15 @@ IMP class_getMethodImplementation(Class cls, SEL sel)
 
     lockdebug_assert_no_locks_locked_except({ &loadMethodLock });
 
+    
+    // 查找 IMP
     imp = lookUpImpOrNilTryCache(nil, sel, cls, LOOKUP_INITIALIZE | LOOKUP_RESOLVER);
 
     // Translate forwarding function to C-callable external version
     if (!imp) {
+        
+        // 找不到，就去走方法转发的流程
+        
         return _objc_msgForward;
     }
 
