@@ -589,6 +589,17 @@ void fixupCopiedIvars(id newObject, id oldObject)
 * class_getClassMethod.  Return the class method for the specified
 * class and selector.
 **********************************************************************/
+
+
+
+
+
+
+//     类和 meta 元类，都含有类方法
+//     meta 元类，同时含有该类方法， 作为实例方法
+
+
+
 Method class_getClassMethod(Class cls, SEL sel)
 {
     if (!cls  ||  !sel) return nil;

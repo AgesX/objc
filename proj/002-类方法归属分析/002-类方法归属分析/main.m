@@ -70,7 +70,7 @@ void instanceMethod_classToMetaclassXx(Class pClass){
 
 
 
-void lgClassMethod_classToMetaclass(Class pClass){
+void riClassMethod_classToMetaclass(Class pClass){
     
     const char *className = class_getName(pClass);
     Class metaClass = objc_getMetaClass(className);
@@ -79,13 +79,30 @@ void lgClassMethod_classToMetaclass(Class pClass){
     Method method2 = class_getClassMethod(metaClass, @selector(sayHello));
 
     Method method3 = class_getClassMethod(pClass, @selector(sayHappy));
-    // 元类 为什么有 sayHappy 类方法 0 1
+    // 元类 为什么有 sayHappy 类方法
     //
     Method method4 = class_getClassMethod(metaClass, @selector(sayHappy));
     
     LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__,method1,method2,method3,method4);
-    //
-    //  存在
+    //     riClassMethod_classToMetaclass  -  0x0  -  0x0  -  0x100008148  -  0x100008148  -
+    
+    //                                        不存在 - 不存在 -     存在      -      存在
+    //     类和 meta 元类，都含有类方法
+    //     meta 元类，同时含有该类方法， 作为实例方法
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -155,7 +172,7 @@ int main(int argc, const char * argv[]) {
         ////      br
         
         
-        lgClassMethod_classToMetaclass(pClass);
+        riClassMethod_classToMetaclass(pClass);
         
     }
     return 0;
