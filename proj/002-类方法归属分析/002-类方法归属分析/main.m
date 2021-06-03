@@ -21,9 +21,11 @@
 
 
 
+// 可以有
+
 
 // 把类里面的对象方法，都找出来
-void lgObjc_copyMethodList(Class pClass){
+void classCopyMethodList(Class pClass){
     unsigned int count = 0;
     Method *methods = class_copyMethodList(pClass, &count);
     for (unsigned int i=0; i < count; i++) {
@@ -39,6 +41,29 @@ void lgObjc_copyMethodList(Class pClass){
 
 
 
+
+
+
+// 此路不通
+
+// 把  meta 元类  ，  里面的对象方法，都找出来
+void metaCopyMethodList(Class pClass){
+    
+    const char *className = class_getName(pClass);
+    Class metaClass = objc_getMetaClass(className);
+    
+    
+    unsigned int count = 0;
+    Method *methods = class_copyMethodList(metaClass, &count);
+    for (unsigned int i=0; i < count; i++) {
+        Method const method = methods[i];
+        //获取方法名
+        NSString *key = NSStringFromSelector(method_getName(method));
+        
+        LGLog(@"Method, name: %@", key);
+    }
+    free(methods);
+}
 
 
 
@@ -149,8 +174,18 @@ int main(int argc, const char * argv[]) {
         // LGTeacher *teacher = [LGTeacher alloc];
 
         LGPerson *person = [LGPerson alloc];
+        
         Class pClass     = object_getClass(person);
-        lgObjc_copyMethodList(pClass);
+        
+        
+        metaCopyMethodList(pClass);
+        
+        
+        ////      br
+        NSLog(@" - - \n\n - -");
+        
+        
+        classCopyMethodList(pClass);
 
         
         ////      br

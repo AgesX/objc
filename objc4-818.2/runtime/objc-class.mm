@@ -604,6 +604,8 @@ Method class_getClassMethod(Class cls, SEL sel)
 {
     if (!cls  ||  !sel) return nil;
 
+    
+    //  
     return class_getInstanceMethod(cls->getMeta(), sel);
 }
 
