@@ -45,7 +45,7 @@ void lgObjc_copyMethodList(Class pClass){
 
 
 //  查询类与  meta 元类的， 方法信息
-void lgInstanceMethod_classToMetaclass(Class pClass){
+void instanceMethod_classToMetaclassXx(Class pClass){
     
     const char *className = class_getName(pClass);
     Class metaClass = objc_getMetaClass(className);
@@ -57,6 +57,8 @@ void lgInstanceMethod_classToMetaclass(Class pClass){
     Method method4 = class_getInstanceMethod(metaClass, @selector(sayHappy));
     
     LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__,method1,method2,method3,method4);
+    // instanceMethod_classToMetaclassXx  -  0x1000081b0  -  0x0  -  0x0  -  0x100008148  -
+    //                                        存在        -   不存在 - 不存在 - 存在
 }
 
 
@@ -129,7 +131,7 @@ int main(int argc, const char * argv[]) {
         
         
         
-        lgInstanceMethod_classToMetaclass(pClass);
+        instanceMethod_classToMetaclassXx(pClass);
         
         ////      br
         lgClassMethod_classToMetaclass(pClass);
