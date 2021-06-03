@@ -166,4 +166,12 @@
     return _direction.back;
 }
 
+
+
++ (void) fly{
+    
+    
+    
+}
+
 @end

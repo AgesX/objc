@@ -307,6 +307,27 @@ objc_retain_autorelease(id obj)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    strong 修饰的属性
+
+
+
+
+
+
 void
 objc_storeStrong(id *location, id obj)
 {

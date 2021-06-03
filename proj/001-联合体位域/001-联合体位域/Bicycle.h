@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setBack:(BOOL)isBack;
 - (BOOL)isBack;
 
+
++ (void) fly;
 @end
 
 NS_ASSUME_NONNULL_END

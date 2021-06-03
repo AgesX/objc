@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042EA85B2507BB2800344D96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA85A2507BB2800344D96 /* main.m */; };
-		042EA8632507BB3000344D96 /* Bicycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA8622507BB3000344D96 /* Bicycle.m */; };
+		042EA8B9250D01E400344D96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA8B8250D01E400344D96 /* main.m */; };
+		042EA8C1250D021400344D96 /* LGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA8C0250D021400344D96 /* LGPerson.m */; };
+		042EA8D7250F632E00344D96 /* LGTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EA8D6250F632E00344D96 /* LGTeacher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		042EA8552507BB2800344D96 /* CopyFiles */ = {
+		042EA8B3250D01E400344D96 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,14 +25,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		042EA8572507BB2800344D96 /* 001-联合体位域 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "001-联合体位域"; sourceTree = BUILT_PRODUCTS_DIR; };
-		042EA85A2507BB2800344D96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		042EA8612507BB3000344D96 /* Bicycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bicycle.h; sourceTree = "<group>"; };
-		042EA8622507BB3000344D96 /* Bicycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bicycle.m; sourceTree = "<group>"; };
+		042EA8B5250D01E400344D96 /* 002-类方法归属分析 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "002-类方法归属分析"; sourceTree = BUILT_PRODUCTS_DIR; };
+		042EA8B8250D01E400344D96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		042EA8BF250D021400344D96 /* LGPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGPerson.h; sourceTree = "<group>"; };
+		042EA8C0250D021400344D96 /* LGPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPerson.m; sourceTree = "<group>"; };
+		042EA8D5250F632E00344D96 /* LGTeacher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTeacher.h; sourceTree = "<group>"; };
+		042EA8D6250F632E00344D96 /* LGTeacher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTeacher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		042EA8542507BB2800344D96 /* Frameworks */ = {
+		042EA8B2250D01E400344D96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,67 +44,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		042EA84E2507BB2800344D96 = {
+		042EA8AC250D01E400344D96 = {
 			isa = PBXGroup;
 			children = (
-				042EA8592507BB2800344D96 /* 001-联合体位域 */,
-				042EA8582507BB2800344D96 /* Products */,
+				042EA8B7250D01E400344D96 /* 002-类方法归属分析 */,
+				042EA8B6250D01E400344D96 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		042EA8582507BB2800344D96 /* Products */ = {
+		042EA8B6250D01E400344D96 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				042EA8572507BB2800344D96 /* 001-联合体位域 */,
+				042EA8B5250D01E400344D96 /* 002-类方法归属分析 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		042EA8592507BB2800344D96 /* 001-联合体位域 */ = {
+		042EA8B7250D01E400344D96 /* 002-类方法归属分析 */ = {
 			isa = PBXGroup;
 			children = (
-				042EA85A2507BB2800344D96 /* main.m */,
-				042EA8612507BB3000344D96 /* Bicycle.h */,
-				042EA8622507BB3000344D96 /* Bicycle.m */,
+				042EA8B8250D01E400344D96 /* main.m */,
+				042EA8BF250D021400344D96 /* LGPerson.h */,
+				042EA8C0250D021400344D96 /* LGPerson.m */,
+				042EA8D5250F632E00344D96 /* LGTeacher.h */,
+				042EA8D6250F632E00344D96 /* LGTeacher.m */,
 			);
-			path = "001-联合体位域";
+			path = "002-类方法归属分析";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		042EA8562507BB2800344D96 /* 001-联合体位域 */ = {
+		042EA8B4250D01E400344D96 /* 002-类方法归属分析 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 042EA85E2507BB2800344D96 /* Build configuration list for PBXNativeTarget "001-联合体位域" */;
+			buildConfigurationList = 042EA8BC250D01E400344D96 /* Build configuration list for PBXNativeTarget "002-类方法归属分析" */;
 			buildPhases = (
-				042EA8532507BB2800344D96 /* Sources */,
-				042EA8542507BB2800344D96 /* Frameworks */,
-				042EA8552507BB2800344D96 /* CopyFiles */,
+				042EA8B1250D01E400344D96 /* Sources */,
+				042EA8B2250D01E400344D96 /* Frameworks */,
+				042EA8B3250D01E400344D96 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "001-联合体位域";
-			productName = "001-联合体位域";
-			productReference = 042EA8572507BB2800344D96 /* 001-联合体位域 */;
+			name = "002-类方法归属分析";
+			productName = "002-类方法归属分析";
+			productReference = 042EA8B5250D01E400344D96 /* 002-类方法归属分析 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		042EA84F2507BB2800344D96 /* Project object */ = {
+		042EA8AD250D01E400344D96 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = cooci;
 				TargetAttributes = {
-					042EA8562507BB2800344D96 = {
+					042EA8B4250D01E400344D96 = {
 						CreatedOnToolsVersion = 11.7;
 					};
 				};
 			};
-			buildConfigurationList = 042EA8522507BB2800344D96 /* Build configuration list for PBXProject "001-联合体位域" */;
+			buildConfigurationList = 042EA8B0250D01E400344D96 /* Build configuration list for PBXProject "002-类方法归属分析" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +114,31 @@
 				en,
 				Base,
 			);
-			mainGroup = 042EA84E2507BB2800344D96;
-			productRefGroup = 042EA8582507BB2800344D96 /* Products */;
+			mainGroup = 042EA8AC250D01E400344D96;
+			productRefGroup = 042EA8B6250D01E400344D96 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				042EA8562507BB2800344D96 /* 001-联合体位域 */,
+				042EA8B4250D01E400344D96 /* 002-类方法归属分析 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		042EA8532507BB2800344D96 /* Sources */ = {
+		042EA8B1250D01E400344D96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042EA85B2507BB2800344D96 /* main.m in Sources */,
-				042EA8632507BB3000344D96 /* Bicycle.m in Sources */,
+				042EA8B9250D01E400344D96 /* main.m in Sources */,
+				042EA8D7250F632E00344D96 /* LGTeacher.m in Sources */,
+				042EA8C1250D021400344D96 /* LGPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		042EA85C2507BB2800344D96 /* Debug */ = {
+		042EA8BA250D01E400344D96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -158,7 +164,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -191,7 +196,7 @@
 			};
 			name = Debug;
 		};
-		042EA85D2507BB2800344D96 /* Release */ = {
+		042EA8BB250D01E400344D96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -217,7 +222,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -243,23 +247,21 @@
 			};
 			name = Release;
 		};
-		042EA85F2507BB2800344D96 /* Debug */ = {
+		042EA8BD250D01E400344D96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D878P8TW6L;
+				DEVELOPMENT_TEAM = Q8B5XV6KJQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		042EA8602507BB2800344D96 /* Release */ = {
+		042EA8BE250D01E400344D96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D878P8TW6L;
+				DEVELOPMENT_TEAM = Q8B5XV6KJQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -268,25 +270,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		042EA8522507BB2800344D96 /* Build configuration list for PBXProject "001-联合体位域" */ = {
+		042EA8B0250D01E400344D96 /* Build configuration list for PBXProject "002-类方法归属分析" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				042EA85C2507BB2800344D96 /* Debug */,
-				042EA85D2507BB2800344D96 /* Release */,
+				042EA8BA250D01E400344D96 /* Debug */,
+				042EA8BB250D01E400344D96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		042EA85E2507BB2800344D96 /* Build configuration list for PBXNativeTarget "001-联合体位域" */ = {
+		042EA8BC250D01E400344D96 /* Build configuration list for PBXNativeTarget "002-类方法归属分析" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				042EA85F2507BB2800344D96 /* Debug */,
-				042EA8602507BB2800344D96 /* Release */,
+				042EA8BD250D01E400344D96 /* Debug */,
+				042EA8BE250D01E400344D96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 042EA84F2507BB2800344D96 /* Project object */;
+	rootObject = 042EA8AD250D01E400344D96 /* Project object */;
 }

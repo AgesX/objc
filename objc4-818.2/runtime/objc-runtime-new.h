@@ -1606,6 +1606,19 @@ public:
         return extAlloc(ro, true);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // iver 在 ro 中，
+    // read only
+    
+    
     const class_ro_t *ro() const {
         auto v = get_ro_or_rwe();
         if (slowpath(v.is<class_rw_ext_t *>())) {
