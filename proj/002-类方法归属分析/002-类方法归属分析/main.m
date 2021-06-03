@@ -105,7 +105,17 @@ void riClassMethod_classToMetaclass(Class pClass){
 
     Method method3 = class_getClassMethod(pClass, @selector(sayHappy));
     // 元类 为什么有 sayHappy 类方法
-    //
+    
+    
+    
+    //  元类，如果继续走下去，就会指向自个
+    
+    
+    //  来避免无限的递归
+    
+    
+    
+    //  判断，如果是元类，就不会再递归下去了
     Method method4 = class_getClassMethod(metaClass, @selector(sayHappy));
     
     LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__,method1,method2,method3,method4);

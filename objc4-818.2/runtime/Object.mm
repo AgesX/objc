@@ -219,6 +219,14 @@ static const char
 	return self;
 }
 
+
+
+
+
+
+
+
+
 - (BOOL)isKindOf:aClass
 {
 	Class cls;
@@ -227,6 +235,12 @@ static const char
 			return YES;
 	return NO;
 }
+
+
+
+
+
+
 
 - (BOOL)isMemberOf:aClass
 {

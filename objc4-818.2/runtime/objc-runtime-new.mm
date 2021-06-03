@@ -6118,6 +6118,23 @@ getMethod_nolock(Class cls, SEL sel)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * _class_getMethod
 * fixme
@@ -6128,6 +6145,24 @@ static Method _class_getMethod(Class cls, SEL sel)
     mutex_locker_t lock(runtimeLock);
     return getMethod_nolock(cls, sel);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -6152,6 +6187,19 @@ Method class_getInstanceMethod(Class cls, SEL sel)
 
     return _class_getMethod(cls, sel);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************

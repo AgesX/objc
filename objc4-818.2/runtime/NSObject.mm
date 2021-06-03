@@ -2369,12 +2369,39 @@ __attribute__((objc_nonlazy_class))
     return [self class] == cls;
 }
 
+
+
+
+
+
+
+
+
+
+
+// key
+
+
+
+
+
+
 + (BOOL)isKindOfClass:(Class)cls {
     for (Class tcls = self->ISA(); tcls; tcls = tcls->getSuperclass()) {
         if (tcls == cls) return YES;
     }
     return NO;
 }
+
+
+
+
+
+
+
+
+
+
 
 - (BOOL)isKindOfClass:(Class)cls {
     for (Class tcls = [self class]; tcls; tcls = tcls->getSuperclass()) {

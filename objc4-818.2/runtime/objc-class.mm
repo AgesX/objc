@@ -605,9 +605,20 @@ Method class_getClassMethod(Class cls, SEL sel)
     if (!cls  ||  !sel) return nil;
 
     
-    //  
+    
+    //  得到一个类的类方法
+    //  就是得到其元类的实例方法
     return class_getInstanceMethod(cls->getMeta(), sel);
 }
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************

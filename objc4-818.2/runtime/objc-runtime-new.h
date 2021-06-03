@@ -2250,12 +2250,25 @@ struct objc_class : objc_object {
         return data()->flags & RW_META;
     }
 
+    
+    
+    
+    
+    
+    
+    
     // NOT identical to this->ISA when this is a metaclass
     Class getMeta() {
         if (isMetaClassMaybeUnrealized()) return (Class)this;
         else return this->ISA();
     }
 
+    
+    
+    
+    
+    
+    
     bool isRootClass() {
         return getSuperclass() == nil;
     }
