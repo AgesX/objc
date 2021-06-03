@@ -17,6 +17,12 @@
 #define LGLog(format, ...);
 #endif
 
+
+
+
+
+
+// 把类里面的对象方法，都找出来
 void lgObjc_copyMethodList(Class pClass){
     unsigned int count = 0;
     Method *methods = class_copyMethodList(pClass, &count);
@@ -30,6 +36,15 @@ void lgObjc_copyMethodList(Class pClass){
     free(methods);
 }
 
+
+
+
+
+
+
+
+
+//  查询类与  meta 元类的， 方法信息
 void lgInstanceMethod_classToMetaclass(Class pClass){
     
     const char *className = class_getName(pClass);
@@ -41,8 +56,15 @@ void lgInstanceMethod_classToMetaclass(Class pClass){
     Method method3 = class_getInstanceMethod(pClass, @selector(sayHappy));
     Method method4 = class_getInstanceMethod(metaClass, @selector(sayHappy));
     
-    LGLog(@"%s - %p-%p-%p-%p",__func__,method1,method2,method3,method4);
+    LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__,method1,method2,method3,method4);
 }
+
+
+
+
+
+
+
 
 void lgClassMethod_classToMetaclass(Class pClass){
     
@@ -57,8 +79,15 @@ void lgClassMethod_classToMetaclass(Class pClass){
     //
     Method method4 = class_getClassMethod(metaClass, @selector(sayHappy));
     
-    LGLog(@"%s-%p-%p-%p-%p",__func__,method1,method2,method3,method4);
+    LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__,method1,method2,method3,method4);
+    //
+    //  存在
 }
+
+
+
+
+
 
 void lgIMP_classToMetaclass(Class pClass){
     
@@ -77,6 +106,12 @@ void lgIMP_classToMetaclass(Class pClass){
     NSLog(@"%s",__func__);
 }
 
+
+
+
+
+
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
@@ -87,7 +122,16 @@ int main(int argc, const char * argv[]) {
         Class pClass     = object_getClass(person);
         lgObjc_copyMethodList(pClass);
 
+        
+        ////      br
+        NSLog(@" - - \n\n - -");
+        
+        
+        
+        
         lgInstanceMethod_classToMetaclass(pClass);
+        
+        ////      br
         lgClassMethod_classToMetaclass(pClass);
         NSLog(@"Hello, World!");
     }
