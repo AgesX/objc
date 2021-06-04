@@ -2345,13 +2345,24 @@ __attribute__((objc_nonlazy_class))
     return self;
 }
 
+
+
+
 + (Class)class {
     return self;
 }
 
+
+
+
+
+
 - (Class)class {
     return object_getClass(self);
 }
+
+
+
 
 + (Class)superclass {
     return self->getSuperclass();
@@ -2361,9 +2372,28 @@ __attribute__((objc_nonlazy_class))
     return [self class]->getSuperclass();
 }
 
+
+
+
+
+
+// isMemberOfClass,
+
+// 比起 isKindOfClass
+
+// 更加的，直接简单
+
+
+
+// inspect 的类方法，判断 isa
 + (BOOL)isMemberOfClass:(Class)cls {
     return self->ISA() == cls;
 }
+
+
+
+
+
 
 - (BOOL)isMemberOfClass:(Class)cls {
     return [self class] == cls;
@@ -2395,7 +2425,7 @@ __attribute__((objc_nonlazy_class))
     // 匹配不上，就查找父类的操作
     
     
-    
+    //
     for (Class tcls = self->ISA(); tcls; tcls = tcls->getSuperclass()) {
         if (tcls == cls) return YES;
     }
@@ -2405,9 +2435,18 @@ __attribute__((objc_nonlazy_class))
 
 
 
+
+
+
+
+
+
+
+
 //    self->ISA()
 //    等价于
 //    [self class]
+//    放屁
 
 
 
@@ -2417,15 +2456,28 @@ __attribute__((objc_nonlazy_class))
 
 
 
+// 实例方法
 
 
 
 - (BOOL)isKindOfClass:(Class)cls {
+    
+    // 拿自己的类，和其父类，对比
+    
+    // 用循环，写 while
     for (Class tcls = [self class]; tcls; tcls = tcls->getSuperclass()) {
         if (tcls == cls) return YES;
     }
     return NO;
 }
+
+
+
+
+
+
+
+
 
 + (BOOL)isSubclassOfClass:(Class)cls {
     for (Class tcls = self; tcls; tcls = tcls->getSuperclass()) {
