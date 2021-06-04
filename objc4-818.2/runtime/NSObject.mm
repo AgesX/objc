@@ -2387,11 +2387,28 @@ __attribute__((objc_nonlazy_class))
 
 
 + (BOOL)isKindOfClass:(Class)cls {
+    
+    
+    // 有一个，
+    
+    
+    // 匹配不上，就查找父类的操作
+    
+    
+    
     for (Class tcls = self->ISA(); tcls; tcls = tcls->getSuperclass()) {
         if (tcls == cls) return YES;
     }
     return NO;
 }
+
+
+
+
+//    self->ISA()
+//    等价于
+//    [self class]
+
 
 
 
