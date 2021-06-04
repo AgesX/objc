@@ -370,9 +370,12 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 // 该结构体的指针，的内存 8 个字节
 struct cache_t {
     
+    // 缓存， 常见操作 ， 增删改查 CRUD
+    
+    // 强调， 线程安全
     
     
-    
+    // 学习 cache 存储什么，怎么存
     
     
 private:
@@ -408,7 +411,15 @@ private:
             // mask_t 是 uint32_t， 占 4 个字节
             
             
+            
+            
             // uint32_t , 32 位， 1 个字节 8 位
+            
+            
+            
+            
+            // 等价于，         mask_t    _maybeMask;
+            
             
             
             
@@ -436,6 +447,9 @@ private:
     
     
     
+    
+    
+//  真机测试的重要性，真机和模拟器的架构 / 环境 ， 是不同的
     
     
     

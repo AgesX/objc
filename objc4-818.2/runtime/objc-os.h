@@ -153,6 +153,15 @@ class nocopy_t {
 // Version of std::atomic that does not allow implicit conversions
 // to/from the wrapped type, and requires an explicit memory order
 // be passed to load() and store().
+
+
+
+
+
+
+// 显式， 原子性
+
+
 template <typename T>
 struct explicit_atomic : public std::atomic<T> {
     explicit explicit_atomic(T initial) noexcept : std::atomic<T>(std::move(initial)) {}
