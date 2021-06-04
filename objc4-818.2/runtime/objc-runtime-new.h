@@ -1841,7 +1841,14 @@ public:
 
 // 类的结构信息
 
+
+
+
 struct objc_class : objc_object {
+    
+    
+    
+    
   objc_class(const objc_class&) = delete;
   objc_class(objc_class&&) = delete;
   void operator=(const objc_class&) = delete;
@@ -1851,9 +1858,23 @@ struct objc_class : objc_object {
     // 首先， 有一个继承下来的 isa 指针，长度  8 字节
     
     
+    
+    
+    //  typedef struct objc_class *Class;
+    //  结构体指针， 8 个字节
+    
+    
     // Class ISA;
     Class superclass;
     // 2， 父类的 isa 指针， 长度  8 字节
+    
+    
+    
+    
+    
+    
+    // 首地址， 平移 16 位，到达 cache
+    // 平移的 16 位， isa 8 位， superclass 8 位
     
     
     cache_t cache;             // formerly cache pointer and vtable
@@ -1972,9 +1993,22 @@ struct objc_class : objc_object {
 #endif
 
 #if FAST_CACHE_HAS_DEFAULT_CORE
+    
+    
+    
+    
+    
+    
+    ///
     bool hasCustomCore() const {
         return !cache.getBit(FAST_CACHE_HAS_DEFAULT_CORE);
     }
+    
+    
+    
+    
+    
+    
     void setHasDefaultCore() {
         return cache.setBit(FAST_CACHE_HAS_DEFAULT_CORE);
     }

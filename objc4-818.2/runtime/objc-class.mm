@@ -730,13 +730,23 @@ IMP class_getMethodImplementation(Class cls, SEL sel)
         
         // 找不到，就去走方法转发的流程
         
+        
+        // 消息转发
+        
         return _objc_msgForward;
     }
 
     return imp;
 }
 
+
+
+
+
 #if SUPPORT_STRET
+
+
+
 IMP class_getMethodImplementation_stret(Class cls, SEL sel)
 {
     IMP imp = class_getMethodImplementation(cls, sel);

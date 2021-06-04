@@ -54,6 +54,12 @@
 
 //  定义一个 Class 类型
 
+
+//  objc_classK,
+
+
+//  里面查看 cache
+
 typedef struct objc_class *Class;
 
 /*

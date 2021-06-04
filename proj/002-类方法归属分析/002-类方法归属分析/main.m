@@ -167,9 +167,48 @@ void sixIMP_classToMetaclass(Class pClass){
     LGLog(@"%s  -  %p  -  %p  -  %p  -  %p  -  ",__func__, imp1, imp2, imp3, imp4);
     //  sixIMP_classToMetaclass  -  0x100003d10  -  0x7fff2033c5c0  -  0x7fff2033c5c0  -  0x100003d40  -
     
- 
+    
+    
+    
+    // 0x100003d10 和 0x100003d40
+    // IMP 指针，实现指针
+    
+    
+    
     // 0x7fff2033c5c0, 这个好像是， 转发指针
+    // 方法不存在，就走转发
+    
+    
+    
+    
+    
+/*
+ 
+ 
+ 
+ 
+ 
+ 
+ (lldb) p imp1
+ (IMP) $0 = 0x0000000100003d10 (002-类方法归属分析`-[LGPerson sayHello] at LGPerson.m:13)
+ 
+ (lldb) p imp2
+ (IMP) $1 = 0x00007fff202d65c0 (libobjc.A.dylib`_objc_msgForward)
+ 
+ (lldb) p imp3
+ (IMP) $2 = 0x00007fff202d65c0 (libobjc.A.dylib`_objc_msgForward)
+ 
+ (lldb) p imp4
+ (IMP) $3 = 0x0000000100003d40 (002-类方法归属分析`+[LGPerson sayHappy] at LGPerson.m:17)
+ 
+ 
+ 
+ 
+ */
 }
+
+
+
 
 
 

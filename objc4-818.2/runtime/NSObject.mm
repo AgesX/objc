@@ -2118,6 +2118,13 @@ objc_opt_class(id obj)
 }
 
 // Calls [obj isKindOfClass]
+
+
+
+// LLVM code gen 优化过
+
+
+
 BOOL
 objc_opt_isKindOfClass(id obj, Class otherClass)
 {
