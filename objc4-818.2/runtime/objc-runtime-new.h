@@ -372,10 +372,6 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 
 
 // 跑 mac os 程序， CPU 架构是 i386
-// 简单理解为 x86
-
-
-
 
 
 // 跑模拟器程序， CPU 架构是 x86
@@ -413,10 +409,6 @@ private:
     
     
     explicit_atomic<uintptr_t> _bucketsAndMaybeMask;
-    // explicit_atomic 是结构体，占 8 字节
-    // 呵呵
-    
-    
     
     // explicit_atomic ， 只是一个泛型
     // _bucketsAndMaybeMask 真正的类型是 uintptr_t, 一个指针
@@ -427,11 +419,6 @@ private:
     union {
         struct {
             explicit_atomic<mask_t>    _maybeMask;
-            
-            // explicit_atomic 是结构体，占 8 字节
-            // 呵呵
-            
-            
             
             // explicit_atomic ， 只是一个泛型
             // _maybeMask 真正的类型是 mask_t
