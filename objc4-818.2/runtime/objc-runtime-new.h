@@ -339,6 +339,33 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 
 
 
+
+
+
+
+
+// 跑 mac os 程序， CPU 架构是 i386
+// 简单理解为 x86
+
+
+
+
+
+// 跑模拟器程序， CPU 架构是 x86
+
+
+
+
+
+// 跑真机程序， CPU 架构是 arm 64
+
+
+
+
+
+
+
+
 // 该结构体内存 16 个字节，
 // 该结构体的指针，的内存 8 个字节
 struct cache_t {
@@ -415,6 +442,15 @@ private:
     
     
 #if CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_OUTLINED
+    ///
+    
+    // 模拟器和 OSX 程序
+    
+    
+    
+    
+    
+    
     // _bucketsAndMaybeMask is a buckets_t pointer
     // _maybeMask is the buckets mask
 
@@ -428,6 +464,16 @@ private:
     static constexpr uintptr_t bucketsMask = ~0ul;
     static_assert(!CONFIG_USE_PREOPT_CACHES, "preoptimized caches not supported");
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS
+    
+    // OS X 采用 arm 64 架构的
+    
+    
+    ///
+    
+    
+    
+    
+    
     static constexpr uintptr_t maskShift = 48;
     static constexpr uintptr_t maxMask = ((uintptr_t)1 << (64 - maskShift)) - 1;
     static constexpr uintptr_t bucketsMask = ((uintptr_t)1 << maskShift) - 1;
@@ -437,7 +483,17 @@ private:
     static constexpr uintptr_t preoptBucketsMarker = 1ul;
     static constexpr uintptr_t preoptBucketsMask = bucketsMask & ~preoptBucketsMarker;
 #endif
+    
+    
+    
+    
+    
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16
+    // 真机， 64 位
+    
+    ///
+    
+    
     // _bucketsAndMaybeMask is a buckets_t pointer in the low 48 bits
     // _maybeMask is unused, the mask is stored in the top 16 bits.
 
@@ -473,6 +529,8 @@ private:
         // the right shift for 0x7fff rather than 0xffff
         return value | ((objc::mask16ShiftBits(cache->mask) - 1) << 60);
     }
+    
+    
 #else
     // 63..53: hash_mask
     // 52..48: hash_shift
@@ -484,7 +542,14 @@ private:
     }
 #endif
 #endif // CONFIG_USE_PREOPT_CACHES
+    
+    
+    ///
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_LOW_4
+    
+    // 真机， 32 位
+    
+    
     // _bucketsAndMaybeMask is a buckets_t pointer in the top 28 bits
     // _maybeMask is unused, the mask length is stored in the low 4 bits
 
@@ -496,6 +561,12 @@ private:
 #error Unknown cache mask storage type.
 #endif
 
+    
+    
+    
+    
+    
+    
     bool isConstantEmptyCache() const;
     bool canBeFreed() const;
     mask_t mask() const;
@@ -620,6 +691,31 @@ public:
     }
 #endif
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // classref_t is unremapped class_t*

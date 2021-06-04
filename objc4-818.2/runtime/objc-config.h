@@ -213,17 +213,57 @@
 #define CACHE_MASK_STORAGE_LOW_4 3
 #define CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS 4
 
+
+
+
+
+
+
 #if defined(__arm64__) && __LP64__
+// 真机， 64 位
+
+
 #if TARGET_OS_OSX || TARGET_OS_SIMULATOR
+
 #define CACHE_MASK_STORAGE CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS
+
+// OS X 采用 arm 64 架构的
+
+
 #else
 #define CACHE_MASK_STORAGE CACHE_MASK_STORAGE_HIGH_16
 #endif
+
+
 #elif defined(__arm64__) && !__LP64__
+// 真机， 32 位
+
+
 #define CACHE_MASK_STORAGE CACHE_MASK_STORAGE_LOW_4
+
+
+
 #else
+// 模拟器和 OSX 程序
+
 #define CACHE_MASK_STORAGE CACHE_MASK_STORAGE_OUTLINED
+
+
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Constants used for signing/authing isas. This doesn't quite belong
 // here, but the asm files can't import other headers.
