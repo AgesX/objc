@@ -529,6 +529,7 @@ private:
     
     //  _buckets， 是一种集合形式
     //  然后，就可以地址平移，访问内容
+    //  类似操作数组指针
     
     explicit_atomic<uintptr_t> _bucketsAndMaybeMask;
     
