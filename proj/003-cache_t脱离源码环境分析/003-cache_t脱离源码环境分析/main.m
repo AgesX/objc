@@ -17,11 +17,44 @@ struct lg_bucket_t {
     IMP _imp;
 };
 
+struct deng_preopt_cache_entry_t {
+    uint32_t sel_offs;
+    uint32_t imp_offs;
+};
+
+/* dyld_shared_cache_builder and obj-C agree on these definitions */
+struct deng_preopt_cache_t {
+    int32_t  fallback_class_offset;
+    union {
+        struct {
+            uint16_t shift       :  5;
+            uint16_t mask        : 11;
+        };
+        uint16_t hash_params;
+    };
+    uint16_t occupied    : 14;
+    uint16_t has_inlines :  1;
+    uint16_t bit_one     :  1;
+    struct deng_preopt_cache_entry_t entries[];
+};
+
+
+
 struct lg_cache_t {
-    struct lg_bucket_t * _buckets;
-    mask_t _mask;
-    uint16_t _flags;
-    uint16_t _occupied;
+    uintptr_t _bucketsAndMaybeMask;
+    union {
+        struct {
+            mask_t    _maybeMask;
+            uint16_t                   _flags;
+            
+            
+            // 第 4 个，成员变量
+            // 2 个字节
+            uint16_t                   _occupied;
+        };
+        struct deng_preopt_cache_t * _originalPreoptCache;
+    };
+        
 };
 
 struct lg_class_data_bits_t {
@@ -54,12 +87,16 @@ int main(int argc, const char * argv[]) {
         // 线索 :
         
         struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
-        NSLog(@"%hu - %u",lg_pClass->cache._occupied,lg_pClass->cache._mask);
-        for (mask_t i = 0; i<lg_pClass->cache._mask; i++) {
-            // 打印获取的 bucket
-            struct lg_bucket_t bucket = lg_pClass->cache._buckets[i];
-            NSLog(@"%@ - %p",NSStringFromSelector(bucket._sel),bucket._imp);
-        }
+        NSLog(@"总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
+        
+        
+        
+        
+//        for (mask_t i = 0; i<lg_pClass->cache._mask; i++) {
+//            // 打印获取的 bucket
+//            struct lg_bucket_t bucket = lg_pClass->cache._buckets[i];
+//            NSLog(@"%@ - %p",NSStringFromSelector(bucket._sel),bucket._imp);
+//        }
 
         
         NSLog(@"Hello, World!");
