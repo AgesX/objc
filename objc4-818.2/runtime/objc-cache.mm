@@ -548,6 +548,16 @@ bool cache_t::isConstantOptimizedCacheWithInlinedSels() const
 
 #if CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_OUTLINED
 
+
+
+
+
+
+///
+
+
+
+
 void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
 {
     // objc_msgSend uses mask and buckets with no locks.
@@ -561,6 +571,8 @@ void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
     // ensure other threads see buckets contents before buckets pointer
     mega_barrier();
 
+    
+    // 存入
     _bucketsAndMaybeMask.store((uintptr_t)newBuckets, memory_order_relaxed);
 
     // ensure other threads see new buckets before new mask
@@ -574,11 +586,33 @@ void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
 
     // ensure other threads see new buckets before new mask
     _maybeMask.store(newMask, memory_order_release);
+    
+    
+    
+    // 至此，完成了一些，初始化方面的工作
+    
+    
     _occupied = 0;
 #else
 #error Don't know how to do setBucketsAndMask on this architecture.
 #endif
 }
+
+
+
+
+
+
+
+///
+
+
+
+
+
+
+
+
 
 mask_t cache_t::mask() const
 {
@@ -952,11 +986,14 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
         
         
         //  就要开辟空间
-        
+        // reallocate ，有一个对 occupied 复位为 0 的操作
         reallocate(oldCapacity, capacity, /* freeOld */false);
     }
     else if (fastpath(newOccupied + CACHE_END_MARKER <= cache_fill_ratio(capacity))) {
         // Cache is less than 3/4 or 7/8 full. Use it as-is.
+        
+        // 扩容的边界
+        
     }
 #if CACHE_ALLOW_FULL_UTILIZATION
     else if (capacity <= FULL_UTILIZATION_CACHE_SIZE && newOccupied + CACHE_END_MARKER <= capacity) {
@@ -964,6 +1001,10 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     }
 #endif
     else {
+        
+        // 占用超过，重新分配更多的内存
+        
+        // 扩容操作
         capacity = capacity ? capacity * 2 : INIT_CACHE_SIZE;
         if (capacity > MAX_CACHE_SIZE) {
             capacity = MAX_CACHE_SIZE;
