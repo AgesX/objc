@@ -228,7 +228,11 @@ private:
     // SEL-first is better for armv7* and i386 and x86_64.
 #if __arm64__
     explicit_atomic<uintptr_t> _imp;
+    // 方法实现
+    
+    
     explicit_atomic<SEL> _sel;
+    // 方法编号
 #else
     
     
@@ -416,6 +420,18 @@ private:
     
     //  typedef unsigned long           uintptr_t;
     //   unsigned long   , 8 个字节
+    
+    
+    
+    
+    
+    //  uintptr_t _bucketsAndMaybeMask
+    //  整合了 bucket_t  bucket
+    //  和 mask_t mask
+    
+    
+    
+    
     union {
         struct {
             explicit_atomic<mask_t>    _maybeMask;
@@ -500,6 +516,10 @@ private:
     
     
     
+    
+    
+    
+    // mask, 掩码 ， 面具， 遮罩
     
     
     static constexpr uintptr_t maskShift = 48;
