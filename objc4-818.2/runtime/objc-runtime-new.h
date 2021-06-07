@@ -425,7 +425,58 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 
 
 
+/*
+ 
+ 
+ 
+ cache_t 作用：
+ 
+ 
+ 调用一次方法，
+ 就缓存一次方法
+ 
+ 
+ _occupied += 1
+ 
+ 
+ 
+ */
 
+
+
+
+
+
+
+
+
+/*
+ 
+
+ 读取内存信息，
+ 
+ 不带 * . 用 . 号, 访问成员变量
+ 
+ 带 * . 用 -> 号, 访问成员变量
+ 
+ 
+ */
+
+
+
+
+
+/*
+ 
+ 
+ 
+ lldb 访问， 结构体范型的成员变量，
+ 
+ 真有意思
+ 
+ 
+ 
+ */
 
 
 
