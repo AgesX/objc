@@ -750,7 +750,21 @@ private:
     const preopt_cache_t *disguised_preopt_cache() const;
 #endif
 
+    
+    
+    
+    
+    
+    // 全局搜索，调用
+    // +1
     void incrementOccupied();
+    
+    
+    
+    
+    
+    
+    
     void setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask);
 
     void reallocate(mask_t oldCapacity, mask_t newCapacity, bool freeOld);

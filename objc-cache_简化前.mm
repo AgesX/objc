@@ -150,14 +150,7 @@ enum {
     // the ability to fill 100% of the cache before resizing.
     INIT_CACHE_SIZE_LOG2 = 1,
 #endif
-    
-    
-    // 1 左移 2 位，等于 4
     INIT_CACHE_SIZE      = (1 << INIT_CACHE_SIZE_LOG2),
-    
-    
-    
-    
     MAX_CACHE_SIZE_LOG2  = 16,
     MAX_CACHE_SIZE       = (1 << MAX_CACHE_SIZE_LOG2),
     FULL_UTILIZATION_CACHE_SIZE_LOG2 = 3,
@@ -671,24 +664,12 @@ bucket_t *cache_t::endMarker(struct bucket_t *b, uint32_t cap)
     return (bucket_t *)((uintptr_t)b + bytesForCapacity(cap)) - 1;
 }
 
-
-
-
-
-
 bucket_t *cache_t::allocateBuckets(mask_t newCapacity)
 {
     // Allocate one extra bucket to mark the end of the list.
     // This can't overflow mask_t because newCapacity is a power of 2.
-    
-    
-    
-    // 开辟，内存空间
     bucket_t *newBuckets = (bucket_t *)calloc(bytesForCapacity(newCapacity), 1);
 
-    
-    
-    
     bucket_t *end = endMarker(newBuckets, newCapacity);
 
 #if __arm__
@@ -705,20 +686,7 @@ bucket_t *cache_t::allocateBuckets(mask_t newCapacity)
     return newBuckets;
 }
 
-
-
-
-
-
-
-
 #else
-
-
-
-
-
-
 
 bucket_t *cache_t::allocateBuckets(mask_t newCapacity)
 {
@@ -728,13 +696,6 @@ bucket_t *cache_t::allocateBuckets(mask_t newCapacity)
 }
 
 #endif
-
-
-
-
-
-
-
 
 struct bucket_t *cache_t::emptyBuckets()
 {
@@ -792,26 +753,10 @@ bool cache_t::isConstantEmptyCache() const
         buckets() == emptyBucketsForCapacity(capacity(), false);
 }
 
-
 bool cache_t::canBeFreed() const
 {
     return !isConstantEmptyCache() && !isConstantOptimizedCache();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-///
-
 
 ALWAYS_INLINE
 void cache_t::reallocate(mask_t oldCapacity, mask_t newCapacity, bool freeOld)
@@ -823,32 +768,15 @@ void cache_t::reallocate(mask_t oldCapacity, mask_t newCapacity, bool freeOld)
     // This is thought to save cache memory at the cost of extra cache fills.
     // fixme re-measure this
 
-    
-    
-    
-    // 新建的 newBuckets ， 需要存入缓存 cache_t 中
+    ASSERT(newCapacity > 0);
+    ASSERT((uintptr_t)(mask_t)(newCapacity-1) == newCapacity-1);
+
     setBucketsAndMask(newBuckets, newCapacity - 1);
     
     if (freeOld) {
         collect_free(oldBuckets, oldCapacity);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-///
-
-
-
-
 
 
 void cache_t::bad_cache(id receiver, SEL sel)
@@ -909,6 +837,8 @@ void cache_t::bad_cache(id receiver, SEL sel)
 // 插入缓存
 void cache_t::insert(SEL sel, IMP imp, id receiver)
 {
+    runtimeLock.assertLocked();
+
     // Never cache before +initialize is done
     if (slowpath(!cls()->isInitialized())) {
         return;
@@ -926,33 +856,14 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     mutex_locker_t lock(cacheUpdateLock);
 #endif
 
-    
-    
+    ASSERT(sel != 0 && cls()->isInitialized());
+
     // Use the cache as-is if until we exceed our expected fill ratio.
     mask_t newOccupied = occupied() + 1;
     unsigned oldCapacity = capacity(), capacity = oldCapacity;
     if (slowpath(isConstantEmptyCache())) {
-        
-        //  如果缓存为空
-        
-        
-        
-        
-        
-        
         // Cache is read-only. Replace it.
-        
-        
-        
-        //  INIT_CACHE_SIZE = 4
         if (!capacity) capacity = INIT_CACHE_SIZE;
-        
-        
-        
-        
-        
-        //  就要开辟空间
-        
         reallocate(oldCapacity, capacity, /* freeOld */false);
     }
     else if (fastpath(newOccupied + CACHE_END_MARKER <= cache_fill_ratio(capacity))) {
@@ -971,14 +882,6 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
         reallocate(oldCapacity, capacity, true);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
     bucket_t *b = buckets();
     mask_t m = capacity - 1;
     mask_t begin = cache_hash(sel, m);
@@ -1006,10 +909,6 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     bad_cache(receiver, (SEL)sel);
 #endif // !DEBUG_TASK_THREADS
 }
-
-
-
-
 
 
 
