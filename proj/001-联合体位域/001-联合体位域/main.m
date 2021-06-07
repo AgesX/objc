@@ -170,6 +170,10 @@ int main(int argc, const char * argv[]) {
         NSLog(@"isBack   now :             %@", [car isBack]  ? @"TRUE": @"FALSE");
         
         [Bicycle fly];
+        
+        
+        
+        
     }
     return 0;
 }

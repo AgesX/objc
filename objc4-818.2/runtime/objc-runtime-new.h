@@ -277,7 +277,20 @@ private:
 
 public:
     static inline size_t offsetOfSel() { return offsetof(bucket_t, _sel); }
+    
+    
+    
+    
+    // 如果不能直接通过访问成员变量，获取
+    // 就通过方法获取
+    
+    
     inline SEL sel() const { return _sel.load(memory_order_relaxed); }
+    
+    
+    
+    
+    
 
 #if CACHE_IMP_ENCODING == CACHE_IMP_ENCODING_ISA_XOR
 #define MAYBE_UNUSED_ISA
@@ -319,6 +332,11 @@ public:
     template <Atomicity, IMPEncoding>
     void set(bucket_t *base, SEL newSel, IMP newImp, Class cls);
 };
+
+
+
+
+
 
 /* dyld_shared_cache_builder and obj-C agree on these definitions */
 enum {
@@ -498,6 +516,19 @@ private:
     
     // 结构体指针，占内存 8 字节
     
+    
+    
+    
+    
+    
+    
+    //  _buckets                AndMaybeMask
+    //  实际运行中，会缓存多个 bucket_t
+    //  不止一个 bucket_t
+    
+    
+    //  _buckets， 是一种集合形式
+    //  然后，就可以地址平移，访问内容
     
     explicit_atomic<uintptr_t> _bucketsAndMaybeMask;
     
@@ -736,6 +767,30 @@ public:
     // hence doesn't care for locks and pesky little details like this
     // and can safely use these.
     unsigned capacity() const;
+    
+    
+    
+    
+    /*
+     
+     
+     
+     lldb 访问， 结构体范型的成员变量，
+     
+     真有意思
+     
+     
+     
+     */
+
+    
+    
+    
+    
+    
+    //   不能通过成员变量获取，就通过方法获取
+    
+    
     struct bucket_t *buckets() const;
     Class cls() const;
 
