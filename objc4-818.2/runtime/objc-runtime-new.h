@@ -391,6 +391,42 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 
 
 
+/*
+ 
+ uintptr_t: _bucketsAndMaybeMask
+ _bucketsAndMaybeMask:  整合了 bucket_t  bucket   和 mask_t mask
+ bucket_t: sel 和 IMP
+ mask 过滤出信息
+ 
+ 
+ 
+ 
+ 
+ _maybeMask
+    
+ 
+ 
+ _flags 标记
+ 
+ 
+ 
+ _occupied 占位，  跟内存分配有关系
+ 占了多少位置，总共用了多少内存
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+
+
+
+
+
+
+
 
 
 // 该结构体内存 16 个字节，
