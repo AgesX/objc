@@ -75,6 +75,9 @@ int main(int argc, const char * argv[]) {
         Class pClass = [LGPerson class];  // objc_clas
         [p say1];
         [p say2];
+        
+        struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
+        NSLog(@"先：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
         [p say3];
         [p say4];
          
@@ -83,11 +86,27 @@ int main(int argc, const char * argv[]) {
         // bucket 会有丢失  重新申请
         // 顺序有点问题  哈希
         
+        
+        
+        
+        
+        
+        
         // cache_t 底层原理
+        
+        
+        
+        // 当前的缓存是怎么插入进去的 ?
+        // 方法插入缓存 cache 的过程中，发生了什么事情？
+        
+        // bucket 是怎么对 SEL 和 IMP 赋值的，为什么会出现乱序和丢失
+        
+        
+        
+        
         // 线索 :
         
-        struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
-        NSLog(@"总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
+        NSLog(@"后：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
         
         
         
