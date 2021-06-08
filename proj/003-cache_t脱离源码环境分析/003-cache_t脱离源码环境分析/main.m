@@ -72,11 +72,23 @@ struct lg_objc_class {
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         LGPerson *p  = [LGPerson alloc];
+        
+        p.lgName = @"aaa";              // 调用 setter 方法， cache_t 信息也会变化
+        p.nickName = @"aaa";
+        
+        
+        
         Class pClass = [LGPerson class];  // objc_clas
+        
+        struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
+        NSLog(@"先：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
+        
+        
+        
         [p say1];
         [p say2];
         
-        struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
+        
         NSLog(@"先：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
         [p say3];
         [p say4];
