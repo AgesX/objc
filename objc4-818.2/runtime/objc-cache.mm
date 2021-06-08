@@ -579,6 +579,11 @@ void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
     mega_barrier();
 
     _maybeMask.store(newMask, memory_order_relaxed);
+    
+    
+    // 复位
+    
+    
     _occupied = 0;
 #elif __x86_64__ || i386
     // ensure other threads see buckets contents before buckets pointer
@@ -590,6 +595,9 @@ void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
     
     
     // 至此，完成了一些，初始化方面的工作
+    
+    
+    
     
     
     _occupied = 0;
@@ -704,6 +712,9 @@ bucket_t *cache_t::endMarker(struct bucket_t *b, uint32_t cap)
 {
     return (bucket_t *)((uintptr_t)b + bytesForCapacity(cap)) - 1;
 }
+
+
+
 
 
 
@@ -850,8 +861,21 @@ bool cache_t::canBeFreed() const
 ALWAYS_INLINE
 void cache_t::reallocate(mask_t oldCapacity, mask_t newCapacity, bool freeOld)
 {
-    bucket_t *oldBuckets = buckets();
-    bucket_t *newBuckets = allocateBuckets(newCapacity);
+    bucket_t *oldBuckets = buckets();               //  判断旧的
+    
+    
+    
+    
+    
+    
+    //  newBuckets， 申请到了一个指针地址
+    bucket_t *newBuckets = allocateBuckets(newCapacity);        //  开辟内存
+    
+    
+    
+    
+    
+    
 
     // Cache's old contents are not propagated. 
     // This is thought to save cache memory at the cost of extra cache fills.
@@ -862,6 +886,10 @@ void cache_t::reallocate(mask_t oldCapacity, mask_t newCapacity, bool freeOld)
     
     // 新建的 newBuckets ， 需要存入缓存 cache_t 中
     setBucketsAndMask(newBuckets, newCapacity - 1);
+    
+    
+    
+    
     
     if (freeOld) {
         collect_free(oldBuckets, oldCapacity);

@@ -69,9 +69,22 @@ struct lg_objc_class {
 };
 
 
+
+
+
+
+
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        LGPerson *p  = [LGPerson alloc];
+        LGPerson *p  = [LGPerson alloc];    // 走了 alloc 方法,  p 就是一个对象了
+        
+        
+        
+        
+        
+        
+        
         
         
         Class pClass = [LGPerson class];  // objc_clas
@@ -85,6 +98,10 @@ int main(int argc, const char * argv[]) {
         NSLog(@"A ：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
         
         p.lgName = @"aaa";              // 调用 setter 方法， cache_t 信息也会变化
+        
+        
+        
+        // cache_t 复位
         p.nickName = @"aaa";
         
         
