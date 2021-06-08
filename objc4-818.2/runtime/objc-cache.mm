@@ -1057,7 +1057,26 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     
     
     bucket_t *b = buckets();
+    
+    
+    
+    
+
+    // _mask , 3 - 7,
+    // 3 + 1 = 4
+    // 7 + 1 = 8
+    // 有一个加倍扩容的操作
+    
+    
+    
     mask_t m = capacity - 1;
+    
+    
+    
+    
+    
+    
+    
     mask_t begin = cache_hash(sel, m);
     mask_t i = begin;
 

@@ -128,7 +128,7 @@ int main(int argc, const char * argv[]) {
         
         
         
-        // 我猜的
+
         // _occupied , 2 - 2 ， 有一个 reset
         // _mask , 3 - 7,
         // 3 + 1 = 4
