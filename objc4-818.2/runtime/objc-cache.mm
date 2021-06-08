@@ -160,9 +160,20 @@ enum {
     
     MAX_CACHE_SIZE_LOG2  = 16,
     MAX_CACHE_SIZE       = (1 << MAX_CACHE_SIZE_LOG2),
+    // 2 的 16 次方
+    
+    
+    
     FULL_UTILIZATION_CACHE_SIZE_LOG2 = 3,
     FULL_UTILIZATION_CACHE_SIZE = (1 << FULL_UTILIZATION_CACHE_SIZE_LOG2),
 };
+
+
+
+
+
+
+
 
 static int _collecting_in_critical(void);
 static void _garbage_make_room(void);
@@ -1037,17 +1048,25 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     }
 #endif
     else {
+        // 当前缓存，快装满了
+        
+        
         
         // 占用超过，重新分配更多的内存
         
+        
+        
         // 扩容操作
+        
+        
         capacity = capacity ? capacity * 2 : INIT_CACHE_SIZE;
         if (capacity > MAX_CACHE_SIZE) {
             capacity = MAX_CACHE_SIZE;
         }
-        reallocate(oldCapacity, capacity, true);
+        reallocate(oldCapacity, capacity, true);        //    true，  重新梳理
     }
 
+    
     
     
     
@@ -1449,6 +1468,15 @@ static void _garbage_make_room(void)
 }
 
 
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * cache_t::collect_free.  Add the specified malloc'd memory to the list
 * of them to free at some later point.
@@ -1458,19 +1486,27 @@ static void _garbage_make_room(void)
 **********************************************************************/
 void cache_t::collect_free(bucket_t *data, mask_t capacity)
 {
-#if CONFIG_USE_CACHE_LOCK
-    cacheUpdateLock.assertLocked();
-#else
-    runtimeLock.assertLocked();
-#endif
 
     if (PrintCaches) recordDeadCache(capacity);
 
-    _garbage_make_room ();
+    
+    // 内存回收
+    _garbage_make_room();
+    
+    
     garbage_byte_size += cache_t::bytesForCapacity(capacity);
     garbage_refs[garbage_count++] = data;
     cache_t::collectNolock(false);
 }
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
