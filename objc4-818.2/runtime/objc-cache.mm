@@ -1124,6 +1124,11 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     
     mask_t i = begin;
 
+    
+    
+    // 哈希冲突的处理
+    
+    
     // Scan for the first unused slot and insert there.
     // There is guaranteed to be an empty slot.
     do {

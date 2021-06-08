@@ -40,8 +40,35 @@ struct deng_preopt_cache_t {
 
 
 
+
+
+
+
+
+
+
+
+
 struct lg_cache_t {
+    
+    
+    // 拿到 _bucketsAndMaybeMask 的指针地址， 通过一个掩码 ，
+    
+    // 得到 buckets 和 mask 信息
+    
+    
+    // 内存分为两段
+    
+    // 一段是 buckets
+    
+    // 另一段是 mask
+    
+    
     uintptr_t _bucketsAndMaybeMask;
+    
+    
+    
+    
     union {
         struct {
             mask_t    _maybeMask;
@@ -56,6 +83,10 @@ struct lg_cache_t {
     };
         
 };
+
+
+
+
 
 struct lg_class_data_bits_t {
     uintptr_t bits;
@@ -82,7 +113,9 @@ int main(int argc, const char * argv[]) {
         
         
         
+        // objc_msgSend 发消息决定， cache_t 什么时候，开始写
         
+        // cache_t 怎么写，什么数据结构， 怎么保存，分析过了
         
         
         
@@ -120,7 +153,7 @@ int main(int argc, const char * argv[]) {
         [p say4];
          
         // _occupied  ,  _mask 是什么
-        // cup - 1
+        // mask_t m = capacity - 1;
         
         
         // 会变化   2-3    ->     2-7
@@ -138,8 +171,13 @@ int main(int argc, const char * argv[]) {
         
         
         
-        // bucket 会有丢失  重新申请
-        // 顺序有点问题  哈希
+        // bucket 会有丢失
+        // 重新申请内存，因为扩容
+        
+        
+        
+        // 顺序有点问题
+        // 下标，是通过哈希
         
         
         
