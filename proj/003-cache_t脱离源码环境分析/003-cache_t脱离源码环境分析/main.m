@@ -73,15 +73,24 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         LGPerson *p  = [LGPerson alloc];
         
+        
+        Class pClass = [LGPerson class];  // objc_clas
+        
+        struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
+        
+        
+        [p init];    // 调用 init 方法， cache_t 信息也会变化
+        
+        
+        NSLog(@"A ：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
+        
         p.lgName = @"aaa";              // 调用 setter 方法， cache_t 信息也会变化
         p.nickName = @"aaa";
         
         
         
-        Class pClass = [LGPerson class];  // objc_clas
         
-        struct lg_objc_class *lg_pClass = (__bridge struct lg_objc_class *)(pClass);
-        NSLog(@"先：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
+        NSLog(@"B ：   总共占用内存为 %hu -- \n -- 边界为 %u",lg_pClass->cache._occupied,   lg_pClass->cache._maybeMask);
         
         
         
@@ -146,8 +155,7 @@ int main(int argc, const char * argv[]) {
 //            NSLog(@"%@ - %p",NSStringFromSelector(bucket._sel),bucket._imp);
 //        }
 
-        
-        NSLog(@"Hello, World!");
+
     }
     return 0;
 }
