@@ -259,6 +259,11 @@ uintptr_t objc_opt_offsets[__OBJC_OPT_OFFSETS_COUNT];
 static inline mask_t cache_next(mask_t i, mask_t mask) {
     return (i+1) & mask;
 }
+
+
+
+
+
 #elif __arm64__
 static inline mask_t cache_next(mask_t i, mask_t mask) {
     return i ? i-1 : mask;
@@ -1141,6 +1146,10 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
             // 缓存内，bucket 乱序
             // 因为 set
             
+            
+            
+            // 没添加，新插入一个
+            
             b[i].set<Atomic, Encoded>(b, sel, imp, cls());
             return;
         }
@@ -1148,6 +1157,8 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
         
         
         if (b[i].sel() == sel) {
+            // 添加过了
+            
             // The entry was added to the cache by some other thread
             // before we grabbed the cacheUpdateLock.
             return;

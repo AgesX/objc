@@ -31,6 +31,17 @@
 **********************************************************************/
 
 
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
  * Method cache locking (GrP 2001-1-14)
  *
@@ -64,7 +75,22 @@
  * _cache_getImp
  * _cache_getMethod
  *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * Cache writers (hold cacheUpdateLock while reading or writing; not PC-checked)
+ *
+ *
+ 缓存写入的流程
+ *
  * _cache_fill         (acquires lock)
  * _cache_expand       (only called from cache_fill)
  * _cache_create       (only called from cache_expand)
@@ -72,6 +98,16 @@
  * flush_caches        (acquires lock)
  * _cache_flush        (only called from cache_fill and flush_caches)
  * _cache_collect_free (only called from cache_expand and cache_flush)
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  *
  * UNPROTECTED cache readers (NOT thread-safe; used for debug info only)
  * _cache_print
@@ -90,6 +126,21 @@
  * so _class_lookupMethodAndLoadCache cannot look at a forward:: entry
  * unsafely or place it in multiple caches.
  ***********************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #if !__OBJC2__
 
