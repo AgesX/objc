@@ -1039,7 +1039,17 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     else if (fastpath(newOccupied + CACHE_END_MARKER <= cache_fill_ratio(capacity))) {
         // Cache is less than 3/4 or 7/8 full. Use it as-is.
         
+        
+        
         // 扩容的边界
+        
+        
+        
+        
+        //  CACHE_END_MARKER ， 用来容错的
+        
+        
+        
         
     }
 #if CACHE_ALLOW_FULL_UTILIZATION
@@ -1064,6 +1074,7 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
             capacity = MAX_CACHE_SIZE;
         }
         reallocate(oldCapacity, capacity, true);        //    true，  重新梳理
+        //  内存扩容完毕
     }
 
     
@@ -1445,6 +1456,14 @@ enum {
     INIT_GARBAGE_COUNT = 128
 };
 
+
+
+
+
+
+//  这是实际的内存
+
+
 static void _garbage_make_room(void)
 {
     static int first = 1;
@@ -1461,6 +1480,9 @@ static void _garbage_make_room(void)
     // Double the table if it is full
     else if (garbage_count == garbage_max)
     {
+        // 他说，
+        // 这是系统的开辟空间
+        
         garbage_refs = (bucket_t**)
             realloc(garbage_refs, garbage_max * 2 * sizeof(void *));
         garbage_max *= 2;
@@ -1491,10 +1513,22 @@ void cache_t::collect_free(bucket_t *data, mask_t capacity)
 
     
     // 内存回收
+    
+    // 这里是，实际的内存
     _garbage_make_room();
     
     
     garbage_byte_size += cache_t::bytesForCapacity(capacity);
+    
+    
+    
+    
+    //  往后面空闲的地方，去存
+    
+    
+    //  暂时存储
+    
+    
     garbage_refs[garbage_count++] = data;
     cache_t::collectNolock(false);
 }
