@@ -500,6 +500,19 @@ extern "C" IMP cache_getImp(Class cls, SEL sel, IMP value_on_constant_cache_miss
 
 // 该结构体内存 16 个字节，
 // 该结构体的指针，的内存 8 个字节
+
+
+
+
+
+
+
+// 属性负责记录
+
+// 方法操作属性的变化
+
+
+
 struct cache_t {
     
     // 缓存， 常见操作 ， 增删改查 CRUD

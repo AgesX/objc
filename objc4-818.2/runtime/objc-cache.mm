@@ -940,6 +940,14 @@ void cache_t::bad_cache(id receiver, SEL sel)
 
 
 
+
+
+
+
+
+
+
+
 // 插入缓存
 void cache_t::insert(SEL sel, IMP imp, id receiver)
 {
@@ -1047,6 +1055,15 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     bad_cache(receiver, (SEL)sel);
 #endif // !DEBUG_TASK_THREADS
 }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -81,8 +81,25 @@ int main(int argc, const char * argv[]) {
         [p say3];
         [p say4];
          
-        // _occupied  _mask 是什么  cup - 1
-        // 会变化 2-3 -> 2-7
+        // _occupied  ,  _mask 是什么
+        // cup - 1
+        
+        
+        // 会变化   2-3    ->     2-7
+        
+        
+        
+        
+        // 我猜的
+        // _occupied , 2 - 2 ， 有一个 reset
+        // _mask , 3 - 7,
+        // 3 + 1 = 4
+        // 7 + 1 = 8
+        // 有一个加倍扩容的操作
+        
+        
+        
+        
         // bucket 会有丢失  重新申请
         // 顺序有点问题  哈希
         
