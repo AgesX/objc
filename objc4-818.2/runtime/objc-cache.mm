@@ -328,8 +328,19 @@ static inline mask_t cache_hash(SEL sel, mask_t mask)
 #if CONFIG_USE_PREOPT_CACHES
     value ^= value >> 7;
 #endif
+    
+    //   简单的，  哈希算法
     return (mask_t)(value & mask);
 }
+
+
+
+
+
+
+
+
+
 
 #if __arm64__
 
@@ -1106,13 +1117,19 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     
     
     
-    
+    //  求一个，哈希下标
     mask_t begin = cache_hash(sel, m);
+    
+    
+    
     mask_t i = begin;
 
     // Scan for the first unused slot and insert there.
     // There is guaranteed to be an empty slot.
     do {
+        
+        
+        
         if (fastpath(b[i].sel() == 0)) {
             incrementOccupied();
             
@@ -1122,11 +1139,18 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
             b[i].set<Atomic, Encoded>(b, sel, imp, cls());
             return;
         }
+        
+        
+        
         if (b[i].sel() == sel) {
             // The entry was added to the cache by some other thread
             // before we grabbed the cacheUpdateLock.
             return;
         }
+        
+        
+        
+        
     } while (fastpath((i = cache_next(i, m)) != begin));
 
     bad_cache(receiver, (SEL)sel);
