@@ -548,13 +548,35 @@ _objc_debug_taggedpointer_classes:
 .endmacro
 #endif
 
+
+
+
+
+
+
+
+// 入口函数
 	ENTRY _objc_msgSend
 	UNWIND _objc_msgSend, NoFrame
 
+
+
+
+//   p0， 寄存器， 就是用来存储东西的， 存的是传过来的参数
+//   p0， 第一号位置，存的是消息接收者
+//   #0  ， 就是  空
 	cmp	p0, #0			// nil check and tagged pointer check
 #if SUPPORT_TAGGED_POINTERS
+
+
+//  LNilOrTagged， Label， 下面的流程
+
 	b.le	LNilOrTagged		//  (MSB tagged pointer looks negative)
 #else
+
+
+
+// 返回空
 	b.eq	LReturnZero
 #endif
 	ldr	p13, [x0]		// p13 = isa
@@ -565,6 +587,10 @@ LGetIsaDone:
 
 #if SUPPORT_TAGGED_POINTERS
 LNilOrTagged:
+
+    // nil 对象，可以随便发消息
+
+
 	b.eq	LReturnZero		// nil check
 	GetTaggedClass
 	b	LGetIsaDone

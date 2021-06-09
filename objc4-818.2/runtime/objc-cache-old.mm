@@ -70,27 +70,41 @@
  * The cacheUpdateLock is also used to protect the custom allocator used 
  * for large method cache blocks.
  *
- * Cache readers (PC-checked by collecting_in_critical())
- * objc_msgSend*
- * _cache_getImp
- * _cache_getMethod
  *
  *
  *
- *
- *
- *
- *
- *
+ 
+ 
+ 
+ 
+ 写入之前的调用
+
+ 
+ （   有时候，配合一个读取    ）
+ 
+ 
+
+ 
+  Cache readers (PC-checked by collecting_in_critical())
+  objc_msgSend*
+ _cache_getImp
+  _cache_getMethod
+ 
+ 
+ 
+ 
+ 
  *
  *
  *
  *
  * Cache writers (hold cacheUpdateLock while reading or writing; not PC-checked)
- *
- *
+ 
+ 
  缓存写入的流程
- *
+ 
+ 
+ 
  * _cache_fill         (acquires lock)
  * _cache_expand       (only called from cache_fill)
  * _cache_create       (only called from cache_expand)
