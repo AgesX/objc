@@ -109,6 +109,15 @@ _objc_indexed_classes:
 	.fill ISA_INDEX_COUNT, PTRSIZE, 0
 #endif
 
+
+
+
+
+
+
+
+
+// GetClassFromIsa_p16，  从 isa , 掏出 class
 .macro GetClassFromIsa_p16 src, needs_auth, auth_address /* note: auth_address is not required if !needs_auth */
 
 #if SUPPORT_INDEXED_ISA
@@ -569,6 +578,9 @@ _objc_debug_taggedpointer_classes:
 #if SUPPORT_TAGGED_POINTERS
 
 
+
+
+//  b ， 就是跳转
 //  LNilOrTagged， Label， 下面的流程
 
 	b.le	LNilOrTagged		//  (MSB tagged pointer looks negative)
@@ -580,6 +592,9 @@ _objc_debug_taggedpointer_classes:
 	b.eq	LReturnZero
 #endif
 	ldr	p13, [x0]		// p13 = isa
+
+
+    // 拿出 isa, 就是为了里面的 class
 	GetClassFromIsa_p16 p13, 1, x0	// p16 = class
 LGetIsaDone:
 	// calls imp or objc_msgSend_uncached
@@ -592,6 +607,9 @@ LNilOrTagged:
 
 
 	b.eq	LReturnZero		// nil check
+
+// 下面，就是小对象处理
+
 	GetTaggedClass
 	b	LGetIsaDone
 // SUPPORT_TAGGED_POINTERS
