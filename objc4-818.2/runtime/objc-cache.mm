@@ -1155,6 +1155,7 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     
     
     //  求一个，哈希下标
+    //  找到插入 bucket 的索引
     mask_t begin = cache_hash(sel, m);
     
     

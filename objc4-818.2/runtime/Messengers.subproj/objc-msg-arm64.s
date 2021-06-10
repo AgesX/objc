@@ -485,7 +485,7 @@ LLookupStart\Function:
 // 前面抹 0， 后面留住
 
 
-	and	p10, p11, #0x0000ffffffffffff	// p10 = buckets
+	and	p10, p11, #0x0000ffffffffffff	// p10 = buckets,     取 buckets
 
 
 
@@ -497,8 +497,28 @@ LLookupStart\Function:
 
 
 
+//  p11 ,  LSR    #48
+//  取  mask
 
-	and	p12, p1, p11, LSR #48		// x12 = _cmd & mask
+
+
+
+
+
+// p0 是对象
+
+
+// p1 是 _cmd, 是 sel
+
+// and    p12, p1,  mask
+
+// 拿 _cmd & mask， 对应 mask_t begin = cache_hash(sel, m);
+
+	and	p12, p1, p11, LSR #48		// x12 = _cmd & mask，
+
+
+
+
 
 
 
