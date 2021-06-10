@@ -644,8 +644,44 @@ LLookupStart\Function:
 
 // drei
 3:	cbz	p9, \MissLabelDynamic		//     if (sel == 0) goto Miss;
+
+
+
+// p10,  buckets
+
+
+// x12 = _cmd & mask，  x12 搜索的下标， index
+// p13, 翻出来的 bucket
+
+
+
+// mask = capacity - 1
+// index = sel & mask
+// 意味着，取余数
+// 从 [0 ~ (mask - 1)] 里面，找出一个索引
+
+
+
+
+
+
+
+
+
+
+
+// 循环中，查找缓存
+
+
+
 	cmp	p13, p10			// } while (bucket >= buckets)
 	b.hs	1b
+
+
+
+
+
+
 
 	// wrap-around:
 	//   p10 = first bucket
@@ -665,6 +701,15 @@ LLookupStart\Function:
 						// p13 = buckets + (mask << 1+PTRSHIFT)
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16
 	add	p13, p10, p11, LSR #(48 - (1+PTRSHIFT))
+
+
+
+// 循环中查找
+
+// 移动索引
+
+
+
 						// p13 = buckets + (mask << 1+PTRSHIFT)
 						// see comment about maskZeroBits
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_LOW_4
@@ -677,6 +722,15 @@ LLookupStart\Function:
 						// p12 = first probed bucket
 
 						// do {
+
+
+
+//  *bucket--
+//  指针移动，取值
+
+
+
+
 4:	ldp	p17, p9, [x13], #-BUCKET_SIZE	//     {imp, sel} = *bucket--
 	cmp	p9, p1				//     if (sel == _cmd)
 	b.eq	2b				//         goto hit
