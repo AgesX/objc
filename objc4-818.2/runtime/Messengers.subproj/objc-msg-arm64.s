@@ -596,12 +596,53 @@ LLookupStart\Function:
 						// p13 = buckets + ((_cmd & mask) << (1+PTRSHIFT))
 
 						// do {
+
+
+
+
+
+// 从 bucket 中，拿到 imp （ p17 ）  和  sel （ p9 ）
+
 1:	ldp	p17, p9, [x13], #-BUCKET_SIZE	//     {imp, sel} = *bucket--
+
+
+// 对比传入的 _cmd, 和查询到的 bucket 中的 sel
+
+// 是不是一样， 是否相同
+
+// 如果相同，则查询正确，找到了
+
+
+
+
+
+
+
+
+// p1 是 _cmd, 是 sel
+
+
+
+
+
 	cmp	p9, p1				//     if (sel != _cmd) {
+
+
+
+// 如果没有找到，就跳转到 3 （ drei ）
 	b.ne	3f				//         scan more
 						//     } else {
+
+
+
+// CacheHit ， 缓存命中， 返回 IMP
+
+
 2:	CacheHit \Mode				// hit:    call or return imp
 						//     }
+
+
+// drei
 3:	cbz	p9, \MissLabelDynamic		//     if (sel == 0) goto Miss;
 	cmp	p13, p10			// } while (bucket >= buckets)
 	b.hs	1b
