@@ -656,6 +656,12 @@ mask_t cache_t::mask() const
 
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16 || CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS
 
+
+
+
+
+
+
 void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
 {
     uintptr_t buckets = (uintptr_t)newBuckets;
@@ -664,15 +670,41 @@ void cache_t::setBucketsAndMask(struct bucket_t *newBuckets, mask_t newMask)
     ASSERT(buckets <= bucketsMask);
     ASSERT(mask <= maxMask);
 
+    
+    
+    //  static constexpr uintptr_t maskShift = 48;
+    
+    
+    // 决定了指针的内存中， mask 和 buckets 的信息分布
+    
+    
+    // mask, 高 16 位
+    
+    // buckets, 低 48 位
+    
     _bucketsAndMaybeMask.store(((uintptr_t)newMask << maskShift) | (uintptr_t)newBuckets, memory_order_relaxed);
     _occupied = 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 mask_t cache_t::mask() const
 {
     uintptr_t maskAndBuckets = _bucketsAndMaybeMask.load(memory_order_relaxed);
     return maskAndBuckets >> maskShift;
 }
+
+
+
 
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_LOW_4
 

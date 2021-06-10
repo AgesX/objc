@@ -118,6 +118,9 @@ _objc_indexed_classes:
 
 
 // GetClassFromIsa_p16，  从 isa , 掏出 class
+
+// 调用宏
+
 .macro GetClassFromIsa_p16 src, needs_auth, auth_address /* note: auth_address is not required if !needs_auth */
 
 #if SUPPORT_INDEXED_ISA
@@ -127,6 +130,14 @@ _objc_indexed_classes:
 	// isa in p16 is indexed
 	adrp	x10, _objc_indexed_classes@PAGE
 	add	x10, x10, _objc_indexed_classes@PAGEOFF
+
+
+
+
+    //  通过掩码 ISA_INDEX_SHIFT ，获取信息 class
+
+
+
 	ubfx	p16, p16, #ISA_INDEX_SHIFT, #ISA_INDEX_BITS  // extract index
 	ldr	p16, [x10, p16, UXTP #PTRSHIFT]	// load class from array
 1:
@@ -267,6 +278,28 @@ LExit$0:
 
 /********************************************************************
  *
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CacheLookup 的调用说明
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  * CacheLookup NORMAL|GETIMP|LOOKUP <function> MissLabelDynamic MissLabelConstant
  *
  * MissLabelConstant is only used for the GETIMP variant.
@@ -312,6 +345,16 @@ LExit$0:
 #define LOOKUP 2
 
 // CacheHit: x17 = cached IMP, x10 = address of buckets, x1 = SEL, x16 = isa
+
+
+
+
+
+
+
+
+
+
 .macro CacheHit
 .if $0 == NORMAL
 	TailCallCachedImp x17, x10, x1, x16	// authenticate and call imp
@@ -331,6 +374,24 @@ LExit$0:
 .abort oops
 .endif
 .endmacro
+
+
+
+
+
+
+
+
+//  CacheLookup  定义的地方
+
+
+
+
+
+
+
+
+
 
 .macro CacheLookup Mode, Function, MissLabelDynamic, MissLabelConstant
 	//
@@ -359,6 +420,38 @@ LExit$0:
 LLookupStart\Function:
 	// p1 = SEL, p16 = isa
 #if CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS
+
+
+
+
+
+
+
+
+// x16 是 isa
+// x16 是 p16
+
+
+
+
+//  #CACHE 是一个宏
+//  #define CACHE            (2 * __SIZEOF_POINTER__)
+//  __SIZEOF_POINTER__ ， 指针的内存大小， 8 个字节
+
+
+
+
+// 类信息中， 首地址，平移 16 个字节， 到达 cache_t
+
+
+
+
+
+
+
+
+
+
 	ldr	p10, [x16, #CACHE]				// p10 = mask|buckets
 	lsr	p11, p10, #48			// p11 = mask
 	and	p10, p10, #0xffffffffffff	// p10 = buckets
@@ -598,6 +691,10 @@ _objc_debug_taggedpointer_classes:
 	GetClassFromIsa_p16 p13, 1, x0	// p16 = class
 LGetIsaDone:
 	// calls imp or objc_msgSend_uncached
+
+
+
+// 从缓存里面拿 IMP
 	CacheLookup NORMAL, _objc_msgSend, __objc_msgSend_uncached
 
 #if SUPPORT_TAGGED_POINTERS
