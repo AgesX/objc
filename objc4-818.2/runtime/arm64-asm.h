@@ -36,7 +36,16 @@
 #define SUPPORT_TAGGED_POINTERS 1
 #define PTR .quad
 #define PTRSIZE 8
+
+
+
+
+// 1 左移 3 位，等于 8
+
 #define PTRSHIFT 3  // 1<<PTRSHIFT == PTRSIZE
+
+
+
 // "p" registers are pointer-sized
 #define UXTP UXTX
 #define p0  x0

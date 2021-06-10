@@ -229,10 +229,15 @@ private:
 #if __arm64__
     explicit_atomic<uintptr_t> _imp;
     // 方法实现
+    //  uintptr_t, 8 个字节
+    
     
     
     explicit_atomic<SEL> _sel;
-    // 方法编号
+    // 方法编号, 8 个字节
+    
+    // typedef uintptr_t SEL;
+    
 #else
     
     
@@ -332,6 +337,16 @@ public:
     template <Atomicity, IMPEncoding>
     void set(bucket_t *base, SEL newSel, IMP newImp, Class cls);
 };
+
+
+
+
+
+
+
+
+
+
 
 
 

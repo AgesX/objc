@@ -514,7 +514,7 @@ LLookupStart\Function:
 
 // 拿 _cmd & mask， 对应 mask_t begin = cache_hash(sel, m);
 
-	and	p12, p1, p11, LSR #48		// x12 = _cmd & mask，
+	and	p12, p1, p11, LSR #48		// x12 = _cmd & mask，  x12 搜索的下标， index
 
 
 
@@ -549,6 +549,48 @@ LLookupStart\Function:
 #else
 #error Unsupported cache mask storage for ARM64.
 #endif
+
+
+
+
+
+
+
+
+
+
+//  #define PTRSHIFT 3
+
+
+
+
+//  ((_cmd & mask) << (1+PTRSHIFT))
+//  对应 p12, LSL #(1+PTRSHIFT)
+
+
+
+
+// p10,  buckets
+
+
+
+
+
+
+    //  ((_cmd & mask) << (1+PTRSHIFT))
+    //  bucket 首地址，平移上面计算的偏移
+
+
+
+
+//  1+PTRSHIFT = 4
+
+
+    
+
+//  2 的 4 次方， 16 字节， 就是一个 bucket_t 的内存大小
+
+
 
 	add	p13, p10, p12, LSL #(1+PTRSHIFT)
 						// p13 = buckets + ((_cmd & mask) << (1+PTRSHIFT))
