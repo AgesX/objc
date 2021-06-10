@@ -638,8 +638,13 @@ LLookupStart\Function:
 // CacheHit ， 缓存命中， 返回 IMP
 
 
+
+
+//  zweite
 2:	CacheHit \Mode				// hit:    call or return imp
 						//     }
+
+
 
 
 // drei
@@ -725,18 +730,45 @@ LLookupStart\Function:
 
 
 
-//  *bucket--
+
+
+
+//  *bucket--,          向前查找
 //  指针移动，取值
+
+
+
+
 
 
 
 
 4:	ldp	p17, p9, [x13], #-BUCKET_SIZE	//     {imp, sel} = *bucket--
 	cmp	p9, p1				//     if (sel == _cmd)
-	b.eq	2b				//         goto hit
+
+
+// 找到了，就跳转到 2， zweite
+
+    b.eq	2b				//         goto hit
+
+
+
+// 没找到，去循环
+
+
+// b, goto , 循环的流程
+
+
 	cmp	p9, #0				// } while (sel != 0 &&
 	ccmp	p13, p12, #0, ne		//     bucket > first_probed)
 	b.hi	4b
+
+
+
+
+
+
+
 
 LLookupEnd\Function:
 LLookupRecover\Function:
