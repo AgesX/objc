@@ -2673,8 +2673,8 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
     runtimeLock.assertLocked();
 
     class_rw_t *rw;                             //   dirty memory
-    Class supercls;                             //   创建父类指向， 我猜的
-    Class metacls;                              //   创建元类指向， 我猜的
+    Class supercls;                             //   创建父类
+    Class metacls;                              //   创建元类
     
     if (!cls) return nil;
     if (cls->isRealized()) {
@@ -2752,9 +2752,39 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
     //   or that Swift's initializers have already been called.
     //   fixme that assumption will be wrong if we add support
     //   for ObjC subclasses of Swift classes.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //  继承链，都确定下来
+    
+    
     supercls = realizeClassWithoutSwift(remapClass(cls->getSuperclass()), nil);
+    
+    
+    
+    //  元类的继承链
+    
     metacls = realizeClassWithoutSwift(remapClass(cls->ISA()), nil);
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
 #if SUPPORT_NONPOINTER_ISA
     if (isMeta) {
         // Metaclasses do not need any features from non pointer ISA
@@ -2796,6 +2826,16 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 #endif
 
     // Update superclass and metaclass in case of remapping
+    
+    
+    
+    
+    // class 是一个链表
+    // cls
+    // 有父类指针
+    // 有 isa 指针
+    
+    
     cls->setSuperclass(supercls);
     cls->initClassIsa(metacls);
 
