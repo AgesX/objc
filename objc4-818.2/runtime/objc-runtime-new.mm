@@ -504,12 +504,35 @@ ALWAYS_INLINE
 static bool
 isKnownClass(Class cls)
 {
+    
+    // 程序的类，都会加载到内存
+    
+    
+    
     if (fastpath(objc::dataSegmentsRanges.contains(cls->data()->witness, (uintptr_t)cls))) {
         return true;
     }
     auto &set = objc::allocatedClasses.get();
     return set.find(cls) != set.end() || dataSegmentsContain(cls);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -542,6 +565,16 @@ addClassTableEntry(Class cls, bool addMeta = true)
 * with a fatal error if the class is not known.
 * Locking: runtimeLock must be held by the caller.
 **********************************************************************/
+
+
+
+
+
+// 判断，已知类
+
+
+
+
 ALWAYS_INLINE
 static void
 checkIsKnownClass(Class cls)
@@ -550,6 +583,18 @@ checkIsKnownClass(Class cls)
         _objc_fatal("Attempt to use unknown class %p.", cls);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***********************************************************************
 * classNSObject
@@ -2595,6 +2640,26 @@ static void validateAlreadyRealizedClass(Class cls) {
 #endif
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * realizeClassWithoutSwift
 * Performs first-time initialization on class cls, 
@@ -2607,10 +2672,10 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 {
     runtimeLock.assertLocked();
 
-    class_rw_t *rw;
-    Class supercls;
-    Class metacls;
-
+    class_rw_t *rw;                             //   dirty memory
+    Class supercls;                             //   创建父类指向， 我猜的
+    Class metacls;                              //   创建元类指向， 我猜的
+    
     if (!cls) return nil;
     if (cls->isRealized()) {
         validateAlreadyRealizedClass(cls);
@@ -2620,20 +2685,46 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 
     // fixme verify class is not in an un-dlopened part of the shared cache?
 
-    auto ro = (const class_ro_t *)cls->data();
+    auto ro = (const class_ro_t *)cls->data();     //   clean memory
+    
+    
     auto isMeta = ro->flags & RO_META;
+    
+    
+    
+    
+    
+    
+    
+    
+    
     if (ro->flags & RO_FUTURE) {
         // This was a future class. rw data is already allocated.
         rw = cls->data();
         ro = cls->data()->ro();
         ASSERT(!isMeta);
         cls->changeInfo(RW_REALIZED|RW_REALIZING, RW_FUTURE);
+        
+        
+        
+        
+        
+        
+        
+        
     } else {
         // Normal class. Allocate writeable class data.
         rw = objc::zalloc<class_rw_t>();
         rw->set_ro(ro);
         rw->flags = RW_REALIZED|RW_REALIZING|isMeta;
         cls->setData(rw);
+        
+        
+        
+        
+        
+        
+        
     }
 
     cls->cache.initializeToEmptyOrPreoptimizedInDisguise();
@@ -2743,6 +2834,26 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 
     return cls;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -2883,6 +2994,13 @@ realizeClassMaybeSwiftMaybeRelock(Class cls, mutex_t& lock, bool leaveLocked)
     if (!cls->isSwiftStable_ButAllowLegacyForNow()) {
         // Non-Swift class. Realize it now with the lock still held.
         // fixme wrong in the future for objc subclasses of swift classes
+        
+        
+        
+        // 实现，当前这个类
+        
+        
+        
         realizeClassWithoutSwift(cls, nil);
         if (!leaveLocked) lock.unlock();
     } else {
@@ -2897,17 +3015,55 @@ realizeClassMaybeSwiftMaybeRelock(Class cls, mutex_t& lock, bool leaveLocked)
     return cls;
 }
 
+
+
+
+
+
+
+
+
+
 static Class
 realizeClassMaybeSwiftAndUnlock(Class cls, mutex_t& lock)
 {
     return realizeClassMaybeSwiftMaybeRelock(cls, lock, false);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 static Class
 realizeClassMaybeSwiftAndLeaveLocked(Class cls, mutex_t& lock)
 {
     return realizeClassMaybeSwiftMaybeRelock(cls, lock, true);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -6362,11 +6518,22 @@ log_and_fill_cache(Class cls, IMP imp, SEL sel, id receiver, Class implementer)
 * cls is the class to initialize and realize.
 * initializer is true to initialize the class, false to skip initialization.
 **********************************************************************/
+
+
+
 static Class
 realizeAndInitializeIfNeeded_locked(id inst, Class cls, bool initialize)
 {
     runtimeLock.assertLocked();
     if (slowpath(!cls->isRealized())) {
+        
+        
+        
+        
+        // 没有实现， 去实现
+        
+        
+        
         cls = realizeClassMaybeSwiftAndLeaveLocked(cls, runtimeLock);
         // runtimeLock may have been dropped but is now locked again
     }
@@ -6382,6 +6549,19 @@ realizeAndInitializeIfNeeded_locked(id inst, Class cls, bool initialize)
     }
     return cls;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***********************************************************************
 * lookUpImpOrForward / lookUpImpOrForwardTryCache / lookUpImpOrNilTryCache
@@ -6448,15 +6628,25 @@ IMP lookUpImpOrNilTryCache(id inst, SEL sel, Class cls, int behavior)
 
 
 
-// 汇编，缓存中找到方法了
+// 通过汇编，缓存中找到方法了
 // 算快速查找
+
+// fastpath,  我猜的
+
+
+
+
+
+
+
 
 
 
 
 // 下面的是，
-// 快速查找
+// 慢速查找
 
+// slowpath,  我猜的
 
 
 
@@ -6550,7 +6740,16 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
     // To make these harder we want to make sure this is a class that was
     // either built into the binary or legitimately registered through
     // objc_duplicateClass, objc_initializeClassPair or objc_allocateClassPair.
+    
+    
+    // 判断， 已知类
+    
+    
     checkIsKnownClass(cls);
+    
+    
+    
+    
 
     cls = realizeAndInitializeIfNeeded_locked(inst, cls, behavior & LOOKUP_INITIALIZE);
     // runtimeLock may have been dropped but is now locked again
