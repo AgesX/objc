@@ -399,6 +399,13 @@ LExit$0:
  *                  with x16 = class, x17 = IMP
  *                  In LOOKUP mode, the two low bits are set to 0x3
  *                  if we hit a constant cache (used in objc_trace)
+ 
+ 
+ 
+ // 缓存中， 找不到
+ 
+ 
+ 
  *          (not found) jumps to LCacheMiss
  *                  with x15 = class
  *                  For constant caches in LOOKUP mode, the low bit
@@ -875,7 +882,11 @@ LLookupStart\Function:
 
 
 	cmp	p9, #0				// } while (sel != 0 &&
-	ccmp	p13, p12, #0, ne		//     bucket > first_probed)
+	ccmp	p13, p12, #0, ne		//     bucket > first_probed)       // 人为的操作，只有一遍
+
+
+
+    // goto, 建立循环
 	b.hi	4b
 
 
@@ -1241,8 +1252,9 @@ LMsgLookupSuperResume:
 
 
 
-// 方法表查询
+// 方法列表查询
 
+// method list
 
 
 .macro MethodTableLookup

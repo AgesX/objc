@@ -6437,6 +6437,76 @@ IMP lookUpImpOrNilTryCache(id inst, SEL sel, Class cls, int behavior)
     return _lookUpImpTryCache(inst, sel, cls, behavior | LOOKUP_NIL);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+// 汇编，缓存中找到方法了
+// 算快速查找
+
+
+
+
+// 下面的是，
+// 快速查找
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 从汇编，调用到 C++
+
+
+// 方法缓存里面，找不到
+
+// 前往方法列表
+
+// 和方法转发
+
+
+
+
+
+
+
+
+
+
 NEVER_INLINE
 IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
 {
@@ -6559,6 +6629,34 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
     }
     return imp;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***********************************************************************
 * lookupMethodInClassAndLoadCache.
