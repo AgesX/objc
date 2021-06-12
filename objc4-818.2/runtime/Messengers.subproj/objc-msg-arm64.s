@@ -1109,6 +1109,33 @@ LMsgLookupSuperResume:
 	END_ENTRY _objc_msgLookupSuper2
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 方法表查询
+
+
+
 .macro MethodTableLookup
 	
 	SAVE_REGS MSGSEND
@@ -1117,6 +1144,15 @@ LMsgLookupSuperResume:
 	// receiver and selector already in x0 and x1
 	mov	x2, x16
 	mov	x3, #3
+
+
+
+
+    // bl   ,   跳转
+//  缓存找不到方法，
+//  就是方法列表里面找，或者方法转发
+
+
 	bl	_lookUpImpOrForward
 
 	// IMP in x0
@@ -1266,3 +1302,21 @@ L_method_invoke_small:
 	END_ENTRY _method_invoke
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
