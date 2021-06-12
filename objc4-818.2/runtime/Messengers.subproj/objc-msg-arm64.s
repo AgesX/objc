@@ -191,6 +191,8 @@ _objc_indexed_classes:
     //  src， 可以是 p0, 当前传进来的对象， 接收消息的对象
 
 
+    // 没看见掩码
+
 
 	ExtractISA p16, \src, \auth_address
 .endif
@@ -752,7 +754,7 @@ LLookupStart\Function:
 // 循环中，查找缓存
 
 
-
+    // wrap if (bucket == buckets)
 	cmp	p13, p10			// } while (bucket >= buckets)
 	b.hs	1b
 
