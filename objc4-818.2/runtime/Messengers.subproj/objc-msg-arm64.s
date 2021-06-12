@@ -117,6 +117,38 @@ _objc_indexed_classes:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // GetClassFromIsa_p16，  从 isa , 掏出 class
 
 // 调用宏
@@ -143,10 +175,23 @@ _objc_indexed_classes:
 1:
 
 #elif __LP64__
+
+
+// 从这里，开始看
+
+
 .if \needs_auth == 0 // _cache_getImp takes an authed class already
 	mov	p16, \src
 .else
-	// 64-bit packed isa
+
+
+    // 64-bit packed isa
+
+
+    //  src， 可以是 p0, 当前传进来的对象， 接收消息的对象
+
+
+
 	ExtractISA p16, \src, \auth_address
 .endif
 #else
@@ -156,6 +201,33 @@ _objc_indexed_classes:
 #endif
 
 .endmacro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /********************************************************************

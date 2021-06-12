@@ -87,16 +87,78 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //  __LP64__， Long Pointer
 #if __ARM_ARCH_7K__ >= 2  ||  (__arm64__ && !__LP64__)
 
 
 
 
+
+
 #   define SUPPORT_INDEXED_ISA 1
 #else
+
+
+
+
+// 如果是， arm 64 或 __LP64__
+
+
+
+// 则不支持
+
+
+
+
 #   define SUPPORT_INDEXED_ISA 0
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Define SUPPORT_PACKED_ISA=1 on platforms that store the class in the isa 
 // field as a maskable pointer with other data around it.
