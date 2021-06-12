@@ -755,8 +755,22 @@ LLookupStart\Function:
 
 
     // wrap if (bucket == buckets)
+    // 代表， 当前查询的 bucket 是 buckets 中的首地址
+    // 当前查询的 bucket 是 buckets 中的的，第一个元素
+
+
+
+
+
 	cmp	p13, p10			// } while (bucket >= buckets)
-	b.hs	1b
+	b.hs	1b      //  跳出循环， 跳转
+
+
+
+
+
+
+
 
 
 
@@ -778,9 +792,18 @@ LLookupStart\Function:
 
 
 #if CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16_BIG_ADDRS
+
+
+//  当前查询的 bucket 是 buckets 中的的，第一个元素
+
+
+//  bucket  (  p13 ) , 人为设置到 buckets 里面的最后一个元素
 	add	p13, p10, w11, UXTW #(1+PTRSHIFT)
 						// p13 = buckets + (mask << 1+PTRSHIFT)
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_HIGH_16
+
+
+
 	add	p13, p10, p11, LSR #(48 - (1+PTRSHIFT))
 
 
@@ -820,15 +843,27 @@ LLookupStart\Function:
 
 
 
+
 //  bucket  (  p13 )  人为设置到 buckets 里面的最后一个元素
 
 
+
+//  然后， 取值
+
+
+//
 4:	ldp	p17, p9, [x13], #-BUCKET_SIZE	//     {imp, sel} = *bucket--
+
+
+// 对比，传入的 sel, 与
+// 传入的 sel 经过一番流程，得到的 IMP 对应的 SEL
+
+
 	cmp	p9, p1				//     if (sel == _cmd)
 
 
 // 找到了，就跳转到 2， zweite
-
+// 去命中
     b.eq	2b				//         goto hit
 
 
@@ -847,7 +882,7 @@ LLookupStart\Function:
 
 
 
-
+// 没找到
 
 
 LLookupEnd\Function:
