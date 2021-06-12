@@ -646,8 +646,10 @@ LLookupStart\Function:
 
 
 
+// MissLabelDynamic, 这个就是 CheckMiss
 
 // drei
+
 3:	cbz	p9, \MissLabelDynamic		//     if (sel == 0) goto Miss;
 
 
@@ -720,6 +722,10 @@ LLookupStart\Function:
 #elif CACHE_MASK_STORAGE == CACHE_MASK_STORAGE_LOW_4
 	add	p13, p10, p11, LSL #(1+PTRSHIFT)
 						// p13 = buckets + (mask << 1+PTRSHIFT)
+//  bucket  (  p13 ) , 人为设置到 buckets 里面的最后一个元素
+
+
+
 #else
 #error Unsupported cache mask storage for ARM64.
 #endif
@@ -740,7 +746,7 @@ LLookupStart\Function:
 
 
 
-
+//  bucket  (  p13 )  人为设置到 buckets 里面的最后一个元素
 
 
 4:	ldp	p17, p9, [x13], #-BUCKET_SIZE	//     {imp, sel} = *bucket--
