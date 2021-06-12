@@ -392,7 +392,7 @@ LExit$0:
 
 
 
-
+// MissLabelDynamic ,  CheckMiss
 .macro CacheLookup Mode, Function, MissLabelDynamic, MissLabelConstant
 	//
 	// Restart protocol:
@@ -784,6 +784,28 @@ LLookupRecover\Function:
 #if CACHE_MASK_STORAGE != CACHE_MASK_STORAGE_HIGH_16
 #error config unsupported
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+//          MissLabelDynamic  , CheckMiss
+
+
+
+
+
+
+
+
 LLookupPreopt\Function:
 #if __has_feature(ptrauth_calls)
 	and	p10, p11, #0x007ffffffffffffe	// p10 = buckets
@@ -818,6 +840,23 @@ LLookupPreopt\Function:
 	ldr	x17, [x10, x9, LSL #3]		// x17 == sel_offs | (imp_offs << 32)
 	cmp	x12, w17, uxtw
 
+
+
+
+
+
+
+
+
+//          MissLabelDynamic  , CheckMiss
+
+
+
+
+
+
+
+
 .if \Mode == GETIMP
 	b.ne	\MissLabelConstant		// cache miss
 	sub	x0, x16, x17, LSR #32		// imp = isa - imp_offs
@@ -835,6 +874,20 @@ LLookupPreopt\Function:
 .else
 .abort  unhandled mode \Mode
 .endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 5:	ldursw	x9, [x10, #-8]			// offset -8 is the fallback offset
 	add	x16, x16, x9			// compute the fallback isa
@@ -1073,12 +1126,36 @@ LMsgLookupSuperResume:
 
 .endmacro
 
+
+
+
+
+
+
+
+
+
+
+//          MissLabelDynamic  , CheckMiss
+
+
+
+
+
+
+
+
+
+
+
 	STATIC_ENTRY __objc_msgSend_uncached
 	UNWIND __objc_msgSend_uncached, FrameWithNoSaves
 
 	// THIS IS NOT A CALLABLE C FUNCTION
 	// Out-of-band p15 is the class to search
 	
+
+    // 方法表查询
 	MethodTableLookup
 	TailCallFunctionPointer x17
 
