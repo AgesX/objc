@@ -7116,7 +7116,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             }
 
             
-            //  curClass  变  Superclass 
+            //  curClass  变  Superclass
             
             if (slowpath((curClass = curClass->getSuperclass()) == nil)) {
                 // No implementation found, and method resolver didn't help.
@@ -7134,7 +7134,18 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         
+        
+        
+        
         // 父类里面，查找
+        
+        
+        
+        // 所以之前，要建立继承链
+        // 把父类的关系，建立完整
+        // isa 的指针图，意义在此
+        
+        
         
         
         // Superclass cache.
@@ -7146,17 +7157,25 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         
+        
+        
         if (slowpath(imp == forward_imp)) {
             // Found a forward:: entry in a superclass.
             // Stop searching, but don't cache yet; call method
             // resolver for this class first.
             break;
         }
+        
+        
         if (fastpath(imp)) {
             // Found the method in a superclass. Cache it in this class.
             goto done;
         }
     }
+    
+    
+    
+    
 
     // No implementation found. Try method resolver once.
 
