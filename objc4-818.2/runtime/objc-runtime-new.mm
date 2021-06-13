@@ -6226,8 +6226,18 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
             // `probe` is a match.
             // Rewind looking for the *first* occurrence of this value.
             // This is required for correct category overrides.
+            
+            
+            // 找到了
+            
+            
             while (probe > first && keyValue == (uintptr_t)getName((probe - 1))) {
                 probe--;
+                
+                
+                // 因为有类方法， 分类方法
+                
+                
             }
             return &*probe;
         }
