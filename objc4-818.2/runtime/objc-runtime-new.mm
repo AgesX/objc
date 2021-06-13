@@ -7093,7 +7093,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
     
     for (unsigned attempts = unreasonableClassCount();;) {
         
-        
+        // 每一轮循环， curClass 变为其 super class
         
         if (curClass->cache.isConstantOptimizedCache(/* strict */true)) {
             
@@ -7150,7 +7150,9 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         // Superclass cache.
         
+        //  cache_getImp 是汇编写的
         
+        //   从 C++ 代码，走汇编代码
         imp = cache_getImp(curClass, sel);
         
         
@@ -7163,13 +7165,17 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             // Found a forward:: entry in a superclass.
             // Stop searching, but don't cache yet; call method
             // resolver for this class first.
-            break;
+            break;                               // 跳出循环
         }
         
         
         if (fastpath(imp)) {
+            
+            // fastpath 的意思是， imp 的确能找到
+            
+            
             // Found the method in a superclass. Cache it in this class.
-            goto done;
+            goto done;                          // 跳出循环
         }
     }
     

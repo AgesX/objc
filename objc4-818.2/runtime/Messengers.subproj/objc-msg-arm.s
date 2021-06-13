@@ -383,6 +383,17 @@ LCacheMiss$1:
  * If not found, returns NULL.
  ********************************************************************/
 
+
+
+
+
+
+// 查找方法缓存
+
+// iOS 中，与缓存方法相关的，就是汇编写的
+
+
+
 	STATIC_ENTRY _cache_getImp
 
 	mov	r9, r0
