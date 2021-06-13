@@ -7121,6 +7121,14 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             if (slowpath((curClass = curClass->getSuperclass()) == nil)) {
                 // No implementation found, and method resolver didn't help.
                 // Use forwarding.
+                
+                
+                
+                // 找到根了
+                // 没有父类了
+                // 就作一个赋值  forward_imp
+                
+                
                 imp = forward_imp;
                 break;
             }
@@ -7154,6 +7162,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         //   从 C++ 代码，走汇编代码
         imp = cache_getImp(curClass, sel);
+        //       递归：   cache_getImp - lookup - lookUpImpOrForward
         
         
         
@@ -7165,6 +7174,13 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             // Found a forward:: entry in a superclass.
             // Stop searching, but don't cache yet; call method
             // resolver for this class first.
+            
+            
+            
+            // 找到根了
+            // 没有父类了
+            // 就作一个赋值  forward_imp
+            
             break;                               // 跳出循环
         }
         

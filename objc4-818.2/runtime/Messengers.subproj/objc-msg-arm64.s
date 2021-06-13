@@ -1335,10 +1335,13 @@ LMsgLookupSuperResume:
 
 	GetClassFromIsa_p16 p0, 0
 	CacheLookup GETIMP, _cache_getImp, LGetImpMissDynamic, LGetImpMissConstant
-    //  CacheLookup 调用 C++ ,
+    //  CacheLookup 调用 C++ 的 lookUpImpOrForward,
     // C++ 调用 _cache_getImp
     // _cache_getImp 调用父类的 CacheLookup
    // 递归
+
+
+
 LGetImpMissDynamic:
 	mov	p0, #0
 	ret
