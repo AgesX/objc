@@ -7094,8 +7094,21 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
     
     
     for (unsigned attempts = unreasonableClassCount();;) {
+        // 没有循环的条件，只会走一次
+        // 用 for 循环，真是有毛病
         
-        // 每一轮循环， curClass 变为其 super class
+        
+        
+        
+        // 呵呵， 每一轮循环， curClass 变为其 super class， 错的
+        // 猜错了
+        
+        
+        
+        //  curClass 变为其 super class，是通过里面的递归
+        
+        
+        
         
         if (curClass->cache.isConstantOptimizedCache(/* strict */true)) {
             
@@ -7153,7 +7166,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         // 所以之前，要建立类的继承链    (    如果是类方法，就需要元类 meta 的继承链    )
         // 把父类的关系，建立完整        （     有了继承链，才好找方法的 IMP       ）
-        // isa 的指向图，意义在此
+        // 读懂 isa 的指向图，意义在此
         
         
         
@@ -7172,6 +7185,11 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         
+        
+        // 如果类的方法 IMP 没有找到，不会走这里
+        
+        
+        
         if (slowpath(imp == forward_imp)) {
             // Found a forward:: entry in a superclass.
             // Stop searching, but don't cache yet; call method
@@ -7185,6 +7203,21 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             
             break;                               // 跳出循环
         }
+        
+        
+        
+        // 如果类的方法 IMP 没有找到，也不会走这里
+        
+        
+        
+        // 去循环，查父类的
+        // 猜错了
+        
+        
+        
+        // 走上面的递归父类的逻辑
+        
+        
         
         
         if (fastpath(imp)) {
