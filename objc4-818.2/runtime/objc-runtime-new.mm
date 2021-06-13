@@ -7094,19 +7094,14 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
     
     
     for (unsigned attempts = unreasonableClassCount();;) {
-        // 没有循环的条件，只会走一次
-        // 用 for 循环，真是有毛病
-        // 感觉 goto , break ，跳代码方便
+
         
+        //  每一轮循环， curClass 变为其 super class，
+        // 可能不是
         
-        
-        // 呵呵， 每一轮循环， curClass 变为其 super class， 错的
-        // 猜错了
-        
-        
-        
+
         //  curClass 变为其 super class，是通过里面的递归
-        
+        //  可能是
         
         
         
@@ -7207,11 +7202,11 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         // 如果类的方法 IMP 没有找到，也不会走这里
+        //  可能是
         
         
-        
-        // 去循环，查父类的
-        // 猜错了
+        // 去循环，查父类的， 可能不是
+
         
         
         
