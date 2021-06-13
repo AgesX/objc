@@ -3412,6 +3412,16 @@ map_images(unsigned count, const char * const paths[],
 static void load_categories_nolock(header_info *hi) {
     bool hasClassProperties = hi->info()->hasCategoryClassProperties();
 
+    
+    
+    /*
+     这段代码很容易理解：
+
+     1)、把category的实例方法、协议以及属性添加到类上
+     
+     2)、把category的类方法和协议添加到类的 metaclass 上
+     
+     */
     size_t count;
     auto processCatlist = [&](category_t * const *catlist) {
         for (unsigned i = 0; i < count; i++) {
@@ -3477,6 +3487,17 @@ static void load_categories_nolock(header_info *hi) {
     processCatlist(hi->catlist(&count));
     processCatlist(hi->catlist2(&count));
 }
+
+
+
+
+
+
+
+
+
+
+
 
 static void loadAllCategories() {
     mutex_locker_t lock(runtimeLock);
@@ -4026,6 +4047,40 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
     // the call to _dyld_objc_notify_register completes. rdar://problem/53119145
     if (didInitialAttachCategories) {
         for (EACH_HEADER) {
+            
+            /*
+             
+             category被附加到类上面
+             是在map_images的时候发生的，
+             
+             在new-ABI的标准下，
+             _objc_init里面的调用的map_images
+             
+             最终会调用objc-runtime-new.mm里面的_read_images方法，
+             
+             
+             
+             
+             而在_read_images方法的结尾，
+             有以下的代码片段：
+             
+             
+             */
+            
+            
+            
+            
+            /*
+             这段代码很容易理解：
+
+             1)、把category的实例方法、协议以及属性添加到类上
+             
+             2)、把category的类方法和协议添加到类的 metaclass 上
+             
+             */
+            
+            
+            
             load_categories_nolock(hi);
         }
     }
@@ -4092,26 +4147,6 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
 
         
         
-        /*
-         
-         category被附加到类上面
-         是在map_images的时候发生的，
-         
-         在new-ABI的标准下，
-         _objc_init里面的调用的map_images
-         
-         最终会调用objc-runtime-new.mm里面的_read_images方法，
-         
-         
-         
-         
-         而在_read_images方法的结尾，
-         有以下的代码片段：
-         
-         
-         */
-        
-        
         
         for (EACH_HEADER) {
             if (hi->hasPreoptimizedSelectors()) {
@@ -4124,6 +4159,9 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             }
 
             classref_t const *classlist = _getObjc2ClassList(hi, &count);
+            
+            
+            
             for (i = 0; i < count; i++) {
                 Class cls = remapClass(classlist[i]);
                 if (!cls) continue;
