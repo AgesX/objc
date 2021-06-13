@@ -379,11 +379,16 @@ void waitForInitializeToComplete(Class cls)
 }
 
 
+
+
 void callInitialize(Class cls)
 {
     ((void(*)(Class, SEL))objc_msgSend)(cls, @selector(initialize));
     asm("");
 }
+
+
+
 
 
 /***********************************************************************
@@ -502,6 +507,15 @@ void initializeNonMetaClass(Class cls)
     // See note about deadlock above.
     supercls = cls->getSuperclass();
     if (supercls  &&  !supercls->isInitialized()) {
+        
+        
+        
+        
+        
+        // 进行递归， 初始化所有的类
+        
+        
+        
         initializeNonMetaClass(supercls);
     }
     
@@ -551,6 +565,10 @@ void initializeNonMetaClass(Class cls)
         @try
 #endif
         {
+            
+            
+            
+            // 知名方法
             callInitialize(cls);
 
             if (PrintInitializing) {
@@ -612,6 +630,19 @@ void initializeNonMetaClass(Class cls)
         _objc_fatal("thread-safe class init in objc runtime is buggy!");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void _objc_addWillInitializeClassFunc(_objc_func_willInitializeClass _Nonnull func, void * _Nullable context) {
 #if __OBJC2__

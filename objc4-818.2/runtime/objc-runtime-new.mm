@@ -1510,6 +1510,17 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * methodizeClass
 * Fixes up cls's method list, protocol list, and property list.
@@ -2071,6 +2082,17 @@ objc_loadClassref(_Nullable Class * _Nonnull clsref)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * getMaybeUnrealizedNonMetaClass
 * Return the ordinary class for this class or metaclass. 
@@ -2274,6 +2296,24 @@ static Class initializeAndMaybeRelock(Class cls, id inst,
     if (leaveLocked) runtimeLock.lock();
     return cls;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Locking: acquires runtimeLock
 Class class_initialize(Class cls, id obj)
@@ -6601,6 +6641,14 @@ realizeAndInitializeIfNeeded_locked(id inst, Class cls, bool initialize)
     }
 
     if (slowpath(initialize && !cls->isInitialized())) {
+        
+        
+        
+        // 对应 initialize 方法
+        
+        
+        
+        
         cls = initializeAndLeaveLocked(cls, inst, runtimeLock);
         // runtimeLock may have been dropped but is now locked again
 
@@ -6608,6 +6656,13 @@ realizeAndInitializeIfNeeded_locked(id inst, Class cls, bool initialize)
         // then the messenger will send +initialize again after this
         // procedure finishes. Of course, if this is not being called
         // from the messenger then it won't happen. 2778172
+        
+        
+        
+        
+        
+        
+        
     }
     return cls;
 }
