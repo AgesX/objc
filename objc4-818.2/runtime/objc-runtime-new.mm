@@ -7016,7 +7016,9 @@ IMP lookUpImpOrNilTryCache(id inst, SEL sel, Class cls, int behavior)
 
 
 
-
+// 方法查找，
+// 就算该方法不存在，
+// 也会返回一个 IMP ,     forward_imp
 
 
 NEVER_INLINE
@@ -7149,9 +7151,9 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         
-        // 所以之前，要建立继承链
-        // 把父类的关系，建立完整
-        // isa 的指针图，意义在此
+        // 所以之前，要建立类的继承链    (    如果是类方法，就需要元类 meta 的继承链    )
+        // 把父类的关系，建立完整        （     有了继承链，才好找方法的 IMP       ）
+        // isa 的指向图，意义在此
         
         
         
