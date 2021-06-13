@@ -6234,16 +6234,30 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
             while (probe > first && keyValue == (uintptr_t)getName((probe - 1))) {
                 probe--;
                 
+                // LG 放屁，他说类的方法先加载到内存，分类的方法添加在后面
+                
+                
+                
+                //  probe > first， 大于开始
+                //  不会越界
+                
+                
                 
                 // 因为有类方法， 分类方法
+                // 分类方法， 重名方法
+                 
                 
-                
+                // 分类方法，在类方法前面
             }
             return &*probe;
         }
         
         if (keyValue > probeValue) {
             base = probe + 1;
+            
+            
+            
+            // 这一句，看不懂
             count--;
         }
     }
