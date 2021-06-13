@@ -7115,6 +7115,9 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
                 goto done;
             }
 
+            
+            //  curClass  变  Superclass 
+            
             if (slowpath((curClass = curClass->getSuperclass()) == nil)) {
                 // No implementation found, and method resolver didn't help.
                 // Use forwarding.
@@ -7128,8 +7131,21 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             _objc_fatal("Memory corruption in class list.");
         }
 
+        
+        
+        
+        // 父类里面，查找
+        
+        
         // Superclass cache.
+        
+        
         imp = cache_getImp(curClass, sel);
+        
+        
+        
+        
+        
         if (slowpath(imp == forward_imp)) {
             // Found a forward:: entry in a superclass.
             // Stop searching, but don't cache yet; call method
