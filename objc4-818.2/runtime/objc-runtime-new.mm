@@ -1534,17 +1534,23 @@ static void methodizeClass(Class cls, Class previously)
     // Install methods and properties that the class implements itself.
     method_list_t *list = ro->baseMethods();
     if (list) {
+        
+        
         prepareMethodLists(cls, &list, 1, YES, isBundleClass(cls), nullptr);
         if (rwe) rwe->methods.attachLists(&list, 1);
     }
 
     property_list_t *proplist = ro->baseProperties;
     if (rwe && proplist) {
+        
+        
         rwe->properties.attachLists(&proplist, 1);
     }
 
     protocol_list_t *protolist = ro->baseProtocols;
     if (rwe && protolist) {
+        
+        
         rwe->protocols.attachLists(&protolist, 1);
     }
 
@@ -2864,12 +2870,28 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 
     // Connect this class to its superclass's subclass lists
     if (supercls) {
+        
+        
+        
+        
+        // 前面有一句  cls->setSuperclass(supercls);
+        // 他说，class 是一个双链表
+        
+        // 这个链表结构是双向的
+        // cls 父类，指向 supercls
+        
+        // 他说，
+        // 这里， supercls 子类， 指向 cls
+        
+        
         addSubclass(supercls, cls);
     } else {
         addRootClass(cls);
     }
 
     // Attach categories
+    
+    // 准备 method list , property list, protocol list
     methodizeClass(cls, previously);
 
     return cls;
