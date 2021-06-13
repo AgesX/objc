@@ -6176,6 +6176,18 @@ class_setVersion(Class cls, int version)
     rwe->version = version;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
  * search_method_list_inline
  **********************************************************************/
@@ -6192,7 +6204,20 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
     uintptr_t keyValue = (uintptr_t)key;
     uint32_t count;
     
+    
+    
+    // 有序列表， 二分查找
+    
+    
+    
     for (count = list->count; count != 0; count >>= 1) {
+    
+        
+        
+        // base , 第一个元素
+        
+        
+        
         probe = base + (count >> 1);
         
         uintptr_t probeValue = (uintptr_t)getName(probe);
@@ -6216,9 +6241,24 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
     return nil;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 ALWAYS_INLINE static method_t *
 findMethodInSortedMethodList(SEL key, const method_list_t *list)
 {
+    // 有序列表， 二分查找
+    
+    
     if (list->isSmallList()) {
         if (CONFIG_SHARED_CACHE_RELATIVE_DIRECT_SELECTORS && objc::inSharedCache((uintptr_t)list)) {
             return findMethodInSortedMethodList(key, list, [](method_t &m) { return m.getSmallNameAsSEL(); });
@@ -6261,6 +6301,9 @@ search_method_list_inline(const method_list_t *mlist, SEL sel)
     int methodListHasExpectedSize = mlist->isExpectedSize();
     
     if (fastpath(methodListIsFixedUp && methodListHasExpectedSize)) {
+        
+        // 有序列表， 二分查找
+        
         return findMethodInSortedMethodList(sel, mlist);
     } else {
         // Linear search of unsorted method list
@@ -6333,6 +6376,8 @@ getMethodNoSuper_nolock(Class cls, SEL sel)
     // fixme nil cls? 
     // fixme nil sel?
 
+    
+    //  method list
     auto const methods = cls->data()->methods();
     for (auto mlists = methods.beginLists(),
               end = methods.endLists();
@@ -6343,6 +6388,12 @@ getMethodNoSuper_nolock(Class cls, SEL sel)
         // caller of search_method_list, inlining it turns
         // getMethodNoSuper_nolock into a frame-less function and eliminates
         // any store from this codepath.
+        
+        
+        // 有序列表， 二分查找
+        
+        
+        
         method_t *m = search_method_list_inline(*mlists, sel);
         if (m) return m;
     }
@@ -6875,19 +6926,34 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
 
     // The code used to lookup the class's cache again right after
     // we take the lock but for the vast majority of the cases
+    
     // evidence shows this is a miss most of the time, hence a time loss.
     //
     // The only codepath calling into this without having performed some
     // kind of cache lookup is class_getInstanceMethod().
 
+    
+    
+    // IMP 的关键逻辑
+    
+    
     for (unsigned attempts = unreasonableClassCount();;) {
+        
+        
+        
         if (curClass->cache.isConstantOptimizedCache(/* strict */true)) {
+            
+            // 因为多线程
 #if CONFIG_USE_PREOPT_CACHES
             imp = cache_getImp(curClass, sel);
             if (imp) goto done_unlock;
             curClass = curClass->cache.preoptFallbackClass();
 #endif
         } else {
+            // current  class
+            // 自己行，就不要麻烦父类
+            
+            
             // curClass method list.
             Method meth = getMethodNoSuper_nolock(curClass, sel);
             if (meth) {

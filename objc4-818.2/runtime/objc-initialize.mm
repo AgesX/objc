@@ -383,6 +383,14 @@ void waitForInitializeToComplete(Class cls)
 
 void callInitialize(Class cls)
 {
+    
+    // + load 方法
+    // 和 + initialize 方法一样
+    
+    
+    // 都不需要主动的调用
+     
+    
     ((void(*)(Class, SEL))objc_msgSend)(cls, @selector(initialize));
     asm("");
 }
