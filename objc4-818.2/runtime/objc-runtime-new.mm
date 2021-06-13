@@ -3366,6 +3366,18 @@ void _objc_flush_caches(Class cls)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * map_images
 * Process the given images which are being mapped in by dyld.
@@ -3378,8 +3390,23 @@ map_images(unsigned count, const char * const paths[],
            const struct mach_header * const mhdrs[])
 {
     mutex_locker_t lock(runtimeLock);
+    
+    
+    //  _objc_init里面的调用的map_images
+    // 最终会调用 objc-runtime-new.mm 里面的 _read_images方法
     return map_images_nolock(count, paths, mhdrs);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 static void load_categories_nolock(header_info *hi) {
@@ -4063,6 +4090,29 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
         static unsigned int PreoptTotalClasses;
         static unsigned int PreoptOptimizedClasses;
 
+        
+        
+        /*
+         
+         category被附加到类上面
+         是在map_images的时候发生的，
+         
+         在new-ABI的标准下，
+         _objc_init里面的调用的map_images
+         
+         最终会调用objc-runtime-new.mm里面的_read_images方法，
+         
+         
+         
+         
+         而在_read_images方法的结尾，
+         有以下的代码片段：
+         
+         
+         */
+        
+        
+        
         for (EACH_HEADER) {
             if (hi->hasPreoptimizedSelectors()) {
                 _objc_inform("PREOPTIMIZATION: honoring preoptimized selectors "
@@ -4117,6 +4167,11 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
 
 #undef EACH_HEADER
 }
+
+
+
+
+
 
 
 /***********************************************************************

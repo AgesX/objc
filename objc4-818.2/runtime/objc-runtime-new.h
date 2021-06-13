@@ -2824,12 +2824,35 @@ struct swift_class_t : objc_class {
 };
 
 
+
+
+
+// 分类的数据结构
+
+
+//  从category的定义也可以看出
+// category的可为（可以添加实例方法，类方法，甚至可以实现协议，添加属性）
+// 和不可为（无法添加实例变量）。
+
+
 struct category_t {
+    
+    //  类的名字
     const char *name;
+    
+    //  类
     classref_t cls;
+    
+    //  所有给类添加的实例方法的列表
     WrappedPtr<method_list_t, PtrauthStrip> instanceMethods;
+    
+    //  所有添加的类方法的列表
     WrappedPtr<method_list_t, PtrauthStrip> classMethods;
+    
+    //  实现的所有协议的列表
     struct protocol_list_t *protocols;
+    
+    //  添加的所有属性
     struct property_list_t *instanceProperties;
     // Fields below this point are not always present on disk.
     struct property_list_t *_classProperties;
@@ -2846,6 +2869,17 @@ struct category_t {
         else return protocols;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
 
 struct objc_super2 {
     id receiver;

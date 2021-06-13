@@ -593,6 +593,11 @@ map_images_nolock(unsigned mhCount, const char * const mhPaths[],
     }
 
     if (hCount > 0) {
+        
+        //  _objc_init里面的调用的map_images
+        // 最终会调用 objc-runtime-new.mm 里面的 _read_images方法
+        
+        
         _read_images(hList, hCount, totalClasses, unoptimizedTotalClasses);
     }
 
@@ -913,11 +918,20 @@ void _objc_atfork_child()
 }
 
 
+
+
+
 /***********************************************************************
 * _objc_init
 * Bootstrap initialization. Registers our image notifier with dyld.
 * Called by libSystem BEFORE library initialization time
 **********************************************************************/
+
+
+
+//  对于OC运行时，入口方法如下（在objc-os.mm文件中）：
+
+
 
 void _objc_init(void)
 {
@@ -942,6 +956,16 @@ void _objc_init(void)
     didCallDyldNotifyRegister = true;
 #endif
 }
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
