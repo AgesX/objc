@@ -6411,6 +6411,17 @@ findMethodInUnsortedMethodList(SEL key, const method_list_t *list)
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 ALWAYS_INLINE static method_t *
 search_method_list_inline(const method_list_t *mlist, SEL sel)
 {
@@ -6442,11 +6453,27 @@ search_method_list_inline(const method_list_t *mlist, SEL sel)
     return nil;
 }
 
+
+
+
+
+
+
+
+
 NEVER_INLINE static method_t *
 search_method_list(const method_list_t *mlist, SEL sel)
 {
     return search_method_list_inline(mlist, sel);
 }
+
+
+
+
+
+
+
+
 
 /***********************************************************************
  * method_lists_contains_any
@@ -6477,6 +6504,16 @@ method_lists_contains_any(T *mlists, T *end,
     }
     return false;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -7192,10 +7229,28 @@ IMP lookupMethodInClassAndLoadCache(Class cls, SEL sel)
             imp = _objc_msgForward_impcache;
         }
 
+        
+        
+        
+        
+        
+        // 查找到了 IMP，写入缓存
+        
+        
+        
+        // 没有缓存，查找方法列表
+        // 方法列表中查找到了 IMP，完善缓存
+        
+        
         // Note, because we do not hold the runtime lock above
         // isConstantOptimizedCache might flip, so we need to double check
         if (!cls->cache.isConstantOptimizedCache(true /* strict */)) {
+            
+            // objc_msgSend -> 二分查找方法列表 -> cache_fill -> 后来的 objc_msgSend
+            //
+            
             cls->cache.insert(sel, imp, nil);
+            // cache_fill
         }
     }
 
@@ -7688,6 +7743,15 @@ addMethods_finish(Class cls, method_list_t *newlist)
 }
 
 
+
+
+
+
+
+
+
+
+
 /**********************************************************************
 * addMethod
 * fixme
@@ -7731,6 +7795,15 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
 
     return result;
 }
+
+
+
+
+
+
+
+
+
 
 /**********************************************************************
 * addMethods
