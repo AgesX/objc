@@ -6367,6 +6367,7 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
                  
                 
                 // 分类方法，在类方法前面
+                // 分类 - 类
             }
             return &*probe;
         }
@@ -7317,7 +7318,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         //  cache_getImp 是汇编写的
         
         //   从 C++ 代码，走汇编代码
-        imp = cache_getImp(curClass, sel);
+        imp = cache_getImp(curClass, sel);   // 查找父类缓存
         //       递归：   cache_getImp - lookup - lookUpImpOrForward
         
         
