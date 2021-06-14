@@ -1375,6 +1375,13 @@ LGetImpMissConstant:
 	ENTRY __objc_msgForward
 
 	adrp	x17, __objc_forward_handler@PAGE
+
+
+    // 汇编走完了，去走 CPP,
+    // __objc_forward_handler 删去开头的下划线
+    // CPP 的  objc_forward_handler
+    // 去 crash
+
 	ldr	p17, [x17, __objc_forward_handler@PAGEOFF]
 	TailCallFunctionPointer x17
 	

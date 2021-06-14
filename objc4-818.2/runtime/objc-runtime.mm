@@ -581,16 +581,47 @@ void *_objc_forward_stret_handler = nil;
 
 #else
 
+
+
+
+
+
+
+
+// 走这边
+
+
+
 // Default forward handler halts the process.
 __attribute__((noreturn, cold)) void
 objc_defaultForwardHandler(id self, SEL sel)
 {
+    
+    
+    
+    
+    
+    // fatal error , 致命错误
+    
+    
     _objc_fatal("%c[%s %s]: unrecognized selector sent to instance %p "
                 "(no message forward handler is installed)", 
                 class_isMetaClass(object_getClass(self)) ? '+' : '-', 
                 object_getClassName(self), sel_getName(sel), self);
 }
 void *_objc_forward_handler = (void*)objc_defaultForwardHandler;
+
+
+
+
+
+
+
+
+
+
+
+
 
 #if SUPPORT_STRET
 struct stret { int i[100]; };
