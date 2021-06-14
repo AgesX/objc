@@ -6292,7 +6292,7 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
 
     auto first = list->begin();
     auto base = first;
-    decltype(first) probe;
+    decltype(first) probe;    // 第一个元素
 
     uintptr_t keyValue = (uintptr_t)key;
     uint32_t count;
@@ -6300,6 +6300,27 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
     
     
     // 有序列表， 二分查找
+    
+    
+    
+    /*
+     二分查找
+     
+     
+     sel 的排序问题
+     
+     
+     
+     sel 在 method_list 集合中，  呈递增
+     
+     
+     sel & mask， 搞出一个哈希值的索引
+     
+     
+     */
+    
+    
+    
     
     
     
@@ -6311,7 +6332,7 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
         
         
         
-        probe = base + (count >> 1);
+        probe = base + (count >> 1);            //  内存的指针，平移
         
         uintptr_t probeValue = (uintptr_t)getName(probe);
         
@@ -6378,6 +6399,10 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list)
     
     if (list->isSmallList()) {
         if (CONFIG_SHARED_CACHE_RELATIVE_DIRECT_SELECTORS && objc::inSharedCache((uintptr_t)list)) {
+            
+            
+            //      二分查找
+            
             return findMethodInSortedMethodList(key, list, [](method_t &m) { return m.getSmallNameAsSEL(); });
         } else {
             return findMethodInSortedMethodList(key, list, [](method_t &m) { return m.getSmallNameAsSELRef(); });
@@ -6386,6 +6411,22 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list)
         return findMethodInSortedMethodList(key, list, [](method_t &m) { return m.big().name; });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 template<class getNameFunc>
 ALWAYS_INLINE static method_t *
@@ -6422,6 +6463,13 @@ findMethodInUnsortedMethodList(SEL key, const method_list_t *list)
 
 
 
+
+
+
+
+
+//  在里面二分查找， 方法 IMP
+
 ALWAYS_INLINE static method_t *
 search_method_list_inline(const method_list_t *mlist, SEL sel)
 {
@@ -6452,6 +6500,11 @@ search_method_list_inline(const method_list_t *mlist, SEL sel)
 
     return nil;
 }
+
+
+
+
+
 
 
 
