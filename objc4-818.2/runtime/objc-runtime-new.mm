@@ -6325,7 +6325,7 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
     
     
     for (count = list->count; count != 0; count >>= 1) {
-        // 每循环一次 ，  （  第一次不走  ）  count >>= 1
+        // 每循环一次 ，  （  第一次不走  ）  count >>= 1  (  这一句， 二分   )
         //  count 值变小
         
         
@@ -6349,7 +6349,7 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
             
             // 找到了
             
-            
+            // 处理加载分类的
             while (probe > first && keyValue == (uintptr_t)getName((probe - 1))) {
                 probe--;
                 
@@ -6376,8 +6376,8 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
             
             
             
-            // 这一句，看不懂
-            count--;
+            
+            count--;  // 解决奇偶
         }
     }
     
