@@ -6325,7 +6325,9 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
     
     
     for (count = list->count; count != 0; count >>= 1) {
-    
+        // 每循环一次 ，  （  第一次不走  ）  count >>= 1
+        //  count 值变小
+        
         
         
         // base , 第一个元素
@@ -6333,6 +6335,9 @@ findMethodInSortedMethodList(SEL key, const method_list_t *list, const getNameFu
         
         
         probe = base + (count >> 1);            //  内存的指针，平移
+        // 再取 count 值变小， 的除以 2 的值
+        
+        
         
         uintptr_t probeValue = (uintptr_t)getName(probe);
         
