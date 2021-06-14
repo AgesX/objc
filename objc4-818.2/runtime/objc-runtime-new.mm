@@ -6718,12 +6718,29 @@ static void resolveClassMethod(id inst, SEL sel, Class cls)
 }
 
 
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * resolveInstanceMethod
 * Call +resolveInstanceMethod, looking for a method to be added to class cls.
 * cls may be a metaclass or a non-meta class.
 * Does not check if the method already exists.
 **********************************************************************/
+
+
+// 动态方法解析
+
+
+
+
+
 static void resolveInstanceMethod(id inst, SEL sel, Class cls)
 {
     runtimeLock.assertUnlocked();
@@ -6735,12 +6752,32 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
         return;
     }
 
+    
+    
+    
+    
+    
+    // 重点是，下面 3 句
     BOOL (*msg)(Class, SEL, SEL) = (typeof(msg))objc_msgSend;
+    
+    
+    // 发送消息
     bool resolved = msg(cls, resolve_sel, sel);
 
     // Cache the result (good or bad) so the resolver doesn't fire next time.
     // +resolveInstanceMethod adds to self a.k.a. cls
+    
+    
+    // 关键代码
+    // 发送消息之后，接着去查找消息
     IMP imp = lookUpImpOrNilTryCache(inst, sel, cls);
+    
+    
+    
+    
+    
+    
+    
 
     if (resolved  &&  PrintResolving) {
         if (imp) {
@@ -6759,6 +6796,20 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
