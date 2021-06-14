@@ -6758,17 +6758,25 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
     
     
     // 重点是，下面 3 句
-    BOOL (*msg)(Class, SEL, SEL) = (typeof(msg))objc_msgSend;
+    BOOL (*msg)(Class, SEL, SEL) = (typeof(msg))objc_msgSend;               // 代码优雅
     
     
-    // 发送消息
+    // 发送消息，
+    // 相当于中间层拦截
     bool resolved = msg(cls, resolve_sel, sel);
+    //  感觉， resolve_sel， 就像是方法的字典一样
+    
+    
+    
+    
 
     // Cache the result (good or bad) so the resolver doesn't fire next time.
     // +resolveInstanceMethod adds to self a.k.a. cls
     
     
-    // 关键代码
+    // 关键代码, 这一层里面，又去验证
+    
+    
     // 发送消息之后，接着去查找消息
     IMP imp = lookUpImpOrNilTryCache(inst, sel, cls);
     
