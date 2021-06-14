@@ -6775,7 +6775,9 @@ resolveMethod_locked(id inst, SEL sel, Class cls, int behavior)
     ASSERT(cls->isRealized());
 
     runtimeLock.unlock();
-
+    // 方法没有，去处理
+    // 动态方法解析
+    
     if (! cls->isMetaClass()) {
         // try [cls resolveInstanceMethod:sel]
         resolveInstanceMethod(inst, sel, cls);
@@ -6791,8 +6793,27 @@ resolveMethod_locked(id inst, SEL sel, Class cls, int behavior)
 
     // chances are that calling the resolver have populated the cache
     // so attempt using it
+    
+    
+    // 又是递归
+    
+    
+    // 处理之后，再查找一次
+    
     return lookUpImpOrForwardTryCache(inst, sel, cls, behavior);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -6928,6 +6949,14 @@ done:
     }
     return imp;
 }
+
+
+
+
+
+
+
+
 
 IMP lookUpImpOrForwardTryCache(id inst, SEL sel, Class cls, int behavior)
 {
@@ -7231,7 +7260,11 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
 
     // No implementation found. Try method resolver once.
 
-    if (slowpath(behavior & LOOKUP_RESOLVER)) {
+    if (slowpath(behavior & LOOKUP_RESOLVER)) {     // LG 的说，流程只走一次
+        
+        
+        // 在这里，动态方法解析
+        
         behavior ^= LOOKUP_RESOLVER;
         return resolveMethod_locked(inst, sel, cls, behavior);
     }

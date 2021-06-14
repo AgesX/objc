@@ -598,7 +598,7 @@ objc_defaultForwardHandler(id self, SEL sel)
 {
     
     
-    
+    // IMP 找不到，报错的地方
     
     
     // fatal error , 致命错误
@@ -608,6 +608,15 @@ objc_defaultForwardHandler(id self, SEL sel)
                 "(no message forward handler is installed)", 
                 class_isMetaClass(object_getClass(self)) ? '+' : '-', 
                 object_getClassName(self), sel_getName(sel), self);
+    
+    //  '+'， 类方法
+    //  '-'， 对象方法
+    
+    
+    
+    // 额外判断赋予的
+    
+    // 在底层，没有类方法和实例方法的区别
 }
 void *_objc_forward_handler = (void*)objc_defaultForwardHandler;
 
