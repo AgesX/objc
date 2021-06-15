@@ -6806,8 +6806,16 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
     ASSERT(cls->isRealized());
     SEL resolve_sel = @selector(resolveInstanceMethod:);
 
+    
+    
+    //  resolveInstanceMethod 方法， 走两次
+    
+    
+    
     if (!lookUpImpOrNilTryCache(cls, resolve_sel, cls->ISA(/*authenticated*/true))) {
         // Resolver not implemented.
+        
+        // 没查询到
         return;
     }
 
@@ -6822,7 +6830,7 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
     
     // 发送消息，
     // 相当于中间层拦截
-    bool resolved = msg(cls, resolve_sel, sel);
+    bool resolved = msg(cls, resolve_sel, sel);                 // 第 1 次， 发送消息
     //  感觉， resolve_sel， 就像是方法的字典一样
     
     
@@ -6837,7 +6845,7 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
     
     
     // 发送消息之后，接着去查找消息
-    IMP imp = lookUpImpOrNilTryCache(inst, sel, cls);
+    IMP imp = lookUpImpOrNilTryCache(inst, sel, cls);            // 第 2 次的，递归调用， 会走 lookUpImpOrForward
     
     
     
@@ -7324,7 +7332,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         
-        imp = cache_getImp(curClass, sel);   // 查找父类缓存
+        imp = cache_getImp(curClass, sel);   // 查找父类缓存                  // 没有嵌套循环
         //       递归：   cache_getImp - lookup - lookUpImpOrForward
         //       he he
         //       根本没有递归
@@ -7390,6 +7398,14 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         
         // 在这里，动态方法解析
+        
+        
+        // 异或操作
+        
+        //  resolveInstanceMethod 方法， 走两次
+        
+        //  通过异或， 只走一次
+  
         
         behavior ^= LOOKUP_RESOLVER;
         return resolveMethod_locked(inst, sel, cls, behavior);
