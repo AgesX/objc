@@ -1336,6 +1336,9 @@ LMsgLookupSuperResume:
 	STATIC_ENTRY _cache_getImp
 
 	GetClassFromIsa_p16 p0, 0
+
+
+    //  CacheLookup, 注意此时的参数是 GETIMP
 	CacheLookup GETIMP, _cache_getImp, LGetImpMissDynamic, LGetImpMissConstant
     //  CacheLookup 调用 C++ 的 lookUpImpOrForward,
     // C++ 调用 _cache_getImp
