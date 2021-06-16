@@ -6906,7 +6906,7 @@ resolveMethod_locked(id inst, SEL sel, Class cls, int behavior)
     
     if (! cls->isMetaClass()) {
         // try [cls resolveInstanceMethod:sel]
-        resolveInstanceMethod(inst, sel, cls);
+        resolveInstanceMethod(inst, sel, cls);          //      //  resolveInstanceMethod 方法， 走两次,  第一次
     } 
     else {
         // try [nonMetaClass resolveClassMethod:sel]
@@ -7404,11 +7404,16 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         //  resolveInstanceMethod 方法， 走两次
         
-        //  通过异或， 只走一次
+        //  通过异或， 只走一次， 我觉得
   
         
         behavior ^= LOOKUP_RESOLVER;
         return resolveMethod_locked(inst, sel, cls, behavior);
+        
+        // LG 的说，这个方法，会进来两次
+        // 感觉有点意思
+        // 这里的条件   behavior & LOOKUP_RESOLVER，   behavior ^= LOOKUP_RESOLVER;
+        // 后来的处理    return _lookUpImpTryCache(inst, sel, cls, behavior | LOOKUP_NIL);
     }
 
  done:
