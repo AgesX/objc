@@ -6897,18 +6897,25 @@ static void resolveInstanceMethod(id inst, SEL sel, Class cls)
 static NEVER_INLINE IMP
 resolveMethod_locked(id inst, SEL sel, Class cls, int behavior)
 {
+    
+    //   对于类方法， inst 是类， cls 是元类
+    
+    
     runtimeLock.assertLocked();
     ASSERT(cls->isRealized());
 
     runtimeLock.unlock();
     // 方法没有，去处理
-    // 动态方法解析
+    // 动态方法解析, 找不到 IMP, 去查询一次
     
     if (! cls->isMetaClass()) {
+        // 对于实例方法的动态解析
+        
         // try [cls resolveInstanceMethod:sel]
         resolveInstanceMethod(inst, sel, cls);          //      //  resolveInstanceMethod 方法， 走两次,  第一次
     } 
     else {
+        // 对于类方法的动态解析
         // try [nonMetaClass resolveClassMethod:sel]
         // and [cls resolveInstanceMethod:sel]
         resolveClassMethod(inst, sel, cls);
@@ -6916,6 +6923,8 @@ resolveMethod_locked(id inst, SEL sel, Class cls, int behavior)
             resolveInstanceMethod(inst, sel, cls);
         }
     }
+    
+    
 
     // chances are that calling the resolver have populated the cache
     // so attempt using it
@@ -7394,7 +7403,7 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
 
     // No implementation found. Try method resolver once.
 
-    if (slowpath(behavior & LOOKUP_RESOLVER)) {     // LG 的说，流程只走一次
+    if (slowpath(behavior & LOOKUP_RESOLVER)) {     // LG 的说，流程只走一次， 调用会走多次 ， > 2 次
         
         
         // 在这里，动态方法解析
@@ -7409,6 +7418,10 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
         
         behavior ^= LOOKUP_RESOLVER;
         return resolveMethod_locked(inst, sel, cls, behavior);
+        
+        
+        // 其实，会走超过两次，起码有 3 次
+        
         
         // LG 的说，这个方法，会进来两次
         // 感觉有点意思
