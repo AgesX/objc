@@ -777,6 +777,20 @@ void	instrumentObjcMessageSends(BOOL flag)
 bool objcMsgLogEnabled = false;
 static int objcMsgLogFD = -1;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 bool logMessageSend(bool isClassMethod,
                     const char *objectsClass,
                     const char *implementingClass,
@@ -784,7 +798,23 @@ bool logMessageSend(bool isClassMethod,
 {
     char	buf[ 1024 ];
 
+    
+    
+    
+    
+    
+    
     // Create/open the log file
+    
+    
+    
+    //  objcMsgLogFD
+    //  1, 打开控制条件
+    
+    
+    
+    //  objcMsgLogFD 就是 objcMsgLogEnabled
+    //  objcMsgLogEnabled 默认为 0
     if (objcMsgLogFD == (-1))
     {
         snprintf (buf, sizeof(buf), "/tmp/msgSends-%d", (int) getpid ());
@@ -812,6 +842,38 @@ bool logMessageSend(bool isClassMethod,
     return false;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+// 可以监控一些 Objective - C
+// 底层的消息发送
+
+
+
+
+// 1, 打开控制条件
+
+// objcMsgLogEnabled ，  控制开关
+
+
+// 2， 借助 extern
+// 把方法曝露出去
+
+
+
+
+
+
+
 void instrumentObjcMessageSends(BOOL flag)
 {
     bool enable = flag;
@@ -833,6 +895,16 @@ void instrumentObjcMessageSends(BOOL flag)
 
 // SUPPORT_MESSAGE_LOGGING
 #endif
+
+
+
+
+
+
+
+
+
+
 
 
 Class _calloc_class(size_t size)

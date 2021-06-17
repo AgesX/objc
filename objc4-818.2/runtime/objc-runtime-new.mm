@@ -6973,6 +6973,21 @@ log_and_fill_cache(Class cls, IMP imp, SEL sel, id receiver, Class implementer)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * realizeAndInitializeIfNeeded_locked
 * Realize the given class if not already realized, and initialize it if
