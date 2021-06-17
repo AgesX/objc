@@ -44,6 +44,8 @@ void classCopyMethodList(Class pClass){
 
 
 
+// 此路不通
+
 // 把  meta 元类  ，  里面的对象方法，都找出来
 void metaCopyMethodList(Class pClass){
     
@@ -53,7 +55,7 @@ void metaCopyMethodList(Class pClass){
     
     const char *className = class_getName(pClass);
     Class metaClassTwo = objc_getMetaClass(className);
-    // 两种都行
+    
     
     NSLog(@"metaClass: %p", metaClass);
     NSLog(@"metaClassTwo: %p", metaClassTwo);
