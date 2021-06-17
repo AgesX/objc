@@ -49,9 +49,8 @@ void classCopyMethodList(Class pClass){
 // 把  meta 元类  ，  里面的对象方法，都找出来
 void metaCopyMethodList(Class pClass){
     
-    const char *className = class_getName(pClass);
-    Class metaClass = objc_getMetaClass(className);
-    
+    Class metaClass = object_getClass(pClass);
+    //  获取元类的函数是object_getClass，通过此方法获取元类，
     
     unsigned int count = 0;
     Method *methods = class_copyMethodList(metaClass, &count);
