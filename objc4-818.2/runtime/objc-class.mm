@@ -774,7 +774,12 @@ void	instrumentObjcMessageSends(BOOL flag)
 
 #else
 
-bool objcMsgLogEnabled = false;
+
+
+bool objcMsgLogEnabled = false;   // 默认
+
+
+
 static int objcMsgLogFD = -1;
 
 
@@ -817,9 +822,18 @@ bool logMessageSend(bool isClassMethod,
     //  objcMsgLogEnabled 默认为 0
     if (objcMsgLogFD == (-1))
     {
+        
+        
+        // 日志写入的文件目录  "/tmp/msgSends-%d"
         snprintf (buf, sizeof(buf), "/tmp/msgSends-%d", (int) getpid ());
         objcMsgLogFD = secure_open (buf, O_WRONLY | O_CREAT, geteuid());
+        
+        
         if (objcMsgLogFD < 0) {
+            
+            //  1, 打开控制条件
+            
+            
             // no log file - disable logging
             objcMsgLogEnabled = false;
             objcMsgLogFD = -1;
@@ -868,7 +882,7 @@ bool logMessageSend(bool isClassMethod,
 // 2， 借助 extern
 // 把方法曝露出去
 
-
+// 因为 instrumentObjcMessageSends 是内部方法
 
 
 

@@ -7451,6 +7451,10 @@ IMP lookUpImpOrForward(id inst, SEL sel, Class cls, int behavior)
             cls = cls->cache.preoptFallbackClass();
         }
 #endif
+        
+        
+        
+        
         log_and_fill_cache(cls, imp, sel, inst, curClass);
     }
  done_unlock:
