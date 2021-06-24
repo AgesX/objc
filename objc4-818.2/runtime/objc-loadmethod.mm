@@ -174,6 +174,18 @@ void remove_category_from_loadable_list(Category cat)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * call_class_loads
 * Call all pending class +load methods.
@@ -181,6 +193,13 @@ void remove_category_from_loadable_list(Category cat)
 *
 * Called only by call_load_methods().
 **********************************************************************/
+
+
+
+
+
+
+
 static void call_class_loads(void)
 {
     int i;
@@ -201,12 +220,31 @@ static void call_class_loads(void)
         if (PrintLoading) {
             _objc_inform("LOAD: +[%s load]\n", cls->nameForLogging());
         }
+        
+        
+        
+        // 类的 + load 方法
+        
         (*load_method)(cls, @selector(load));
     }
     
     // Destroy the detached list.
     if (classes) free(classes);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -348,6 +386,15 @@ void call_load_methods(void)
     void *pool = objc_autoreleasePoolPush();
 
     do {
+        
+        // main 函数进来，跑 + load 方法
+        
+        
+        // + load， 类，优于分类
+        
+        
+        
+        
         // 1. Repeatedly call class +loads until there aren't any more
         while (loadable_classes_used > 0) {
             call_class_loads();
@@ -363,5 +410,13 @@ void call_load_methods(void)
 
     loading = NO;
 }
+
+
+
+
+
+
+
+
 
 

@@ -950,6 +950,12 @@ void _objc_init(void)
 #endif
     _imp_implementationWithBlock_init();
 
+    
+    
+    //  该方法的实现，在 dyld 的源代码中
+    
+    
+    // main 函数进来，跑 + load 方法
     _dyld_objc_notify_register(&map_images, load_images, unmap_image);
 
 #if __OBJC2__

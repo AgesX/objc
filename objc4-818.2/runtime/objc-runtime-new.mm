@@ -3516,6 +3516,13 @@ static void loadAllCategories() {
 extern bool hasLoadMethods(const headerType *mhdr);
 extern void prepare_load_methods(const headerType *mhdr);
 
+
+
+
+
+
+
+
 void
 load_images(const char *path __unused, const struct mach_header *mh)
 {
@@ -3536,8 +3543,15 @@ load_images(const char *path __unused, const struct mach_header *mh)
     }
 
     // Call +load methods (without runtimeLock - re-entrant)
+    
+    // main 函数进来，跑 + load 方法
     call_load_methods();
 }
+
+
+
+
+
 
 
 /***********************************************************************
