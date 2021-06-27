@@ -9619,9 +9619,32 @@ Class class_setSuperclass(Class cls, Class newSuper)
 
 void runtime_init(void)
 {
+    
+    
+    
+    // 初始化分类
+    
+    
+    
     objc::unattachedCategories.init(32);
+    
+    
+    
+    // 初始化类的表
+    
     objc::allocatedClasses.init();
 }
 
 // __OBJC2__
 #endif
+
+
+
+
+
+
+
+
+
+
+

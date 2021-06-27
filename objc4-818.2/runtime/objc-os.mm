@@ -933,6 +933,13 @@ void _objc_atfork_child()
 
 
 
+
+
+
+
+// runtime + 类的信息
+
+
 void _objc_init(void)
 {
     static bool initialized = false;
@@ -943,6 +950,11 @@ void _objc_init(void)
     environ_init();
     tls_init();
     static_init();
+    
+    
+    
+    
+    
     runtime_init();
     exception_init();
 #if __OBJC2__
@@ -956,12 +968,34 @@ void _objc_init(void)
     
     
     // main 函数进来，跑 + load 方法
+    
+    
+    
+    
+    
+    // map_images 函数， 什么时候，调用
+    
+    
+    
+    // map_images， 映射即管理，
+    // 映射镜像文件， 到内存中
+    
+    
+    
+    
     _dyld_objc_notify_register(&map_images, load_images, unmap_image);
 
 #if __OBJC2__
     didCallDyldNotifyRegister = true;
 #endif
 }
+
+
+
+
+
+
+
 
 
 
