@@ -3945,6 +3945,22 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             disableTaggedPointers();
         }
         
+        
+        
+        
+        
+        
+        
+        
+        //  Obfuscator
+        //  混淆器
+        
+        
+        
+        
+        
+        // 针对，小对象，处理的
+        
         initializeTaggedPointerObfuscator();
 
         if (PrintConnecting) {
@@ -3956,14 +3972,64 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
         // 4/3 is NXMapTable's load factor
         int namedClassesSize = 
             (isPreoptimized() ? unoptimizedTotalClasses : totalClasses) * 4 / 3;
+        
+        
+        
+        
+        
+        
+        // 创建了，一个表，用来放类
+        
+        
+        // 表结构， 为了查找快
+        
         gdb_objc_realized_classes =
             NXCreateMapTable(NXStrValueMapPrototype, namedClassesSize);
 
+        
+        
+        
+        
         ts.log("IMAGE TIMES: first time tasks");
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Fix up @selector references
     static size_t UnfixedSelectors;
+    
+    
+    
+    // 处理，方法的选择子
+    
     {
         mutex_locker_t lock(selLock);
         for (EACH_HEADER) {
@@ -9508,6 +9574,17 @@ classSlotForTagIndex(objc_tag_index_t tag)
 * or retrieving payload values. They are filled with randomness on first
 * use.
 **********************************************************************/
+
+
+
+
+
+
+
+// 做混淆
+
+
+
 static void
 initializeTaggedPointerObfuscator(void)
 {
@@ -9518,7 +9595,14 @@ initializeTaggedPointerObfuscator(void)
         objc_debug_taggedpointer_obfuscator &= ~_OBJC_TAG_MASK;
 
 #if OBJC_SPLIT_TAGGED_POINTERS
+        
+        
+        
         // The obfuscator doesn't apply to any of the extended tag mask or the no-obfuscation bit.
+        
+        
+        // mask 处理
+        
         objc_debug_taggedpointer_obfuscator &= ~(_OBJC_TAG_EXT_MASK | _OBJC_TAG_NO_OBFUSCATION_MASK);
 
         // Shuffle the first seven entries of the tag permutator.
@@ -9535,6 +9619,17 @@ initializeTaggedPointerObfuscator(void)
         objc_debug_taggedpointer_obfuscator = 0;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
