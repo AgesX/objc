@@ -3378,6 +3378,10 @@ void _objc_flush_caches(Class cls)
 
 
 
+
+
+
+
 /***********************************************************************
 * map_images
 * Process the given images which are being mapped in by dyld.
@@ -3385,6 +3389,10 @@ void _objc_flush_caches(Class cls)
 *
 * Locking: write-locks runtimeLock
 **********************************************************************/
+
+
+
+
 void
 map_images(unsigned count, const char * const paths[],
            const struct mach_header * const mhdrs[])

@@ -451,6 +451,40 @@ void objc_addLoadImageFunc(objc_func_loadImage _Nonnull func) {
 #include "objc-file-old.h"
 #endif
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// map_images 函数
+
+
+
+
+//  类的属性、方法、protocols，
+
+//  给映射过去
+
+
+
+
+
+
 void 
 map_images_nolock(unsigned mhCount, const char * const mhPaths[],
                   const struct mach_header * const mhdrs[])
@@ -478,6 +512,10 @@ map_images_nolock(unsigned mhCount, const char * const mhPaths[],
     // Count classes. Size various table based on the total.
     int totalClasses = 0;
     int unoptimizedTotalClasses = 0;
+    
+    
+    
+    // 下面是一个代码块，进行局部处理
     {
         uint32_t i = mhCount;
         while (i--) {
@@ -592,16 +630,40 @@ map_images_nolock(unsigned mhCount, const char * const mhPaths[],
 
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //  hCount, mach - o 的头的大小
+    
+    
     if (hCount > 0) {
+        
+        
+        
         
         //  _objc_init里面的调用的map_images
         // 最终会调用 objc-runtime-new.mm 里面的 _read_images方法
+        
+        
+        
+        
+        // 重点，
+        // 读， 镜像文件
         
         
         _read_images(hList, hCount, totalClasses, unoptimizedTotalClasses);
     }
 
     firstTime = NO;
+    
+    
+    
     
     // Call image load funcs after everything is set up.
     for (auto func : loadImageFuncs) {
@@ -610,6 +672,38 @@ map_images_nolock(unsigned mhCount, const char * const mhPaths[],
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -983,7 +1077,9 @@ void _objc_init(void)
     
     
     
-    _dyld_objc_notify_register(&map_images, load_images, unmap_image);
+    _dyld_objc_notify_register(&map_images, load_images, unmap_image);                // 跨库调用
+    
+    
     
     //  map_images,     引用函数类型
     
@@ -1021,7 +1117,7 @@ void _objc_init(void)
     
     
     
-    
+    // _dyld_objc_notify_register 的实现，在 dyld 这个库里面看
     
 
 #if __OBJC2__
