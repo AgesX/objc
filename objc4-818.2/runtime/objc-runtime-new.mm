@@ -3817,6 +3817,34 @@ readProtocol(protocol_t *newproto, Class protocol_class,
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * _read_images
 * Perform initial processing of the headers in the linked 
@@ -3826,6 +3854,21 @@ readProtocol(protocol_t *newproto, Class protocol_class,
 *
 * Locking: runtimeLock acquired by map_images
 **********************************************************************/
+
+
+/*
+ 
+    两个重点方法，
+ 
+    lookUpIMP
+ 
+    和
+    read_images
+ */
+
+
+
+
 void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int unoptimizedTotalClasses)
 {
     header_info *hi;
@@ -4227,6 +4270,35 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
 
 #undef EACH_HEADER
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
