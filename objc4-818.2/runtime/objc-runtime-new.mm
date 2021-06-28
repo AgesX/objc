@@ -3868,7 +3868,7 @@ readProtocol(protocol_t *newproto, Class protocol_class,
 
 
 
-
+// 处理 class , selector, protocol, category 
 void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int unoptimizedTotalClasses)
 {
     header_info *hi;
@@ -4119,14 +4119,14 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
              是在map_images的时候发生的，
              
              在new-ABI的标准下，
-             _objc_init里面的调用的map_images
+             _objc_init里面的调用的 map_images
              
-             最终会调用objc-runtime-new.mm里面的_read_images方法，
-             
-             
+             最终会调用 objc-runtime-new.mm 里面的 _read_images 方法，
              
              
-             而在_read_images方法的结尾，
+             
+             
+             而在 _read_images 方法的结尾，
              有以下的代码片段：
              
              
@@ -4138,9 +4138,9 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             /*
              这段代码很容易理解：
 
-             1)、把category的实例方法、协议以及属性添加到类上
+             1)、把 category 的实例方法、协议以及属性添加到类上
              
-             2)、把category的类方法和协议添加到类的 metaclass 上
+             2)、把 category 的类方法和协议添加到类的 metaclass 上
              
              */
             
@@ -4159,6 +4159,12 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
     // +load handled by prepare_load_methods()
 
     // Realize non-lazy classes (for +load methods and static instances)
+    
+    
+    
+    // 实现，非懒加载的类
+    
+    
     for (EACH_HEADER) {
         classref_t const *classlist = hi->nlclslist(&count);
         for (i = 0; i < count; i++) {
