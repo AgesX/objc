@@ -984,11 +984,53 @@ void _objc_init(void)
     
     
     _dyld_objc_notify_register(&map_images, load_images, unmap_image);
+    
+    //  map_images,     引用函数类型
+    
+    
+    
+    
+    
+    /*
+     
+     
+     
+     如果外界的 map_images 改变了，
+     
+     
+     
+     
+     _dyld_objc_notify_register 使用的 map_images ，也会对应改变
+    
+     
+     
+     */
+    
+    
+    
+    
+    
+    
+    // load_images， 值函数类型
+    
+    // 走一次，就完事了
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 #if __OBJC2__
     didCallDyldNotifyRegister = true;
 #endif
 }
+
+
+
 
 
 
