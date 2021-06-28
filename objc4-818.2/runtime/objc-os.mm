@@ -1077,6 +1077,9 @@ void _objc_init(void)
     
     
     
+    
+    // 前面的单词，说明了，
+    // 去 dyld 这个库里面去查找
     _dyld_objc_notify_register(&map_images, load_images, unmap_image);                // 跨库调用
     
     
