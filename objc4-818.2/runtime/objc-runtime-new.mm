@@ -550,7 +550,17 @@ addClassTableEntry(Class cls, bool addMeta = true)
     // data segments, but it is not allowed to be in the dynamic table already.
     
     
-    //
+    //  当前要进行开辟的类的
+    
+    //  那个表
+    
+    
+    
+    
+    
+    //  那个表的初始化，runtime 的 init objc
+    
+    //  LG 的说，以前的第二个视频，里面讲过
     
     auto &set = objc::allocatedClasses.get();
 
@@ -560,7 +570,34 @@ addClassTableEntry(Class cls, bool addMeta = true)
         set.insert(cls);
     if (addMeta)
         addClassTableEntry(cls->ISA(), false);
+    
+    
+    // 这样就，添加到了内存
+    // 把数据，从 mach - o ，读到表里面
+    
+    
+    
+    // 数据在 mach - o 中
+    // data 以 mach - o 的格式，储存
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -3661,6 +3698,22 @@ bool mustReadClasses(header_info *hi, bool hasDyldRoots)
     }
     return YES;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
