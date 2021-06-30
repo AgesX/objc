@@ -558,7 +558,7 @@ addClassTableEntry(Class cls, bool addMeta = true)
     
     
     
-    //  那个表的初始化，runtime 的 init objc
+    //  那个表的初始化，在   runtime 的 init objc
     
     //  LG 的说，以前的第二个视频，里面讲过
     
@@ -3729,6 +3729,9 @@ bool mustReadClasses(header_info *hi, bool hasDyldRoots)
 *
 * Locking: runtimeLock acquired by map_images or objc_readClassPair
 **********************************************************************/
+
+
+// readClass， 把名字，绑定到类的信息
 Class readClass(Class cls, bool headerIsBundle, bool headerIsPreoptimized)
 {
     const char *mangledName = cls->nonlazyMangledName();
