@@ -2710,6 +2710,13 @@ struct objc_class : objc_object {
         return bits.safe_ro()->getName();
     }
 
+    
+    
+    
+    
+    
+    
+    
     const char *mangledName() { 
         // fixme can't assert locks here
         ASSERT_THIS_NOT_NULL;

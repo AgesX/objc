@@ -548,6 +548,10 @@ addClassTableEntry(Class cls, bool addMeta = true)
 
     // This class is allowed to be a known class via the shared cache or via
     // data segments, but it is not allowed to be in the dynamic table already.
+    
+    
+    //
+    
     auto &set = objc::allocatedClasses.get();
 
     ASSERT(set.find(cls) == set.end());
@@ -1846,6 +1850,17 @@ static void addNamedClass(Class cls, const char *name, Class replacing = nil)
         // secondary meta->nonmeta table.
         addNonMetaClass(cls);
     } else {
+        // 给表，添加信息
+        
+        // 数据表:
+        
+        // 地址，名字，
+        
+        // 是否初始化
+        
+        
+        
+        
         NXMapInsert(gdb_objc_realized_classes, name, cls);
     }
     ASSERT(!(cls->data()->flags & RO_META));
@@ -1853,6 +1868,17 @@ static void addNamedClass(Class cls, const char *name, Class replacing = nil)
     // wrong: constructed classes are already realized when they get here
     // ASSERT(!cls->isRealized());
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -3710,6 +3736,13 @@ Class readClass(Class cls, bool headerIsBundle, bool headerIsPreoptimized)
         ASSERT(mangledName == nullptr || getClassExceptSomeSwift(mangledName));
     } else {
         if (mangledName) { //some Swift generic classes can lazily generate their names
+            
+            
+            
+            // 一般，走这里
+            
+            // 把类的信息，插入到表里面
+            
             addNamedClass(cls, mangledName, replacing);
         } else {
             Class meta = cls->ISA();
@@ -3717,6 +3750,11 @@ Class readClass(Class cls, bool headerIsBundle, bool headerIsPreoptimized)
             ASSERT(metaRO->getNonMetaclass() && "Metaclass with lazy name must have a pointer to the corresponding nonmetaclass.");
             ASSERT(metaRO->getNonMetaclass() == cls && "Metaclass nonmetaclass pointer must equal the original class.");
         }
+        
+        
+        // 把类信息，添加到表的索引
+        
+        
         addClassTableEntry(cls);
     }
 
@@ -3728,6 +3766,45 @@ Class readClass(Class cls, bool headerIsBundle, bool headerIsPreoptimized)
     
     return cls;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
