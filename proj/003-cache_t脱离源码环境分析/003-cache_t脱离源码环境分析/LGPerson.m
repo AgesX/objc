@@ -37,3 +37,61 @@
     NSLog(@"LGPerson say : %s",__func__);
 }
 @end
+
+
+
+
+
+/*
+ 
+ 
+ read_images,
+ 
+ 
+ 
+ 
+ 
+ readClass
+ 
+ 
+ 
+ 
+ */
+
+
+
+
+
+
+/*
+ 
+ 
+类的加载
+ 
+ */
+ 
+ 
+
+
+
+/*
+ 
+ 从
+ dyld,
+ 
+
+ 
+ 到
+ dylib,
+ 
+ objc_init
+ 
+ 
+ */
+
+
+
+
+
+
+
