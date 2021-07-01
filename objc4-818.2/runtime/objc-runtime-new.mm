@@ -2823,9 +2823,40 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 
     // fixme verify class is not in an un-dlopened part of the shared cache?
 
-    auto ro = (const class_ro_t *)cls->data();     //   clean memory
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //  读取数据 data
+    
+    
+    
+    
+    
+    
+    
+    //  读取整个 class 对应的 地址，
+    //  里面的当前的 data
+    
+    
+    
+    //  从 mach - o 文件中，读取到了 data
+    
+    
+    auto ro = (const class_ro_t *)cls->data();     //   clean memory,  对应只读
+    
+    
+    
+    
+    //  判断，元类
     auto isMeta = ro->flags & RO_META;
     
     
@@ -2834,6 +2865,10 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
     
     
     
+    
+    
+    
+    // 我感觉， RO_FUTURE， 是有状态的， 重入的
     
     
     if (ro->flags & RO_FUTURE) {
@@ -2859,10 +2894,25 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
         
         
     } else {
+        
+        
+        // 一般走这里
+        
+        
+        // 我感觉，这里是无状态的
+        
+        
+        
+        
         // Normal class. Allocate writeable class data.
         rw = objc::zalloc<class_rw_t>();
         rw->set_ro(ro);
         rw->flags = RW_REALIZED|RW_REALIZING|isMeta;
+        
+        
+        
+        // 在这里，做重新赋值
+        
         cls->setData(rw);
         
         
