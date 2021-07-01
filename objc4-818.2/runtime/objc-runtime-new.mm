@@ -2777,6 +2777,35 @@ static void validateAlreadyRealizedClass(Class cls) {
 * Returns the real class structure for the class. 
 * Locking: runtimeLock must be write-locked by the caller
 **********************************************************************/
+
+
+
+
+//  LG 的，对于这个方法，盲猜
+
+
+/*
+ 
+ 
+ 
+ 
+// 999，
+ 
+ 
+ // LookUpIMP, 如果没实现， 走这里
+
+ 
+ 
+ 
+// 类的加载，也会走这里
+
+ 
+ 
+
+ 
+
+*/
+
 static Class realizeClassWithoutSwift(Class cls, Class previously)
 {
     runtimeLock.assertLocked();
@@ -2809,10 +2838,18 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
     
     if (ro->flags & RO_FUTURE) {
         // This was a future class. rw data is already allocated.
+        
+        
+        
+        //  查看，数据结构
+        
+        
         rw = cls->data();
         ro = cls->data()->ro();
         ASSERT(!isMeta);
         cls->changeInfo(RW_REALIZED|RW_REALIZING, RW_FUTURE);
+        
+        
         
         
         
@@ -2827,6 +2864,8 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
         rw->set_ro(ro);
         rw->flags = RW_REALIZED|RW_REALIZING|isMeta;
         cls->setData(rw);
+        
+        
         
         
         
@@ -2989,6 +3028,11 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
         
         addSubclass(supercls, cls);
     } else {
+        
+        
+        
+        
+        
         addRootClass(cls);
     }
 
@@ -2999,6 +3043,8 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 
     return cls;
 }
+
+
 
 
 
@@ -4382,12 +4428,31 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
                 // We can't disallow all Swift classes because of
                 // classes like Swift.__EmptyArrayStorage
             }
+            
+            //  LG 的，对于这个方法，盲猜
+            
+            
+            
+            // 此时， cls 只是一个地址 + name
+            
+            
             realizeClassWithoutSwift(cls, nil);
         }
     }
 
     ts.log("IMAGE TIMES: realize non-lazy classes");
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Realize newly-resolved future classes, in case CF manipulates them
     if (resolvedFutureClasses) {
         for (i = 0; i < resolvedFutureClassCount; i++) {
@@ -4395,12 +4460,23 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             if (cls->isSwiftStable()) {
                 _objc_fatal("Swift class is not allowed to be future");
             }
+            
+            
+            
+            
+            
             realizeClassWithoutSwift(cls, nil);
             cls->setInstancesRequireRawIsaRecursively(false/*inherited*/);
         }
         free(resolvedFutureClasses);
     }
 
+    
+    
+    
+    
+    
+    
     ts.log("IMAGE TIMES: realize future classes");
 
     if (DebugNonFragileIvars) {
