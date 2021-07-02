@@ -1568,6 +1568,11 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
 * Attaches any outstanding categories.
 * Locking: runtimeLock must be held by the caller
 **********************************************************************/
+
+
+
+// 方法化，当前的类
+
 static void methodizeClass(Class cls, Class previously)
 {
     runtimeLock.assertLocked();
@@ -2906,6 +2911,11 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
         
         // Normal class. Allocate writeable class data.
         rw = objc::zalloc<class_rw_t>();
+        
+        
+        // 一般 rw,       ro 读取的
+        
+        
         rw->set_ro(ro);
         rw->flags = RW_REALIZED|RW_REALIZING|isMeta;
         
@@ -2961,19 +2971,24 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
     
     
     
+    // 66， 补充完整
     
     
-    //  继承链，都确定下来
+    //  继承链，都确定下来          (   典型的递归   )
     
-    
+    // 66_1 ，  class 信息， 完善 父类
     supercls = realizeClassWithoutSwift(remapClass(cls->getSuperclass()), nil);
     
     
     
     //  元类的继承链
     
+    
+    // 66_2 ，  class 信息， 完善 元类
     metacls = realizeClassWithoutSwift(remapClass(cls->ISA()), nil);
 
+    
+    
     
     
     
@@ -2986,7 +3001,13 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 #if SUPPORT_NONPOINTER_ISA
     if (isMeta) {
         // Metaclasses do not need any features from non pointer ISA
-        // This allows for a faspath for classes in objc_retain/objc_release.
+        // This allows for a fast path for classes in objc_retain/objc_release.
+        
+        
+        
+        // 元类， 设置 isa
+        
+        
         cls->setInstancesRequireRawIsa();
     } else {
         // Disable non-pointer isa for some classes and/or platforms.
@@ -3039,6 +3060,13 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
 
     // Reconcile instance variable offsets / layout.
     // This may reallocate class_ro_t, updating our ro variable.
+    
+    
+    
+    //      reconcile,   调和
+    
+    
+    
     if (supercls  &&  !isMeta) reconcileInstanceVariables(cls, supercls, ro);
 
     // Set fastInstanceSize if it wasn't set already.
@@ -3086,13 +3114,15 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
         addRootClass(cls);
     }
 
-    // Attach categories
+    // Attach categories              // 分类
     
     // 准备 method list , property list, protocol list
     methodizeClass(cls, previously);
 
     return cls;
 }
+
+
 
 
 
