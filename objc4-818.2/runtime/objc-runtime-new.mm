@@ -1607,11 +1607,29 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
     
     
     // rwe, 在这里初始化
-    // 因为本来的类，添加方法 、 协议
+    // 因为本来的类，需要添加方法 、 协议
     
     // rwe, 在分类的添加的时候，才会处理
     
     auto rwe = cls->data()->extAllocIfNeeded();
+    
+    /*
+     
+     extAllocIfNeeded, 调用的时机，
+     
+     
+     使用 rwe
+     
+     
+     1,  分类
+     2， addMethod
+     3,  addProperties
+     4,  addProtocols
+     
+     */
+    
+    
+    
 
     for (uint32_t i = 0; i < cats_count; i++) {
         auto& entry = cats_list[i];
