@@ -1581,6 +1581,8 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
                 rwe->methods.attachLists(mlists, mcount);
                 mcount = 0;
             }
+            
+            //  准备，分类的方法
             mlists[ATTACH_BUFSIZ - ++mcount] = mlist;
             fromBundle |= entry.hi->isBundle();
         }
@@ -1604,10 +1606,24 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
             protolists[ATTACH_BUFSIZ - ++protocount] = protolist;
         }
     }
+    
+    
+    
+    
+    
+    
 
     if (mcount > 0) {
+        
+        
+        // 这个是，给方法，做排序
+        
         prepareMethodLists(cls, mlists + ATTACH_BUFSIZ - mcount, mcount,
                            NO, fromBundle, __func__);
+        
+        
+        // 这个是，添加分类的方法
+        
         rwe->methods.attachLists(mlists + ATTACH_BUFSIZ - mcount, mcount);
         if (flags & ATTACH_EXISTING) {
             flushCaches(cls, __func__, [](Class c){
@@ -1622,6 +1638,16 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
 
     rwe->protocols.attachLists(protolists + ATTACH_BUFSIZ - protocount, protocount);
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4666,7 +4692,8 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             
             
             
-            // 走这里， 把类 class 从懒加载的类， 变成了 非懒加载的类
+            //  走 + load 方法，把类 class 从懒加载的类， 变成了 非懒加载的类
+            //  走这里， 做类的加载
             realizeClassWithoutSwift(cls, nil);
         }
     }
