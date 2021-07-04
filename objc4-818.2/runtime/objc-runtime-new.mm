@@ -4613,7 +4613,27 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
     // 实现，非懒加载的类
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     // 在类里面， 实现  +load methods ， 把类 class 从懒加载的类， 变成了 非懒加载的类
+    
+    
+    
+    
+    //  load 方法，让类，提前加载，
+    //  + load 方法，在 load_images 的时候，直接调用
+    
+    
+    
+    
+    // 懒加载的类， 不调用，就不做类的加载
+    
     
     for (EACH_HEADER) {
         classref_t const *classlist = hi->nlclslist(&count);
@@ -4641,6 +4661,12 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
             // 此时， cls 只是一个地址 + name
             
             
+            
+            
+            
+            
+            
+            // 走这里， 把类 class 从懒加载的类， 变成了 非懒加载的类
             realizeClassWithoutSwift(cls, nil);
         }
     }
