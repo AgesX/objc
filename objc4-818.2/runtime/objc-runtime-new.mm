@@ -1341,6 +1341,17 @@ static bool isBundleClass(Class cls)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 static void 
 fixupMethodList(method_list_t *mlist, bool bundleCopy, bool sort)
 {
@@ -1358,11 +1369,19 @@ fixupMethodList(method_list_t *mlist, bool bundleCopy, bool sort)
             meth.setName(sel_registerNameNoLock(name, bundleCopy));
         }
     }
+    
+    
+    
+    
 
     // Sort by selector address.
     // Don't try to sort small lists, as they're immutable.
     // Don't try to sort big lists of nonstandard size, as stable_sort
     // won't copy the entries properly.
+    
+    
+    
+    
     if (sort && !mlist->isSmallList() && mlist->entsize() == method_t::bigSize) {
         method_t::SortBySELAddress sorter;
         std::stable_sort(&mlist->begin()->big(), &mlist->end()->big(), sorter);
@@ -1374,6 +1393,24 @@ fixupMethodList(method_list_t *mlist, bool bundleCopy, bool sort)
         mlist->setFixedUp();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 进行基于 sel 的方法排序
 
 
 static void 
@@ -1412,6 +1449,10 @@ prepareMethodLists(Class cls, method_list_t **addedLists, int addedCount,
 
         // Fixup selectors if necessary
         if (!mlist->isFixedUp()) {
+            
+            
+            // 里面有，对方法的排序，基于 sel
+            
             fixupMethodList(mlist, methodsFromBundle, true/*sort*/);
         }
     }
@@ -1459,6 +1500,28 @@ class_rw_t::extAlloc(const class_ro_t *ro, bool deepCopy)
     set_ro_or_rwe(rwe, ro);
     return rwe;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Attach method lists and properties and protocols from categories to a class.
 // Assumes the categories in cats are all loaded and sorted by load order, 
@@ -1562,6 +1625,12 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
 
 
 
+
+
+
+
+
+
 /***********************************************************************
 * methodizeClass
 * Fixes up cls's method list, protocol list, and property list.
@@ -1582,28 +1651,38 @@ static void methodizeClass(Class cls, Class previously)
     auto ro = rw->ro();
     auto rwe = rw->ext();
 
+    
+    
     // Methodizing for the first time
     if (PrintConnecting) {
         _objc_inform("CLASS: methodizing class '%s' %s", 
                      cls->nameForLogging(), isMeta ? "(meta)" : "");
     }
+    
+    
 
     // Install methods and properties that the class implements itself.
     method_list_t *list = ro->baseMethods();
+    
+    // 获取到方法列表，其他的顺理成章
+    
     if (list) {
         
-        
+        // 进行基于 sel 的方法排序
         prepareMethodLists(cls, &list, 1, YES, isBundleClass(cls), nullptr);
         if (rwe) rwe->methods.attachLists(&list, 1);
     }
 
     property_list_t *proplist = ro->baseProperties;
     if (rwe && proplist) {
-        
+        // 检验存在
         
         rwe->properties.attachLists(&proplist, 1);
     }
 
+    
+    
+    
     protocol_list_t *protolist = ro->baseProtocols;
     if (rwe && protolist) {
         
@@ -1611,6 +1690,9 @@ static void methodizeClass(Class cls, Class previously)
         rwe->protocols.attachLists(&protolist, 1);
     }
 
+    
+    
+    
     // Root classes get bonus method implementations if they don't have 
     // them already. These apply before category replacements.
     if (cls->isRootMetaclass()) {
@@ -1645,6 +1727,29 @@ static void methodizeClass(Class cls, Class previously)
     }
 #endif
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -2913,7 +3018,11 @@ static Class realizeClassWithoutSwift(Class cls, Class previously)
         rw = objc::zalloc<class_rw_t>();
         
         
-        // 一般 rw,       ro 读取的
+        
+        
+        // 一般 rw,           通过 ro 读取的
+        
+        
         
         
         rw->set_ro(ro);
