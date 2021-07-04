@@ -1365,6 +1365,8 @@ fixupMethodList(method_list_t *mlist, bool bundleCopy, bool sort)
     
         // Unique selectors in list.
         for (auto& meth : *mlist) {
+            
+            // 先把名字处理完毕，再做排序
             const char *name = sel_cname(meth.name());
             meth.setName(sel_registerNameNoLock(name, bundleCopy));
         }
@@ -1383,6 +1385,11 @@ fixupMethodList(method_list_t *mlist, bool bundleCopy, bool sort)
     
     
     if (sort && !mlist->isSmallList() && mlist->entsize() == method_t::bigSize) {
+        
+        
+        // 在这里，实现了，基于名字的，顺序排序
+        
+        
         method_t::SortBySELAddress sorter;
         std::stable_sort(&mlist->begin()->big(), &mlist->end()->big(), sorter);
     }
@@ -1393,6 +1400,9 @@ fixupMethodList(method_list_t *mlist, bool bundleCopy, bool sort)
         mlist->setFixedUp();
     }
 }
+
+
+
 
 
 
@@ -1641,6 +1651,8 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
 
 
 // 方法化，当前的类
+
+// methodize, 对方法的序列化
 
 static void methodizeClass(Class cls, Class previously)
 {
