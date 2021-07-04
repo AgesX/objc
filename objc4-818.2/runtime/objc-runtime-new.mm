@@ -1284,7 +1284,24 @@ public:
             result.first->second.append(lc);
         }
     }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // LG 的说，
+    // attach 是循环遍历的
+    // 一个分类，一个分类的添加进来
+    
+    
     void attachToClass(Class cls, Class previously, int flags)
     {
         runtimeLock.assertLocked();
@@ -1299,14 +1316,29 @@ public:
             category_list &list = it->second;
             if (flags & ATTACH_CLASS_AND_METACLASS) {
                 int otherFlags = flags & ~ATTACH_CLASS_AND_METACLASS;
+                
+                
+                
+                // 添加分类的方法:
+                
+                
+                // 添加分类的实例方法
                 attachCategories(cls, list.array(), list.count(), otherFlags | ATTACH_CLASS);
+                
+                // 添加分类的类方法
                 attachCategories(cls->ISA(), list.array(), list.count(), otherFlags | ATTACH_METACLASS);
             } else {
+                
+                // 添加分类的实例方法
                 attachCategories(cls, list.array(), list.count(), flags);
             }
             map.erase(it);
         }
     }
+    
+    
+    
+    
 
     void eraseCategoryForClass(category_t *cat, Class cls)
     {
@@ -1574,6 +1606,13 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
     for (uint32_t i = 0; i < cats_count; i++) {
         auto& entry = cats_list[i];
 
+        
+        
+        // entry.cat
+        // 这里的 cat, 是 category
+        
+        
+        
         method_list_t *mlist = entry.cat->methodsForMeta(isMeta);
         if (mlist) {
             if (mcount == ATTACH_BUFSIZ) {
