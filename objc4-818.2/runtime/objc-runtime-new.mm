@@ -4607,9 +4607,13 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
     // Realize non-lazy classes (for +load methods and static instances)
     
     
+    // 实现，常规的类
+    
     
     // 实现，非懒加载的类
     
+    
+    // 在类里面， 实现  +load methods ， 把类 class 从懒加载的类， 变成了 非懒加载的类
     
     for (EACH_HEADER) {
         classref_t const *classlist = hi->nlclslist(&count);
