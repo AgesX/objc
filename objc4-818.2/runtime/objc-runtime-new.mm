@@ -1601,11 +1601,23 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
     uint32_t protocount = 0;
     bool fromBundle = NO;
     bool isMeta = (flags & ATTACH_METACLASS);
+    
+    
+    
+    
+    
+    // rwe, 在这里初始化
+    // 因为本来的类，添加方法 、 协议
+    
+    // rwe, 在分类的添加的时候，才会处理
+    
     auto rwe = cls->data()->extAllocIfNeeded();
 
     for (uint32_t i = 0; i < cats_count; i++) {
         auto& entry = cats_list[i];
 
+        
+        
         
         
         // entry.cat
@@ -1622,10 +1634,17 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
             }
             
             //  准备，分类的方法
+            
+            // 在一个循环里面，做方法的倒序插入
+            
             mlists[ATTACH_BUFSIZ - ++mcount] = mlist;
             fromBundle |= entry.hi->isBundle();
+        
         }
 
+        
+        
+        
         property_list_t *proplist =
             entry.cat->propertiesForMeta(isMeta, entry.hi);
         if (proplist) {
@@ -1661,8 +1680,11 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
                            NO, fromBundle, __func__);
         
         
-        // 这个是，添加分类的方法
+        //  这个是，添加分类的方法
         
+        
+        //  rwe，
+        //  rw extern, 这个是来搞分类的
         rwe->methods.attachLists(mlists + ATTACH_BUFSIZ - mcount, mcount);
         if (flags & ATTACH_EXISTING) {
             flushCaches(cls, __func__, [](Class c){
@@ -1677,6 +1699,8 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
 
     rwe->protocols.attachLists(protolists + ATTACH_BUFSIZ - protocount, protocount);
 }
+
+
 
 
 
