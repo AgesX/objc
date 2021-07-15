@@ -1629,6 +1629,19 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
      */
     
     
+    /*
+     
+     调用是因为，对原始的内存，进行修改的时候，
+     才会开辟 rwe 的空间
+     
+     
+     
+     
+     
+     如果没有对 rwe 的处理，就没有必要开辟 rwe 的空间
+     
+     */
+    
     
 
     for (uint32_t i = 0; i < cats_count; i++) {

@@ -1774,11 +1774,18 @@ class list_array_tt {
     
     
     
-    
+    // 添加 category 
     void attachLists(List* const * addedLists, uint32_t addedCount) {
         if (addedCount == 0) return;
 
         if (hasArray()) {
+            
+            
+            // 从 多 到 多
+            
+            
+            
+            
             // many lists -> many lists
             uint32_t oldCount = array()->count;
             uint32_t newCount = oldCount + addedCount;
@@ -1795,11 +1802,19 @@ class list_array_tt {
             validate();
         }
         else if (!list  &&  addedCount == 1) {
+            
+            // 从 0 到 1
+            
+            
             // 0 lists -> 1 list
             list = addedLists[0];
             validate();
         } 
         else {
+            
+            // 从 1 到 多
+            
+            
             // 1 list -> many lists
             Ptr<List> oldList = list;
             uint32_t oldCount = oldList ? 1 : 0;
