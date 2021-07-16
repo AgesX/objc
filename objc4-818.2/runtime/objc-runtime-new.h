@@ -1665,10 +1665,20 @@ class list_array_tt {
         return arrayAndFlag & 1;
     }
 
+    
+    
+    
+    
+    // 取数据
     array_t *array() const {
+        
+        // 从地址里面，拿东西
         return (array_t *)(arrayAndFlag & ~1);
     }
 
+    
+    
+    // 存数据
     void setArray(array_t *array) {
         arrayAndFlag = (uintptr_t)array | 1;
     }
@@ -1773,6 +1783,11 @@ class list_array_tt {
     
     
     
+    // 怎么把方法，添加到列表，里面来
+    
+    
+    
+    
     
     // 添加 category 
     void attachLists(List* const * addedLists, uint32_t addedCount) {
@@ -1815,11 +1830,24 @@ class list_array_tt {
             // 从 1 到 多
             
             
+            // category
+            // 后添加的，在前面
+            
+            
+            
+            
+            
             // 1 list -> many lists
             Ptr<List> oldList = list;
             uint32_t oldCount = oldList ? 1 : 0;
             uint32_t newCount = oldCount + addedCount;
+            
+            
+            // 存数据
             setArray((array_t *)malloc(array_t::byteSize(newCount)));
+            
+            
+            // 取数据
             array()->count = newCount;
             if (oldList) array()->lists[addedCount] = oldList;
             for (unsigned i = 0; i < addedCount; i++)
@@ -1828,6 +1856,9 @@ class list_array_tt {
         }
     }
 
+    
+    
+    
     
     
     
