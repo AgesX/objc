@@ -1716,6 +1716,31 @@ attachCategories(Class cls, const locstamped_category_t *cats_list, uint32_t cat
         
         //  rwe，
         //  rw extern, 这个是来搞分类的
+        
+        
+        
+        ///
+        
+        
+        
+        ///
+        
+        
+        ///
+        
+        
+        //  mlists + ATTACH_BUFSIZ - mcount
+        
+        //  指针平移， 取值
+        
+        //  从 mlists 的首地址，平移到其最后的一个元素 （   ATTACH_BUFSIZ - mcount   ）
+        
+        
+        ///
+        
+        
+        ///
+        
         rwe->methods.attachLists(mlists + ATTACH_BUFSIZ - mcount, mcount);
         if (flags & ATTACH_EXISTING) {
             flushCaches(cls, __func__, [](Class c){
