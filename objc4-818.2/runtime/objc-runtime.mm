@@ -734,11 +734,85 @@ objc_setHook_setAssociatedObject(objc_hook_setAssociatedObject _Nonnull newValue
   // See objc_object::setHasAssociatedObjects() for a replacement
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ 
+ 
+ 
+ 
+ 
+ 
+ void *
+ 
+ 
+ 
+ 
+ 万能指针，
+ 
+ 
+ 
+ 
+ 传什么，都可以
+ 
+ 
+ 
+ 
+ */
+
+
 void
 objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy)
 {
+    
+    //  设置，关联对象
+    
+    
     _object_set_associative_reference(object, key, value, policy);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void objc_removeAssociatedObjects(id object) 
 {
