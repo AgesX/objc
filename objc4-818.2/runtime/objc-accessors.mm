@@ -84,6 +84,11 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
     }
 
     id oldValue;
+    
+    
+    
+    // 通过偏移，拿到地址
+    
     id *slot = (id*) ((char*)self + offset);
 
     if (copy) {

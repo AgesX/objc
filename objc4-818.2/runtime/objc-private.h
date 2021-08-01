@@ -1082,12 +1082,32 @@ class DisguisedPtr {
     }
 
  public:
+    
+    
+    
+    
+    
+    
+    
+    //  构造函数
+    
+    
     DisguisedPtr() { }
     DisguisedPtr(T* ptr) 
         : value(disguise(ptr)) { }
     DisguisedPtr(const DisguisedPtr<T>& ptr) 
         : value(ptr.value) { }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     DisguisedPtr<T>& operator = (T* rhs) {
         value = disguise(rhs);
         return *this;
