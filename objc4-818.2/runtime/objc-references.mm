@@ -156,6 +156,37 @@ _object_get_associative_reference(id object, const void *key)
     return association.autoreleaseReturnedValue();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   设置，关联引用
+
+
+
+
 void
 _object_set_associative_reference(id object, const void *key, id value, uintptr_t policy)
 {
@@ -171,6 +202,8 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     ObjcAssociation association{policy, value};
 
     // retain the new value (if any) outside the lock.
+    
+    // 持有，新的
     association.acquireValue();
 
     bool isFirstAssociation = false;
@@ -179,6 +212,10 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
         AssociationsHashMap &associations(manager.get());
 
         if (value) {
+            
+            // 存在值，就设置
+            
+            
             auto refs_result = associations.try_emplace(disguised, ObjectAssociationMap{});
             if (refs_result.second) {
                 /* it's the first association we make */
@@ -192,6 +229,10 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
                 association.swap(result.first->second);
             }
         } else {
+            
+            // 不存在值，        就清除
+            
+            
             auto refs_it = associations.find(disguised);
             if (refs_it != associations.end()) {
                 auto &refs = refs_it->second;
@@ -215,9 +256,45 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     if (isFirstAssociation)
         object->setHasAssociatedObjects();
 
+    
+    
+    
+    
+    // 释放， 旧的
+    
     // release the old value (outside of the lock).
     association.releaseHeldValue();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Unlike setting/getting an associated reference,
 // this function is performance sensitive because of

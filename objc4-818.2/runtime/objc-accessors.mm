@@ -67,6 +67,15 @@ id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic) {
 
 static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy) __attribute__((always_inline));
 
+
+
+
+
+
+
+// 关联属性，设置
+
+
 static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)
 {
     if (offset == 0) {
@@ -92,6 +101,12 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
         
         // 修饰符， 对应 non atomic
         oldValue = *slot;
+        
+        
+        
+        // 赋值
+        
+        // 有个地址，指向他
         *slot = newValue;
     } else {
         
@@ -152,6 +167,11 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
 
 
 
+//  设置属性
+
+
+
+
 void objc_setProperty(id self, SEL _cmd, ptrdiff_t offset, id newValue, BOOL atomic, signed char shouldCopy) 
 {
     bool copy = (shouldCopy && shouldCopy != MUTABLE_COPY);
@@ -159,10 +179,30 @@ void objc_setProperty(id self, SEL _cmd, ptrdiff_t offset, id newValue, BOOL ato
     reallySetProperty(self, _cmd, newValue, offset, atomic, copy, mutableCopy);
 }
 
+
+
+
+
+
+
+
+
+
 void objc_setProperty_atomic(id self, SEL _cmd, id newValue, ptrdiff_t offset)
 {
     reallySetProperty(self, _cmd, newValue, offset, true, false, false);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 void objc_setProperty_nonatomic(id self, SEL _cmd, id newValue, ptrdiff_t offset)
 {
