@@ -110,7 +110,21 @@ class AssociationsManager {
     static Storage _mapStorage;
 
 public:
+    
+    
+    // 初始化
     AssociationsManager()   { AssociationsManagerLock.lock(); }
+    
+    
+    
+    
+    //  AssociationsManager manager;
+    
+    //  这样写一下，等价于，调用上面那个初始化函数，
+    //  做了一个加锁
+    
+    
+    
     ~AssociationsManager()  { AssociationsManagerLock.unlock(); }
 
     AssociationsHashMap &get() {
@@ -198,7 +212,16 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     if (object->getIsa()->forbidsAssociatedObjects())
         _objc_fatal("objc_setAssociatedObject called on instance (%p) of class %s which does not allow associated objects", object, object_getClassName(object));
 
+    
+    
+    
+    // 封装一下，对象
+    
     DisguisedPtr<objc_object> disguised{(objc_object *)object};
+    
+    
+    // 封装一下，策略和值
+    
     ObjcAssociation association{policy, value};
 
     // retain the new value (if any) outside the lock.
