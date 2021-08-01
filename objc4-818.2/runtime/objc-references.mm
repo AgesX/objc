@@ -102,12 +102,39 @@ public:
 typedef DenseMap<const void *, ObjcAssociation> ObjectAssociationMap;
 typedef DenseMap<DisguisedPtr<objc_object>, ObjectAssociationMap> AssociationsHashMap;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // class AssociationsManager manages a lock / hash table singleton pair.
 // Allocating an instance acquires the lock
 
 class AssociationsManager {
     using Storage = ExplicitInitDenseMap<DisguisedPtr<objc_object>, ObjectAssociationMap>;
-    static Storage _mapStorage;
+    
+    
+    
+    static Storage _mapStorage;   // 通过  static ， 保证 hash map 全场唯一
+    
+    // （   进程唯一    ）
+    
+    
+    
+    
 
 public:
     
@@ -152,9 +179,42 @@ public:
     }
 };
 
+
+
+
+
+
+
+
+
+
 AssociationsManager::Storage AssociationsManager::_mapStorage;
 
 } // namespace objc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 using namespace objc;
 
@@ -217,6 +277,11 @@ _object_get_associative_reference(id object, const void *key)
 
 
 
+
+
+
+
+
 void
 _object_set_associative_reference(id object, const void *key, id value, uintptr_t policy)
 {
@@ -248,6 +313,25 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     bool isFirstAssociation = false;
     {
         AssociationsManager manager;
+        
+        
+        
+        // hash map ，  储存了，所有的关于，关联对象的东西
+        
+        
+        
+        
+        // 全场唯一
+        
+        
+        
+        
+        // （  进程唯一，             程序生命周期唯一  ）
+        
+        
+        
+        
+        
         AssociationsHashMap &associations(manager.get());
 
         if (value) {
@@ -304,6 +388,10 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     // release the old value (outside of the lock).
     association.releaseHeldValue();
 }
+
+
+
+
 
 
 
