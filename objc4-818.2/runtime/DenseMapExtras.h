@@ -34,8 +34,59 @@ namespace objc {
 // pointer to some globals because of the extra indirection.
 //
 // ExplicitInit / LazyInit wrap doing it the hard way.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ 
+ 
+ 
+ 
+ 
+ using Storage = ExplicitInitDenseMap<DisguisedPtr<objc_object>, ObjectAssociationMap>;
+ 
+ 
+ 
+ 
+ 
+ */
+
+
+
+
+
 template <typename Type>
 class ExplicitInit {
+    
+    
+    
+    
+    
+    //  uint8_t _storage[sizeof(Type)]
+    
+    
+    
+    //  _storage 是一个变量
+    
+    
+    
+    
+    
     alignas(Type) uint8_t _storage[sizeof(Type)];
 
 public:
@@ -48,6 +99,33 @@ public:
         return *reinterpret_cast<Type *>(_storage);
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 template <typename Type>
 class LazyInit {

@@ -99,6 +99,14 @@ public:
     }
 };
 
+
+
+
+
+
+
+
+
 typedef DenseMap<const void *, ObjcAssociation> ObjectAssociationMap;
 typedef DenseMap<DisguisedPtr<objc_object>, ObjectAssociationMap> AssociationsHashMap;
 
@@ -316,7 +324,7 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
         
         
         
-        // hash map ，  储存了，所有的关于，关联对象的东西
+        // hash map ，  储存了，所有的,     关于关联对象的东西
         
         
         
