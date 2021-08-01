@@ -135,7 +135,7 @@ class AssociationsManager {
     using Storage = ExplicitInitDenseMap<DisguisedPtr<objc_object>, ObjectAssociationMap>;
     
     
-    
+    //  静态变量
     static Storage _mapStorage;   // 通过  static ， 保证 hash map 全场唯一
     
     // （   进程唯一    ）
@@ -148,6 +148,15 @@ public:
     
     
     // 初始化
+    
+    
+    
+    
+    //  AssociationsManager manager ，  不全场唯一
+    
+    //  加锁， 不唯一
+    
+    
     AssociationsManager()   { AssociationsManagerLock.lock(); }
     
     
