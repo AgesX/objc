@@ -125,8 +125,24 @@ public:
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    //         析构函数，
+    //         该类的对象，释放的时候，调用
+    
+    
     ~AssociationsManager()  { AssociationsManagerLock.unlock(); }
 
+    
+    
+    
+    
     AssociationsHashMap &get() {
         return _mapStorage.get();
     }
