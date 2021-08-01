@@ -157,7 +157,10 @@ public:
     //  加锁， 不唯一
     
     
-    AssociationsManager()   { AssociationsManagerLock.lock(); }
+    AssociationsManager()   { AssociationsManagerLock.lock(); }         //  加锁，  可以避免，      多线程来重复创建
+    
+    
+    
     
     
     
