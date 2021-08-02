@@ -726,8 +726,22 @@ private:
            !KeyInfoT::isEqual(Val, TombstoneKey) &&
            "Empty/Tombstone value shouldn't be inserted into map!");
 
-    unsigned BucketNo = getHashValue(Val) & (NumBuckets-1);
+    
+    
+    
+    unsigned BucketNo = getHashValue(Val) & (NumBuckets-1);     // 哈希函数， 算下标
+    // BucketNo， 最后的 No， Number
+    
+    
     unsigned ProbeAmt = 1;
+    
+    
+    
+    
+    
+    
+    
+    
     while (true) {
       const BucketT *ThisBucket = BucketsPtr + BucketNo;
       // Found Val's bucket?  If so, return it.
@@ -762,6 +776,13 @@ private:
       BucketNo += ProbeAmt++;
       BucketNo &= (NumBuckets-1);
     }
+    
+    
+    
+    
+    
+    
+    
   }
 
   
@@ -798,12 +819,19 @@ private:
   template <typename LookupKeyT>
   bool LookupBucketFor(const LookupKeyT &Val, BucketT *&FoundBucket) {
     
+    // 通过参数，取值
+    
+    // 返回的是，行为的结果
+    
+    
+    
     
     
     
     //   这个是  const  参数
     
     const BucketT *ConstFoundBucket;
+    
     
     
     
