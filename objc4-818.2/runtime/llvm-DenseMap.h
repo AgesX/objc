@@ -769,18 +769,54 @@ private:
   
   
   
+  
+  
+  
   // 这个是， 重载函数， cpp
   
   
+  
+  // 重载函数, 看参数
+  
+  
+  //  下面的参数， BucketT *&FoundBucket
+  
+  
+  //  上面的参数， const BucketT *&FoundBucket         （      同一函数名      ）
+  
+  
+  
+  
+  // 在外面，调用这个函数，
+  // 不是调用，上面的函数
   template <typename LookupKeyT>
   bool LookupBucketFor(const LookupKeyT &Val, BucketT *&FoundBucket) {
+    
+    
+    
+    
+    //   这个是  const  参数
+    
     const BucketT *ConstFoundBucket;
+    
+    
+    
+    
+    
+    // 这里调用，上面的函数
     bool Result = const_cast<const DenseMapBase *>(this)
       ->LookupBucketFor(Val, ConstFoundBucket);
+    
+    
+    
+    
     FoundBucket = const_cast<BucketT *>(ConstFoundBucket);
     return Result;
   }
 
+  
+  
+  
   
   
   
