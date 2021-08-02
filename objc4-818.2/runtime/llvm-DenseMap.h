@@ -287,7 +287,17 @@ public:
     // 查找，
     // 找到了，就返回
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     if (LookupBucketFor(Key, TheBucket))
+      
       return std::make_pair(
                makeIterator(TheBucket, getBucketsEnd(), true),
                false); // Already in map.
@@ -673,10 +683,24 @@ private:
                 ((void**)BucketsPtr)[2], ((void**)BucketsPtr)[3]);
   }
 
+  
+  
+  
+  
+  
+  
   /// LookupBucketFor - Lookup the appropriate bucket for Val, returning it in
   /// FoundBucket.  If the bucket contains the key and a value, this returns
   /// true, otherwise it returns a bucket with an empty marker or tombstone and
   /// returns false.
+  
+  
+  
+  
+  
+  
+  
+  
   template<typename LookupKeyT>
   bool LookupBucketFor(const LookupKeyT &Val,
                        const BucketT *&FoundBucket) const {
@@ -734,6 +758,20 @@ private:
     }
   }
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // 这个是， 重载函数， cpp
+  
+  
   template <typename LookupKeyT>
   bool LookupBucketFor(const LookupKeyT &Val, BucketT *&FoundBucket) {
     const BucketT *ConstFoundBucket;
@@ -743,6 +781,15 @@ private:
     return Result;
   }
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
 public:
   /// Return the approximate size (in bytes) of the actual map.
   /// This is just the raw memory used by DenseMap.
