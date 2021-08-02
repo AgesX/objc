@@ -376,6 +376,11 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
             // 不存在值，        就清除
             
             
+            
+            // 通过对象，查引用
+            
+            
+            
             auto refs_it = associations.find(disguised);
             if (refs_it != associations.end()) {
                 auto &refs = refs_it->second;
@@ -385,7 +390,9 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
                     refs.erase(it);
                     if (refs.size() == 0) {
                         associations.erase(refs_it);
-
+                        
+                        //  做移除
+                        
                     }
                 }
             }
@@ -396,9 +403,13 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     // will call the object's _noteAssociatedObjects method if it
     // has one, and this may trigger +initialize which might do
     // arbitrary stuff, including setting more associated objects.
+    
     if (isFirstAssociation)
         object->setHasAssociatedObjects();
-
+        //   设置，标记位
+        //   non  -  pointer - isa ,   的标记位
+    
+    
     
     
     
