@@ -280,9 +280,15 @@ public:
   // Inserts key,value pair into the map if the key isn't already in the map.
   // The value is constructed in-place if the key is not in the map, otherwise
   // it is not moved.
+  
+  
+  
+  //  emplace,      进驻
+  
+  
   template <typename... Ts>
   std::pair<iterator, bool> try_emplace(const KeyT &Key, Ts &&... Args) {
-    BucketT *TheBucket;
+    BucketT *TheBucket;         //   看   LookupBucketFor   的调用参数，不是  const
     
     // 查找，
     // 找到了，就返回
