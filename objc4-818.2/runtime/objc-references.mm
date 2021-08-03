@@ -194,6 +194,19 @@ public:
         return _mapStorage.get();
     }
 
+    
+    
+    
+    
+    
+    
+    
+    // 静态变量，初始化
+    
+    
+    // 第一次进来的时候，调用
+    
+    // 静态方法，可理解为类方法
     static void init() {
         _mapStorage.init();
     }
