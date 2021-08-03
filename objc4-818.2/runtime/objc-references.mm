@@ -305,6 +305,9 @@ _object_get_associative_reference(id object, const void *key)
 void
 _object_set_associative_reference(id object, const void *key, id value, uintptr_t policy)
 {
+    
+    
+    
     // This code used to work when nil was passed for object and key. Some code
     // probably relies on that to not crash. Check and handle it explicitly.
     // rdar://problem/44094390
@@ -328,8 +331,15 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     // retain the new value (if any) outside the lock.
     
     // 持有，新的
+    
     association.acquireValue();
+    
+    // (    感觉是，为了避免，还没使用，就被释放了  )
 
+    
+    
+    
+    
     bool isFirstAssociation = false;
     {
         AssociationsManager manager;
@@ -366,6 +376,37 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
             }
 
             /* establish or replace the association */
+            
+            
+            
+            
+            
+            
+            
+            // second, 引用对象类型
+            
+            
+            //（   我感觉是， 把内存线程策略，取出来了  ）    （    he   he    ）
+            
+            
+            
+            
+            
+            //
+            
+            //
+            
+            //
+            
+            
+            
+            //  result.second,
+            
+            //  pair 的第二个值， Bool
+            
+            
+            
+            
             auto &refs = refs_result.first->second;
             auto result = refs.try_emplace(key, std::move(association));
             if (!result.second) {

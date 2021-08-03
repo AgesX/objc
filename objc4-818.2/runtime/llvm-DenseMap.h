@@ -745,10 +745,21 @@ private:
     while (true) {
             const BucketT *ThisBucket = BucketsPtr + BucketNo;
             // Found Val's bucket?  If so, return it.
+      
+            
+      
+            // 匹配上，就是可以返回
+      
+      
             if (LLVM_LIKELY(KeyInfoT::isEqual(Val, ThisBucket->getFirst()))) {
               FoundBucket = ThisBucket;
               return true;
             }
+      
+      
+      
+      
+            // 匹配到 EmptyKey， 就是查找为空
 
             // If we found an empty bucket, the key doesn't exist in the set.
             // Insert it and return the default value.
