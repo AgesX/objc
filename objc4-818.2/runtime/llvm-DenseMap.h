@@ -313,6 +313,20 @@ public:
     
     // Otherwise, insert the new element.
     TheBucket = InsertIntoBucket(TheBucket, Key, std::forward<Ts>(Args)...);
+    
+    
+    
+    
+    
+    // 关联对象 Bucket 的结构
+    
+    
+    
+    // objcAssociationMap { value, policy }
+    
+    
+    
+    
     return std::make_pair(
              makeIterator(TheBucket, getBucketsEnd(), true),
              true);

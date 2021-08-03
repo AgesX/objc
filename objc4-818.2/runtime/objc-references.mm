@@ -383,11 +383,10 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
             
             
             
-            // second, 引用对象类型
+            // refs_result, pair ( 引用对象类型, Bool )
             
-            
-            //（   我感觉是， 把内存线程策略，取出来了  ）    （    he   he    ）
-            
+            //  pair , 可以理解为元组 tuple
+       
             
             
             
