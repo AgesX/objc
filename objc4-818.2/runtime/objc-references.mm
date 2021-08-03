@@ -157,6 +157,14 @@ public:
     //  加锁， 不唯一
     
     
+    
+    
+    
+    //  为什么要加锁，因为对关联数据表，有 CRUD 的数据操作
+    
+    
+    
+    
     AssociationsManager()   { AssociationsManagerLock.lock(); }         //  加锁，  可以避免，      多线程来重复创建
     
     
