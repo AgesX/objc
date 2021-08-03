@@ -743,38 +743,49 @@ private:
     
     
     while (true) {
-      const BucketT *ThisBucket = BucketsPtr + BucketNo;
-      // Found Val's bucket?  If so, return it.
-      if (LLVM_LIKELY(KeyInfoT::isEqual(Val, ThisBucket->getFirst()))) {
-        FoundBucket = ThisBucket;
-        return true;
-      }
+            const BucketT *ThisBucket = BucketsPtr + BucketNo;
+            // Found Val's bucket?  If so, return it.
+            if (LLVM_LIKELY(KeyInfoT::isEqual(Val, ThisBucket->getFirst()))) {
+              FoundBucket = ThisBucket;
+              return true;
+            }
 
-      // If we found an empty bucket, the key doesn't exist in the set.
-      // Insert it and return the default value.
-      if (LLVM_LIKELY(KeyInfoT::isEqual(ThisBucket->getFirst(), EmptyKey))) {
-        // If we've already seen a tombstone while probing, fill it in instead
-        // of the empty bucket we eventually probed to.
-        FoundBucket = FoundTombstone ? FoundTombstone : ThisBucket;
-        return false;
-      }
+            // If we found an empty bucket, the key doesn't exist in the set.
+            // Insert it and return the default value.
+            if (LLVM_LIKELY(KeyInfoT::isEqual(ThisBucket->getFirst(), EmptyKey))) {
+              // If we've already seen a tombstone while probing, fill it in instead
+              // of the empty bucket we eventually probed to.
+              FoundBucket = FoundTombstone ? FoundTombstone : ThisBucket;
+              return false;
+            }
 
-      // If this is a tombstone, remember it.  If Val ends up not in the map, we
-      // prefer to return it than something that would require more probing.
-      // Ditto for zero values.
-      if (KeyInfoT::isEqual(ThisBucket->getFirst(), TombstoneKey) &&
-          !FoundTombstone)
-        FoundTombstone = ThisBucket;  // Remember the first tombstone found.
-      if (ValueInfoT::isPurgeable(ThisBucket->getSecond())  &&  !FoundTombstone)
-        FoundTombstone = ThisBucket;
+            // If this is a tombstone, remember it.  If Val ends up not in the map, we
+            // prefer to return it than something that would require more probing.
+            // Ditto for zero values.
+            if (KeyInfoT::isEqual(ThisBucket->getFirst(), TombstoneKey) &&
+                !FoundTombstone)
+              FoundTombstone = ThisBucket;  // Remember the first tombstone found.
+            if (ValueInfoT::isPurgeable(ThisBucket->getSecond())  &&  !FoundTombstone)
+              FoundTombstone = ThisBucket;
 
-      // Otherwise, it's a hash collision or a tombstone, continue quadratic
-      // probing.
-      if (ProbeAmt > NumBuckets) {
-        FatalCorruptHashTables(BucketsPtr, NumBuckets);
-      }
-      BucketNo += ProbeAmt++;
-      BucketNo &= (NumBuckets-1);
+            // Otherwise, it's a hash collision or a tombstone, continue quadratic
+            // probing.
+            if (ProbeAmt > NumBuckets) {
+              FatalCorruptHashTables(BucketsPtr, NumBuckets);
+            }
+      
+            
+            // 内存，平移
+      
+      
+      
+            // 这里的处理流程，类似 cache 里面的 method list
+      
+            BucketNo += ProbeAmt++;
+      
+            
+      
+            BucketNo &= (NumBuckets-1);
     }
     
     
