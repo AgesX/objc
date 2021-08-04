@@ -162,7 +162,7 @@ public:
     
     //  为什么要加锁，因为对关联数据表，有 CRUD 的数据操作
     
-    
+    //  为什么要加锁, 保证数据安全，避免多线程的干涉
     
     
     AssociationsManager()   { AssociationsManagerLock.lock(); }         //  加锁，  可以避免，      多线程来重复创建
@@ -515,10 +515,17 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
 
 
 
+
+
+
 // Unlike setting/getting an associated reference,
 // this function is performance sensitive because of
 // raw isa objects (such as OS Objects) that can't track
-// whether they have associated objects.
+// whether they have associated objects
+
+
+
+
 void
 _object_remove_assocations(id object, bool deallocating)
 {
@@ -531,7 +538,7 @@ _object_remove_assocations(id object, bool deallocating)
         if (i != associations.end()) {
             refs.swap(i->second);
 
-            // If we are not deallocating, then SYSTEM_OBJECT associations are preserved.
+            // If we are not deallocating, then SYSTEM_OBJECT associations are preserved.  保存
             bool didReInsert = false;
             if (!deallocating) {
                 for (auto &ref: refs) {
@@ -545,6 +552,10 @@ _object_remove_assocations(id object, bool deallocating)
                 associations.erase(i);
         }
     }
+    
+    
+    
+    
 
     // Associations to be released after the normal ones.
     SmallVector<ObjcAssociation *, 4> laterRefs;
@@ -563,3 +574,9 @@ _object_remove_assocations(id object, bool deallocating)
         later->releaseHeldValue();
     }
 }
+
+
+
+
+
+

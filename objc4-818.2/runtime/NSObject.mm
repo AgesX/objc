@@ -2155,13 +2155,21 @@ objc_opt_respondsToSelector(id obj, SEL sel)
     return ((BOOL(*)(id, SEL, SEL))objc_msgSend)(obj, @selector(respondsToSelector:), sel);
 }
 
+
+
+
+
 void
 _objc_rootDealloc(id obj)
 {
     ASSERT(obj);
-
+    // 做，析构
     obj->rootDealloc();
 }
+
+
+
+
 
 void
 _objc_rootFinalize(id obj __unused)

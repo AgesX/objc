@@ -9977,9 +9977,15 @@ void *objc_destructInstance(id obj)
 id 
 object_dispose(id obj)
 {
+    
+    
+    
     if (!obj) return nil;
 
     // 先移除，各种指针
+    
+    // 干掉关联对象
+    
     objc_destructInstance(obj);
     // 再释放对象
     free(obj);

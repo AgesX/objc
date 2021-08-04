@@ -788,6 +788,24 @@ objc_object::rootDealloc()
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 extern explicit_atomic<id(*)(id)> swiftRetain;
 extern explicit_atomic<void(*)(id)> swiftRelease;
 
