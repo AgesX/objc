@@ -73,7 +73,12 @@ void add_class_to_loadable_list(Class cls)
                      cls->nameForLogging());
     }
     
+    
+    
     if (loadable_classes_used == loadable_classes_allocated) {
+        
+        // 在里面进行，扩容
+        
         loadable_classes_allocated = loadable_classes_allocated*2 + 16;
         loadable_classes = (struct loadable_class *)
             realloc(loadable_classes,
@@ -85,6 +90,11 @@ void add_class_to_loadable_list(Class cls)
     loadable_classes[loadable_classes_used].method = method;
     loadable_classes_used++;
 }
+
+
+
+
+
 
 
 /***********************************************************************

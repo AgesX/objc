@@ -3991,6 +3991,10 @@ load_images(const char *path __unused, const struct mach_header *mh)
 {
     if (!didInitialAttachCategories && didCallDyldNotifyRegister) {
         didInitialAttachCategories = true;
+        
+        
+        //  加载分类
+        
         loadAllCategories();
     }
 
@@ -4002,13 +4006,17 @@ load_images(const char *path __unused, const struct mach_header *mh)
     // Discover load methods
     {
         mutex_locker_t lock2(runtimeLock);
+        
+        
+        //  发现， + load 方法
+        
         prepare_load_methods((const headerType *)mh);
     }
 
     // Call +load methods (without runtimeLock - re-entrant)
     
     // main 函数进来，跑 + load 方法
-    call_load_methods();
+    call_load_methods();            //  调用， + load 方法
 }
 
 
@@ -4973,17 +4981,35 @@ void _read_images(header_info **hList, uint32_t hCount, int totalClasses, int un
 // cls must already be connected.
 static void schedule_class_load(Class cls)
 {
-    if (!cls) return;
+    if (!cls) return;       //  递归，退出条件
+    
+    
     ASSERT(cls->isRealized());  // _read_images should realize
 
-    if (cls->data()->flags & RW_LOADED) return;
+    
+    
+    if (cls->data()->flags & RW_LOADED) return;     //  递归，退出条件
 
+    
+    
+    // 递归
+    
     // Ensure superclass-first ordering
     schedule_class_load(cls->getSuperclass());
 
     add_class_to_loadable_list(cls);
     cls->setInfo(RW_LOADED); 
 }
+
+
+
+
+
+
+
+
+
+
 
 // Quick scan for +load methods that doesn't take a lock.
 bool hasLoadMethods(const headerType *mhdr)
@@ -4993,6 +5019,12 @@ bool hasLoadMethods(const headerType *mhdr)
     if (_getObjc2NonlazyCategoryList(mhdr, &count)  &&  count > 0) return true;
     return false;
 }
+
+
+
+
+
+//  发现， + load 方法
 
 void prepare_load_methods(const headerType *mhdr)
 {
@@ -5020,6 +5052,14 @@ void prepare_load_methods(const headerType *mhdr)
         add_category_to_loadable_list(cat);
     }
 }
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -6478,13 +6518,22 @@ objc_class::getLoadMethod()
     mlist = ISA()->data()->ro()->baseMethods();
     if (mlist) {
         for (const auto& meth : *mlist) {
+            
+            
+            
             const char *name = sel_cname(meth.name());
             if (0 == strcmp(name, "load")) {
+                
+                //   苹果的，优秀控制代码
+                
                 return meth.imp(false);
             }
         }
     }
 
+    
+    
+    
     return nil;
 }
 
