@@ -23,13 +23,7 @@
     LGStudent *s = [[LGStudent alloc] init];
     [s personInstanceMethod];
     
-    
-    //  Thread 1: EXC_BAD_ACCESS (code=2, address=0x7ffee14f9ff8)
-    
-    
-    //  进入了，死循环
-    
-    
+
     
     
     
@@ -39,13 +33,18 @@
     
     // personInstanceMethod -> lg_studentInstanceMethod
     LGPerson *p = [[LGPerson alloc] init];
-    // [p personInstanceMethod];
+    [p personInstanceMethod];
     
     
     
     
     
-    
+    /*
+     
+            2021-08-07 07:46:01.789847+0800 006---Method-Swizzling坑[1862:114338] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[LGPerson lg_studentInstanceMethod]: unrecognized selector sent to instance 0x6000035fc730'
+     
+     
+     */
     
     
     

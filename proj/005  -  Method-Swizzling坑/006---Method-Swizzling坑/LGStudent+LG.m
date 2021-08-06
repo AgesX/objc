@@ -38,7 +38,7 @@
         
         
         
-        [LGRuntimeTool lg_betterMethodSwizzlingWithClass:self oriSEL:@selector(personInstanceMethod) swizzledSEL:@selector(lg_studentInstanceMethod)];
+        [LGRuntimeTool lg_methodSwizzlingWithClass:self oriSEL:@selector(personInstanceMethod) swizzledSEL:@selector(lg_studentInstanceMethod)];
     });
     
     
