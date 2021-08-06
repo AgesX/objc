@@ -86,8 +86,19 @@ void add_class_to_loadable_list(Class cls)
                               sizeof(struct loadable_class));
     }
     
+    
+    
+    //  记录
+    
+    //  类信息，
+    //  和 + load 方法
+    
     loadable_classes[loadable_classes_used].cls = cls;
     loadable_classes[loadable_classes_used].method = method;
+    
+    
+    //  index + 1
+    //  索引 + 1
     loadable_classes_used++;
 }
 
@@ -120,6 +131,11 @@ void add_category_to_loadable_list(Category cat)
     }
     
     if (loadable_categories_used == loadable_categories_allocated) {
+        
+        
+        // 熟悉的扩容
+        
+        
         loadable_categories_allocated = loadable_categories_allocated*2 + 16;
         loadable_categories = (struct loadable_category *)
             realloc(loadable_categories,
@@ -131,6 +147,15 @@ void add_category_to_loadable_list(Category cat)
     loadable_categories[loadable_categories_used].method = method;
     loadable_categories_used++;
 }
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************

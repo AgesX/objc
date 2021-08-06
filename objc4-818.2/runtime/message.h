@@ -30,7 +30,14 @@
 #ifndef OBJC_SUPER
 #define OBJC_SUPER
 
-/// Specifies the superclass of an instance. 
+/// Specifies the superclass of an instance.
+
+
+
+// superclass 关键字
+
+
+
 struct objc_super {
     /// Specifies an instance of a class.
     __unsafe_unretained _Nonnull id receiver;

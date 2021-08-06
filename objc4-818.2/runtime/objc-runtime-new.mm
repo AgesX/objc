@@ -5024,6 +5024,9 @@ bool hasLoadMethods(const headerType *mhdr)
 
 
 
+
+
+
 //  发现， + load 方法
 
 void prepare_load_methods(const headerType *mhdr)
@@ -5035,6 +5038,10 @@ void prepare_load_methods(const headerType *mhdr)
     classref_t const *classlist = 
         _getObjc2NonlazyClassList(mhdr, &count);
     for (i = 0; i < count; i++) {
+        
+        
+        // 记录类的， 所有的 + load 方法
+        
         schedule_class_load(remapClass(classlist[i]));
     }
 
@@ -5049,9 +5056,21 @@ void prepare_load_methods(const headerType *mhdr)
         }
         realizeClassWithoutSwift(cls, nil);
         ASSERT(cls->ISA()->isRealized());
+        
+        // 记录分类的， 所有的 + load 方法
+        
         add_category_to_loadable_list(cat);
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 
