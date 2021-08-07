@@ -8991,9 +8991,10 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
     
     if ((m = getMethodNoSuper_nolock(cls, name))) {
         // already exists
+        // 已经存在
         if (!replace) {
             
-            // 仅添加
+            // 重复添加的情况
             
             result = m->imp(false);
         } else {
@@ -9002,6 +9003,11 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
             result = _method_setImplementation(cls, m, imp);
         }
     } else {
+        
+        // 标准，添加方法的流程
+        
+        
+        
         // fixme optimize
         method_list_t *newlist;
         newlist = (method_list_t *)calloc(method_list_t::byteSize(method_t::bigSize, 1), 1);
@@ -9115,7 +9121,9 @@ class_addMethod(Class cls, SEL name, IMP imp, const char *types)
 
     mutex_locker_t lock(runtimeLock);
     return ! addMethod(cls, name, imp, types ?: "", NO);
-}
+}  // 查看，重复添加，的情况
+
+
 
 
 
