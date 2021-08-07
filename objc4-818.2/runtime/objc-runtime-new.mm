@@ -736,6 +736,20 @@ static unsigned unreasonableClassCount()
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * Class enumerators
 * The passed in block returns `false` if subclasses can be skipped
@@ -779,6 +793,17 @@ foreach_realized_class_and_subclass_2(Class top, unsigned &count,
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 // Enumerates a class and all of its realized subclasses.
 static void
 foreach_realized_class_and_subclass(Class top, bool (^code)(Class) __attribute((noescape)))
@@ -787,6 +812,11 @@ foreach_realized_class_and_subclass(Class top, bool (^code)(Class) __attribute((
 
     foreach_realized_class_and_subclass_2(top, count, false, code);
 }
+
+
+
+
+
 
 // Enumerates all realized classes and metaclasses.
 static void
@@ -3762,6 +3792,22 @@ BOOL _class_isSwift(Class _Nullable cls)
     return cls && cls->isSwiftStable();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***********************************************************************
 * _objc_flush_caches
 * Flushes all caches.
@@ -3769,6 +3815,9 @@ BOOL _class_isSwift(Class _Nullable cls)
 * and subclasses thereof. Nil flushes all classes.)
 * Locking: acquires runtimeLock
 **********************************************************************/
+
+
+
 static void flushCaches(Class cls, const char *func, bool (^predicate)(Class))
 {
     runtimeLock.assertLocked();
@@ -3776,6 +3825,8 @@ static void flushCaches(Class cls, const char *func, bool (^predicate)(Class))
     mutex_locker_t lock(cacheUpdateLock);
 #endif
 
+    
+    // 回调函数
     const auto handler = ^(Class c) {
         if (predicate(c)) {
             c->cache.eraseNolock(func);
@@ -3790,6 +3841,10 @@ static void flushCaches(Class cls, const char *func, bool (^predicate)(Class))
         foreach_realized_class_and_metaclass(handler);
     }
 }
+
+
+
+
 
 
 void _objc_flush_caches(Class cls)
@@ -5219,8 +5274,14 @@ _method_setImplementation(Class cls, method_t *m, IMP imp)
 {
     runtimeLock.assertLocked();
 
+    
+    // 缺信息，就直接返回
+    
     if (!m) return nil;
     if (!imp) return nil;
+    
+    
+    
 
     IMP old = m->imp(false);
     SEL sel = m->name();
@@ -5240,6 +5301,12 @@ _method_setImplementation(Class cls, method_t *m, IMP imp)
     return old;
 }
 
+
+
+
+
+
+
 IMP 
 method_setImplementation(Method m, IMP imp)
 {
@@ -5256,8 +5323,20 @@ extern void _method_setImplementationRawUnsafe(Method m, IMP imp)
 }
 
 
+
+
+
+
+
+
+
+//   交换，方法
+
+
 void method_exchangeImplementations(Method m1, Method m2)
 {
+    
+    // 缺一项，就返回
     if (!m1  ||  !m2) return;
 
     mutex_locker_t lock(runtimeLock);
@@ -5267,6 +5346,9 @@ void method_exchangeImplementations(Method m1, Method m2)
     SEL sel1 = m1->name();
     SEL sel2 = m2->name();
 
+    
+    // 这样，交换
+    
     m1->setImp(imp2);
     m2->setImp(imp1);
 
@@ -5282,6 +5364,18 @@ void method_exchangeImplementations(Method m1, Method m2)
     adjustCustomFlagsForMethodChange(nil, m1);
     adjustCustomFlagsForMethodChange(nil, m2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -8876,6 +8970,10 @@ addMethods_finish(Class cls, method_list_t *newlist)
 * fixme
 * Locking: runtimeLock must be held by the caller
 **********************************************************************/
+
+
+// 替换方法，  的实现
+
 static IMP 
 addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
 {
@@ -8889,11 +8987,18 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
     ASSERT(cls->isRealized());
 
     method_t *m;
+    
+    
     if ((m = getMethodNoSuper_nolock(cls, name))) {
         // already exists
         if (!replace) {
+            
+            // 仅添加
+            
             result = m->imp(false);
         } else {
+            
+            // 替换
             result = _method_setImplementation(cls, m, imp);
         }
     } else {
@@ -8902,6 +9007,10 @@ addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)
         newlist = (method_list_t *)calloc(method_list_t::byteSize(method_t::bigSize, 1), 1);
         newlist->entsizeAndFlags = 
             (uint32_t)sizeof(struct method_t::big) | fixed_up_method_list;
+        
+        
+        
+        
         newlist->count = 1;
         auto &first = newlist->begin()->big();
         first.name = name;
@@ -8995,6 +9104,10 @@ addMethods(Class cls, const SEL *names, const IMP *imps, const char **types,
 }
 
 
+
+
+//  添加，方法
+
 BOOL 
 class_addMethod(Class cls, SEL name, IMP imp, const char *types)
 {
@@ -9005,6 +9118,13 @@ class_addMethod(Class cls, SEL name, IMP imp, const char *types)
 }
 
 
+
+
+
+
+
+// 替换，方法
+
 IMP 
 class_replaceMethod(Class cls, SEL name, IMP imp, const char *types)
 {
@@ -9013,6 +9133,11 @@ class_replaceMethod(Class cls, SEL name, IMP imp, const char *types)
     mutex_locker_t lock(runtimeLock);
     return addMethod(cls, name, imp, types ?: "", YES);
 }
+
+
+
+
+
 
 
 SEL *

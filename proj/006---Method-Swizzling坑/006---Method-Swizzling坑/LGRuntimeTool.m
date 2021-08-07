@@ -53,10 +53,24 @@
      lg_studentInstanceMethod (swizzledSEL) - personInstanceMethod(imp)
      */
     
-    if (success) {// 自己没有 - 交换 - 没有父类进行处理 (重写一个)
+    if (success) {
+        
+        // 自己没有 - 交换 - 没有父类进行处理 (重写一个)
+        
+        
+        // 此时， oriMethod ，函数指针，不存在
+        
         class_replaceMethod(cls, swizzledSEL, method_getImplementation(oriMethod), method_getTypeEncoding(oriMethod));
-    }else{ // 自己有
+    }
+    else{
+        
+        
+        // 自己有
         method_exchangeImplementations(oriMethod, swiMethod);
+        
+        
+        
+        // LG 的，课程，真烂
     }
     
     
