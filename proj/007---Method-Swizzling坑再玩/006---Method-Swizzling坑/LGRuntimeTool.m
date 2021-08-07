@@ -26,23 +26,52 @@
     
     if (!oriMethod) { // 避免动作没有意义
         // 在oriMethod为nil时，替换后将swizzledSEL复制一个不做任何事的空实现,代码如下:
+        
+        
         class_addMethod(cls, oriSEL, method_getImplementation(swiMethod), method_getTypeEncoding(swiMethod));
         method_setImplementation(swiMethod, imp_implementationWithBlock(^(id self, SEL _cmd){
-            NSLog(@"来了一个空的 imp");
+            NSLog(@"hahaha :  来了一个空的 imp");
         }));
     }
     
+    
+    
+    
+    
     // 一般交换方法: 交换自己有的方法 -- 走下面 因为自己有意味添加方法失败
+    
     // 交换自己没有实现的方法:
+    
     //   首先第一步:会先尝试给自己添加要交换的方法 :personInstanceMethod (SEL) -> swiMethod(IMP)
+    
     //   然后再将父类的IMP给swizzle  personInstanceMethod(imp) -> swizzledSEL
-    //oriSEL:personInstanceMethod
+    
+    //   oriSEL:personInstanceMethod
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //  重复添加，失败
+    
+    
+    //  重复添加，就是，直接返回
+    
+    
     BOOL didAddMethod = class_addMethod(cls, oriSEL, method_getImplementation(swiMethod), method_getTypeEncoding(swiMethod));
     
     if (didAddMethod) {
+        
+        // 这里不走
         class_replaceMethod(cls, swizzledSEL, method_getImplementation(oriMethod), method_getTypeEncoding(oriMethod));
     }else{
+        
+        // 走这里
         method_exchangeImplementations(oriMethod, swiMethod);
     }
     

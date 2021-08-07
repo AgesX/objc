@@ -15,7 +15,7 @@
 + (void)load{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [LGRuntimeTool lg_bestMethodSwizzlingWithClass:self oriSEL:@selector(helloword) swizzledSEL:@selector(lg_studentInstanceMethod)];
+        [LGRuntimeTool lg_bestMethodSwizzlingWithClass:self oriSEL:@selector(helloEmpty) swizzledSEL:@selector(lg_studentInstanceMethod)];
     });
 }
 

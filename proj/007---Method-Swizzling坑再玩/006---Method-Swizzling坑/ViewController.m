@@ -20,7 +20,7 @@
     [super viewDidLoad];
 
     LGStudent *s = [[LGStudent alloc] init];
-    [s helloword];
+    [s helloEmpty];
  
 }
 

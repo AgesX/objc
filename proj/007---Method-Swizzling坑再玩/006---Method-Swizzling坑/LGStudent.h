@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LGStudent : LGPerson
-- (void)helloword;
+- (void)helloEmpty;
 @end
 
 NS_ASSUME_NONNULL_END
