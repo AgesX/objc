@@ -38,13 +38,42 @@
         
         
         
-        [LGRuntimeTool lg_methodSwizzlingWithClass:self oriSEL:@selector(personInstanceMethod) swizzledSEL:@selector(lg_studentInstanceMethod)];
+        [LGRuntimeTool lg_betterMethodSwizzlingWithClass:self oriSEL:@selector(personInstanceMethod) swizzledSEL:@selector(lg_studentInstanceMethod)];
     });
     
     
     //    666，  子类中，方法交换
     
     //    把其父类的，给处理了
+    
+    
+    
+    /*
+                    method Swizzling， 只是查找，对象里面，对应的 IMP
+                        
+                    方法交换, 实际上，就是一个方法查找流程
+                            如果，方法里面，没有 sel 对应的 IMP.
+                                    就找其父类，一路递归上去
+     
+     
+     
+     
+     
+     
+     
+                    交换的是， IMP,
+                    跟对象，没有关系
+     
+     
+     
+     
+     
+     
+     
+                
+     
+     
+     */
 }
 
 
