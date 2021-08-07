@@ -29,10 +29,26 @@
     Method oriMethod = class_getInstanceMethod(cls, oriSEL);
     Method swiMethod = class_getInstanceMethod(cls, swizzledSEL);
    
+    
+    
+    
+    
+    
+    
+    
     // 尝试添加你要交换的方法 - lg_studentInstanceMethod
+    
+    // 因为本类，可能没有 oriSEL （ 方法编号  ）对应的函数指针
+    
     BOOL success = class_addMethod(cls, oriSEL, method_getImplementation(swiMethod), method_getTypeEncoding(oriMethod));
 
+    
+    
+    
+    
+    
     /**
+     
      personInstanceMethod(sel) - lg_studentInstanceMethod(imp)
      lg_studentInstanceMethod (swizzledSEL) - personInstanceMethod(imp)
      */
