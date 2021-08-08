@@ -150,11 +150,32 @@ typedef objc::DenseMap<DisguisedPtr<objc_object>,size_t,RefcountMapValuePurgeabl
 enum HaveOld { DontHaveOld = false, DoHaveOld = true };
 enum HaveNew { DontHaveNew = false, DoHaveNew = true };
 
-struct SideTable {
-    spinlock_t slock;
-    RefcountMap refcnts;
-    weak_table_t weak_table;
 
+
+
+
+
+
+
+
+
+
+struct SideTable {
+    spinlock_t slock;                   // 自旋锁
+    
+    
+    
+    RefcountMap refcnts;                //  引用计数表
+    
+    
+    
+    
+    weak_table_t weak_table;           //  弱引用表
+
+    
+    
+    
+    
     SideTable() {
         memset(&weak_table, 0, sizeof(weak_table));
     }
@@ -174,6 +195,13 @@ struct SideTable {
     template<HaveOld, HaveNew>
     static void unlockTwo(SideTable *lock1, SideTable *lock2);
 };
+
+
+
+
+
+
+
 
 
 template<>
@@ -394,6 +422,9 @@ storeWeak(id *location, objc_object *newObj)
 
     Class previouslyInitializedClass = nil;
     id oldObj;
+    
+    
+    // 副表
     SideTable *oldTable;
     SideTable *newTable;
 
@@ -463,6 +494,14 @@ storeWeak(id *location, objc_object *newObj)
         newObj = (objc_object *)
         
             // 注册，新值
+        
+        
+        
+        
+            // 弱引用表，来自  newTable
+            // &newTable->weak_table
+        
+        
         
             weak_register_no_lock(&newTable->weak_table, (id)newObj, location, 
                                   crashIfDeallocating ? CrashIfDeallocating : ReturnNilIfDeallocating);

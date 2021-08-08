@@ -305,6 +305,18 @@ static void weak_entry_remove(weak_table_t *weak_table, weak_entry_t *entry)
  * 
  * @return The table of weak referrers to this object. 
  */
+
+
+// 弱引用实体
+
+// 怎么获取的
+
+
+
+// 弱引用实体， 拿到了，就去装弱引用对象
+
+
+// 我感觉，拿我们的变量 （ 指针地址 ），从弱引用表里面，把对象捞出来
 static weak_entry_t *
 weak_entry_for_referent(weak_table_t *weak_table, objc_object *referent)
 {
@@ -314,10 +326,21 @@ weak_entry_for_referent(weak_table_t *weak_table, objc_object *referent)
 
     if (!weak_entries) return nil;
 
+    
+    
+    // 哈希函数
     size_t begin = hash_pointer(referent) & weak_table->mask;
     size_t index = begin;
     size_t hash_displacement = 0;
+    
+    
+    
+    
     while (weak_table->weak_entries[index].referent != referent) {
+        
+        // 查找索引 index 的过程
+        
+        
         index = (index+1) & weak_table->mask;
         if (index == begin) bad_weak_table(weak_table->weak_entries);
         hash_displacement++;
@@ -328,6 +351,11 @@ weak_entry_for_referent(weak_table_t *weak_table, objc_object *referent)
     
     return &weak_table->weak_entries[index];
 }
+
+
+
+
+
 
 /** 
  * Unregister an already-registered weak reference.
@@ -460,6 +488,10 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
         
 
         if (deallocating) {
+            
+            
+            // 判定，无效条件， 该对象正在释放
+            
             if (deallocatingOptions == CrashIfDeallocating) {
                 _objc_fatal("Cannot form weak reference to instance (%p) of "
                             "class %s. It is possible that this object was "
@@ -470,10 +502,24 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
             }
         }
     }
+    
+    
+    
+    
+    
+    
 
     // now remember it and where it is being stored
-    weak_entry_t *entry;
-    if ((entry = weak_entry_for_referent(weak_table, referent))) {
+    weak_entry_t *entry;            //  对象地址
+    
+    
+    
+    //  referent， 就是我们的对象 obj
+    
+    
+    if ((entry = weak_entry_for_referent(weak_table, referent))) {  // 怎么获取的
+        
+        
         append_referrer(entry, referrer);
     } 
     else {
@@ -487,6 +533,12 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
 
     return referent_id;
 }
+
+
+
+
+
+
 
 
 
