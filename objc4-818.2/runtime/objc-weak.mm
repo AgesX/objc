@@ -632,6 +632,18 @@ weak_is_registered_no_lock(weak_table_t *weak_table, id referent_id)
  * @param weak_table 
  * @param referent The object being deallocated. 
  */
+
+
+
+
+
+
+
+
+//    弱引用表， 清除
+
+
+
 void 
 weak_clear_no_lock(weak_table_t *weak_table, id referent_id) 
 {
@@ -648,6 +660,11 @@ weak_clear_no_lock(weak_table_t *weak_table, id referent_id)
     weak_referrer_t *referrers;
     size_t count;
     
+    
+    
+    
+    
+    // 两个数目 , count
     if (entry->out_of_line()) {
         referrers = entry->referrers;
         count = TABLE_SIZE(entry);
@@ -657,10 +674,21 @@ weak_clear_no_lock(weak_table_t *weak_table, id referent_id)
         count = WEAK_INLINE_COUNT;
     }
     
+    
+    
+    //
+    
+    
+    
     for (size_t i = 0; i < count; ++i) {
         objc_object **referrer = referrers[i];
         if (referrer) {
             if (*referrer == referent) {
+                
+                // 如果引用的变量，指向的对象，还是他
+                // 就处理掉
+                // 引用的变量，指向的对象，为空
+                
                 *referrer = nil;
             }
             else if (*referrer) {
@@ -674,6 +702,15 @@ weak_clear_no_lock(weak_table_t *weak_table, id referent_id)
         }
     }
     
+    
+    
+    // 清除实体条目
     weak_entry_remove(weak_table, entry);
 }
+
+
+
+
+
+
 
