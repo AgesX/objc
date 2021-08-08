@@ -379,6 +379,18 @@ weak_unregister_no_lock(weak_table_t *weak_table, id referent_id,
     // value not change.
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 /** 
  * Registers a new (object, weak pointer) pair. Creates a new weak
  * object entry if it does not exist.
@@ -387,10 +399,24 @@ weak_unregister_no_lock(weak_table_t *weak_table, id referent_id,
  * @param referent The object pointed to by the weak reference.
  * @param referrer The weak pointer address.
  */
+
+
+
+
+
+
+
+//  weak_table， 弱引用表
+
+
+//  weak 表，处理新值
+
 id 
 weak_register_no_lock(weak_table_t *weak_table, id referent_id, 
                       id *referrer_id, WeakRegisterDeallocatingOptions deallocatingOptions)
 {
+    
+    
     objc_object *referent = (objc_object *)referent_id;
     objc_object **referrer = (objc_object **)referrer_id;
 
@@ -399,8 +425,20 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
     // ensure that the referenced object is viable
     if (deallocatingOptions == ReturnNilIfDeallocating ||
         deallocatingOptions == CrashIfDeallocating) {
+        
+        
+        // 判断对象，是否被析构
         bool deallocating;
+        
+        
+        
         if (!referent->ISA()->hasCustomRR()) {
+            
+            
+            // 查询，是否正在析构
+            
+            
+            
             deallocating = referent->rootIsDeallocating();
         }
         else {
@@ -416,6 +454,10 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
             deallocating =
             ! (*allowsWeakReference)(referent, @selector(allowsWeakReference));
         }
+        
+        
+        
+        
 
         if (deallocating) {
             if (deallocatingOptions == CrashIfDeallocating) {
@@ -445,6 +487,17 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
 
     return referent_id;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 #if DEBUG

@@ -367,12 +367,14 @@ enum CrashIfDeallocating {
 
 // 分很多格子 bucket
 
-// bucket 里面，放下标 （ index ） 和
+// bucket 里面，放下标 （ index ） 和 ( weak 修饰的 ) obj
+
 
 
 
 
 // 通过 hash 函数，把对象的下标，算出来，放在合适的位置
+
 
 
 
@@ -443,12 +445,25 @@ storeWeak(id *location, objc_object *newObj)
 
     // Clean up old value, if any.
     if (haveOld) {
+        
+        // 清除，可能存在的旧值
+        
         weak_unregister_no_lock(&oldTable->weak_table, oldObj, location);
     }
+    
+    
+    
+    
+    
+    
+    
 
     // Assign new value, if any.
     if (haveNew) {
         newObj = (objc_object *)
+        
+            // 注册，新值
+        
             weak_register_no_lock(&newTable->weak_table, (id)newObj, location, 
                                   crashIfDeallocating ? CrashIfDeallocating : ReturnNilIfDeallocating);
         // weak_register_no_lock returns nil if weak store should be rejected
