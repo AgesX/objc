@@ -10163,11 +10163,28 @@ void *objc_destructInstance(id obj)
         
         
         if (assoc) _object_remove_assocations(obj, /*deallocating*/true);           // 移除， 关联对象
+        
+        
+        //  清除散列表 side table
+        //  整理 weak 表
         obj->clearDeallocating();
     }
 
     return obj;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
@@ -10187,12 +10204,28 @@ object_dispose(id obj)
     
     // 干掉关联对象
     
+    
+    // clear weak 表
+    
     objc_destructInstance(obj);
     // 再释放对象
     free(obj);
 
     return nil;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************

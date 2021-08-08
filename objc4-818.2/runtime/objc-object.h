@@ -727,8 +727,19 @@ objc_object::rootIsDeallocating()
 }
 
 
+
+
+
+
+
+
+
+
+
+// 可能存在的 weak 对象，处理
+
 inline void 
-objc_object::clearDeallocating()
+objc_object:: clearDeallocating()
 {
     if (slowpath(!isa.nonpointer)) {
         // Slow path for raw pointer isa.

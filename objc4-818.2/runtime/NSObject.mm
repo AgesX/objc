@@ -169,6 +169,30 @@ enum HaveNew { DontHaveNew = false, DoHaveNew = true };
 
 
 struct SideTable {
+    
+    
+    
+    
+    /*
+        有多个表，  SideTable
+     
+     
+        根据哈希函数，
+     
+     
+        把对象，算出来的下标，
+     
+     
+        进行区分，放置对象
+     
+     
+     */
+    
+    
+    
+    
+    
+    
     spinlock_t slock;                   // 自旋锁
     
     
@@ -2309,6 +2333,11 @@ _objc_rootDealloc(id obj)
 
 
 
+
+
+
+
+
 void
 _objc_rootFinalize(id obj __unused)
 {
@@ -2964,6 +2993,23 @@ __attribute__((objc_nonlazy_class))
 - (void)dealloc {
     _objc_rootDealloc(self);
 }
+
+
+// 释放，函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Previously used by GC. Now a placeholder for binary compatibility.
 - (void) finalize {
