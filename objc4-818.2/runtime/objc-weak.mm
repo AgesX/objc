@@ -101,6 +101,17 @@ static void grow_refs_and_insert(weak_entry_t *entry,
     if (old_refs) free(old_refs);
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /** 
  * Add the given referrer to set of weak pointers in this entry.
  * Does not perform duplicate checking (b/c weak pointers are never
@@ -116,19 +127,45 @@ static void append_referrer(weak_entry_t *entry, objc_object **new_referrer)
         for (size_t i = 0; i < WEAK_INLINE_COUNT; i++) {
             if (entry->inline_referrers[i] == nil) {
                 entry->inline_referrers[i] = new_referrer;
+                
+                
+                // 简单添加成功，就没事了
                 return;
             }
         }
+        
+        
+        
+        
+        
+        
+        //  创建，新的数组
+        
+        
+        
 
         // Couldn't insert inline. Allocate out of line.
         weak_referrer_t *new_referrers = (weak_referrer_t *)
             calloc(WEAK_INLINE_COUNT, sizeof(weak_referrer_t));
+        
+        
+        
+        
+        
+        //  转移，自个，本身的数据
+        
+        
         // This constructed table is invalid, but grow_refs_and_insert
         // will fix it and rehash it.
         for (size_t i = 0; i < WEAK_INLINE_COUNT; i++) {
             new_referrers[i] = entry->inline_referrers[i];
         }
         entry->referrers = new_referrers;
+        
+        
+        
+        
+        
         entry->num_refs = WEAK_INLINE_COUNT;
         entry->out_of_line_ness = REFERRERS_OUT_OF_LINE;
         entry->mask = WEAK_INLINE_COUNT-1;
@@ -140,9 +177,19 @@ static void append_referrer(weak_entry_t *entry, objc_object **new_referrer)
     if (entry->num_refs >= TABLE_SIZE(entry) * 3/4) {
         return grow_refs_and_insert(entry, new_referrer);
     }
+    
+    
+    
+    
+    
     size_t begin = w_hash_pointer(new_referrer) & (entry->mask);
     size_t index = begin;
     size_t hash_displacement = 0;
+    
+    
+    
+    
+    
     while (entry->referrers[index] != nil) {
         hash_displacement++;
         index = (index+1) & entry->mask;
@@ -155,6 +202,20 @@ static void append_referrer(weak_entry_t *entry, objc_object **new_referrer)
     ref = new_referrer;
     entry->num_refs++;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /** 
  * Remove old_referrer from set of referrers, if it's present.
@@ -514,15 +575,18 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
     
     
     
-    //  referent， 就是我们的对象 obj
+    //  referent， 就是我们的对象 obj ( 我感觉是，写的变量 )
     
     
     if ((entry = weak_entry_for_referent(weak_table, referent))) {  // 怎么获取的
         
-        
+        // 拿到实体，就添加
         append_referrer(entry, referrer);
     } 
     else {
+        // 拿不到实体，就初始化，再添加
+        
+        // 第一次
         weak_entry_t new_entry(referent, referrer);
         weak_grow_maybe(weak_table);
         weak_entry_insert(weak_table, &new_entry);

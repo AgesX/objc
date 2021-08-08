@@ -155,7 +155,15 @@ enum HaveNew { DontHaveNew = false, DoHaveNew = true };
 
 
 
+// weak 的原理：
 
+
+
+// Side Table,
+// 弱引用表
+// entry, 实体条目
+// 数组
+// 弱引用对象
 
 
 
