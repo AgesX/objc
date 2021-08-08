@@ -751,11 +751,23 @@ objc_object:: clearDeallocating()
     }
     else if (slowpath(isa.weakly_referenced  ||  isa.has_sidetable_rc)) {
         // Slow path for non-pointer isa with weak refs and/or side table data.
+        
+        
+        // 我觉得， 看这边
+        
+        
         clearDeallocating_slow();
     }
 
     assert(!sidetable_present());
 }
+
+
+
+
+
+
+
 
 
 

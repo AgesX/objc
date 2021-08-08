@@ -1969,6 +1969,23 @@ objc_object::sidetable_release(bool locked, bool performDealloc)
 
 
 
+
+
+// 引用计数表，控制
+// 对象的 dealloc 方法的调用
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 散列表释放
 // weak 弱引用表的一些释放
 void
@@ -1980,15 +1997,52 @@ objc_object::sidetable_clearDeallocating()
     // clear extra retain count and deallocating bit
     // (fixme warn or abort if extra retain count == 0 ?)
     table.lock();
+    
+    // 查找
     RefcountMap::iterator it = table.refcnts.find(this);
     if (it != table.refcnts.end()) {
         if (it->second & SIDE_TABLE_WEAKLY_REFERENCED) {
+        
+            
+            
+            // 清除
+            
+            // 弱引用表，清除
             weak_clear_no_lock(&table.weak_table, (id)this);
         }
+        
+        
+        // 清除
+        
+        
+        
+        // 引用计数表，清除
         table.refcnts.erase(it);
     }
     table.unlock();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************************************************************
