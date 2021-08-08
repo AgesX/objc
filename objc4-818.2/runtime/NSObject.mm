@@ -1851,6 +1851,15 @@ objc_object::sidetable_tryRetain()
 }
 
 
+
+
+
+
+
+
+// 引用计数
+
+
 uintptr_t
 objc_object::sidetable_retainCount()
 {
@@ -1867,6 +1876,17 @@ objc_object::sidetable_retainCount()
     table.unlock();
     return refcnt_result;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 bool 
@@ -2996,9 +3016,21 @@ __attribute__((objc_nonlazy_class))
     return ULONG_MAX;
 }
 
+
+
+
+
+
+// 引用计数
+
 - (NSUInteger)retainCount {
     return _objc_rootRetainCount(self);
 }
+
+
+
+
+
 
 
 // NSObject 为什么不走 _objc_rootAlloc， 走的是 objc_alloc

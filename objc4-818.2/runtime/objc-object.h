@@ -1172,8 +1172,16 @@ objc_object::rootAutorelease()
 }
 
 
+
+
+
+
+
+
+// 引用计数
+
 inline uintptr_t 
-objc_object::rootRetainCount()
+objc_object:: rootRetainCount()
 {
     if (isTaggedPointer()) return (uintptr_t)this;
 
@@ -1191,6 +1199,13 @@ objc_object::rootRetainCount()
     sidetable_unlock();
     return sidetable_retainCount();
 }
+
+
+
+
+
+
+
 
 
 // SUPPORT_NONPOINTER_ISA
