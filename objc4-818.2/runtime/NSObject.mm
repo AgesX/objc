@@ -204,7 +204,21 @@ struct SideTable {
     static void unlockTwo(SideTable *lock1, SideTable *lock2);
 };
 
-
+/*
+ 
+ 
+    我的感觉，
+ 
+ 
+ 
+    一个对象，被赋予了多个对象，
+ 
+ 
+    弱引用表里面，怎么存
+ 
+ 
+ 
+ */
 
 
 
