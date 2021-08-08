@@ -352,6 +352,36 @@ objc_storeStrong(id *location, id obj)
 enum CrashIfDeallocating {
     DontCrashIfDeallocating = false, DoCrashIfDeallocating = true
 };
+
+
+
+
+
+
+
+
+
+// weak 修饰符，    的原理
+
+// weak 哈希表
+
+// 分很多格子 bucket
+
+// bucket 里面，放下标 （ index ） 和
+
+
+
+
+// 通过 hash 函数，把对象的下标，算出来，放在合适的位置
+
+
+
+
+
+
+
+
+
 template <HaveOld haveOld, HaveNew haveNew,
           enum CrashIfDeallocating crashIfDeallocating>
 static id 
@@ -482,6 +512,19 @@ objc_storeWeakOrNil(id *location, id newObj)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /** 
  * Initialize a fresh weak pointer to some object location. 
  * It would be used for code like: 
@@ -509,6 +552,25 @@ objc_initWeak(id *location, id newObj)
     return storeWeak<DontHaveOld, DoHaveNew, DoCrashIfDeallocating>
         (location, (objc_object*)newObj);
 }
+
+
+
+// weak 修饰符，    的原理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 id
 objc_initWeakOrNil(id *location, id newObj)
