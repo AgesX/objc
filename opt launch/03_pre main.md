@@ -71,7 +71,20 @@ ASLR  ，会分配一个随机的值， 插入到二进制文件 mach - o 的开
 Address space layout randomization
 
 
-(    ASLR   ) 
+
+{
+
+
+   ASLR  ,  保证安全，
+
+   
+(  针对符号
+解决虚拟地址，固定不变的安全隐患  ) 
+
+
+
+
+}
 
 
 位址空間配置隨機載入
