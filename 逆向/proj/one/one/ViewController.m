@@ -33,7 +33,7 @@ int test(void){
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    test();
     printf("%x\n", test());
     
     
