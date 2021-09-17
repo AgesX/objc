@@ -16,7 +16,9 @@
 
 int test(void){
     
-    int temp = 0xFFFFFFFF;
+    int temp = 0x1FFFFFFFF;
+    
+    
     return temp;
 
 }
