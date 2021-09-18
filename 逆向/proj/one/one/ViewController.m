@@ -42,7 +42,12 @@ int test(void){
     printf("%x\n", test());
     
     
-    A();
+    A();        // OC 调用汇编
+    
+    
+    
+    
+    
     B();
     
 }
