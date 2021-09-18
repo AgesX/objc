@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262BDF3626F5771700146DED /* test.s in Sources */ = {isa = PBXBuildFile; fileRef = 262BDF3526F5771700146DED /* test.s */; };
 		2657D97726F28EA7008F5C42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2657D97626F28EA7008F5C42 /* AppDelegate.m */; };
 		2657D97A26F28EA7008F5C42 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2657D97926F28EA7008F5C42 /* SceneDelegate.m */; };
 		2657D97D26F28EA7008F5C42 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2657D97C26F28EA7008F5C42 /* ViewController.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		262BDF3526F5771700146DED /* test.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = test.s; sourceTree = "<group>"; };
 		2657D97226F28EA7008F5C42 /* one.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = one.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2657D97526F28EA7008F5C42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2657D97626F28EA7008F5C42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 		2657D96926F28EA7008F5C42 = {
 			isa = PBXGroup;
 			children = (
+				262BDF3526F5771700146DED /* test.s */,
 				2657D97426F28EA7008F5C42 /* one */,
 				2657D97326F28EA7008F5C42 /* Products */,
 			);
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262BDF3626F5771700146DED /* test.s in Sources */,
 				2657D97D26F28EA7008F5C42 /* ViewController.m in Sources */,
 				2657D97726F28EA7008F5C42 /* AppDelegate.m in Sources */,
 				2657D98826F28EAB008F5C42 /* main.m in Sources */,

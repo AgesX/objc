@@ -12,6 +12,11 @@
 @end
 
 
+// 调用汇编
+
+// 函数的声明
+int A();
+int B();
 
 
 int test(void){
@@ -37,9 +42,14 @@ int test(void){
     printf("%x\n", test());
     
     
-    
+    A();
+    B();
     
 }
 
 
 @end
+
+
+
+
