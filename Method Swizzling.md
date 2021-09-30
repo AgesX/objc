@@ -74,7 +74,14 @@ To swizzle a method is to change a class’s dispatch table in order to resolve 
 <hr>
 
 
+```
+struct objc_method {
+    SEL method_name;
+    char *method_types;    /* a string representing argument/return types */
+    IMP method_imp;
+};
 
+```
 
 
 
