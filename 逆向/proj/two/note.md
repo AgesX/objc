@@ -11,7 +11,10 @@
 
 <hr>
 
-
+```
+(lldb) register read sp
+      sp = 0x000000016b281c50
+```
 
 <hr>
 
