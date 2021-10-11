@@ -29,15 +29,27 @@ int test(void){
 }
 
 
+void D(void){
+}
 
+void C(void){
+    D();
+    return;
+}
 
 
 
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    C();
+    
+    
     
     printf("开始 \n");
     

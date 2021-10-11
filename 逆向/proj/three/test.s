@@ -13,9 +13,14 @@
 
 _A:
     mov x0, #0xaaaa
+    // 保护 / 保存， 你的 lr 寄存器
+    // 遇到 bl,  lr 就会变
+
+    // 将 lr, 保存到栈区域，才安全
     bl _B
     mov x0, #0xaaaa
     ret
+
 
 _B:
     mov x0, #0xbbbb
